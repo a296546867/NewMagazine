@@ -1,3 +1,12 @@
 <resources>
+
     <string name="app_name">NewMagazine</string>
+    <string name="activity_bottom_text_home">杂志</string>
+    <string name="activity_bottom_text_search">搜索</string>
+    <string name="activity_bottom_text_collection">收藏夹</string>
+    <string name="activity_bottom_text_footprint">足迹</string>
+    <string name="activity_bottom_text_mine">我的</string>
+
+
+
 </resources>

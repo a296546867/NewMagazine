@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="tab_text_Nomaml">#FFFF00</color>
+    <color name="tab_text_Pressed">#CDCD00</color>
+    <color name="tab_bg_Pressed">#FFA54F</color>
+    <color name="tab_bg_Nomaml">#FFD39B</color>
+    <color name="avtivity_bg">#FFE7BA</color>
+    <color name="avtivity_top_bar_bg">#CDBA96</color>
+    <color name="avtivity_bottom_bar_bg">#CDBA96</color>
+    <color name="avtivity_topbar_text">#CD853F</color>
+    <color name="avtivity_topbarANDbottombar_lineView">#CDC0B0</color>
+
+
 </resources>
