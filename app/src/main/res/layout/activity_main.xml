@@ -20,7 +20,7 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textColor="@color/avtivity_topbar_text"
-            android:text="<信息"/>
+            android:text="@string/home_bar_text"/>
 
 
         <View

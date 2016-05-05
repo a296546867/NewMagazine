@@ -7,6 +7,6 @@
     <string name="activity_bottom_text_footprint">足迹</string>
     <string name="activity_bottom_text_mine">我的</string>
 
-
+    <string name="home_bar_text">菜单</string>
 
 </resources>
