@@ -1,12 +1,15 @@
 <resources>
 
     <string name="app_name">NewMagazine</string>
+
+    <!--首页底部文字-->
     <string name="activity_bottom_text_home">杂志</string>
     <string name="activity_bottom_text_search">搜索</string>
     <string name="activity_bottom_text_collection">收藏夹</string>
     <string name="activity_bottom_text_footprint">足迹</string>
     <string name="activity_bottom_text_mine">我的</string>
 
+    <!--主界顶部导航栏字体-->
     <string name="home_bar_text">菜单</string>
 
 </resources>

@@ -3,15 +3,32 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="tab_text_Nomaml">#FFFF00</color>
-    <color name="tab_text_Pressed">#CDCD00</color>
-    <color name="tab_bg_Pressed">#FFA54F</color>
+
+    <!--首页底部按钮字体颜色-->
+    <color name="tab_text_Nomaml">#000000</color>
+    <color name="tab_text_Pressed">#ffffff</color>
+
+    <!--首页底部按钮背景颜色-->
+    <color name="tab_bg_Pressed">#BABABA</color>
     <color name="tab_bg_Nomaml">#FFD39B</color>
+
+    <!--主界面背景色-->
     <color name="avtivity_bg">#FFE7BA</color>
+
+    <!--主界顶部导航栏颜色-->
     <color name="avtivity_top_bar_bg">#CDBA96</color>
+
+    <!--主界底部导航栏颜色-->
     <color name="avtivity_bottom_bar_bg">#CDBA96</color>
+
+    <!--主界顶部导航栏字体颜色-->
     <color name="avtivity_topbar_text">#CD853F</color>
+
+    <!--界面顶部和底部分割线颜色-->
     <color name="avtivity_topbarANDbottombar_lineView">#CDC0B0</color>
+
+
+    <color name="drawerLayout_bg">#ffffff</color>
 
 
 </resources>

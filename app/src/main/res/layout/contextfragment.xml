@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/avtivity_bg"
+    tools:context=".MainActivity"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/ly_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/avtivity_top_bar_bg">
+
+        <TextView
+            android:id="@+id/txt_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/home_bar_text"
+            android:textColor="@color/avtivity_topbar_text"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/avtivity_topbarANDbottombar_lineView" />
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/avtivity_bottom_bar_bg"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tabBtn_home"
+            style="@style/home_bottom_tab_menuitem"
+            android:drawableTop="@drawable/tab_menu_home"
+            android:text="@string/activity_bottom_text_home" />
+
+        <RadioButton
+            android:id="@+id/tabBtn_search"
+            style="@style/home_bottom_tab_menuitem"
+            android:drawableTop="@drawable/tab_menu_search"
+            android:text="@string/activity_bottom_text_search" />
+
+        <RadioButton
+            android:id="@+id/tabBtn_collection"
+            style="@style/home_bottom_tab_menuitem"
+            android:drawableTop="@drawable/tab_menu_collection"
+            android:text="@string/activity_bottom_text_collection" />
+
+        <RadioButton
+            android:id="@+id/tabBtn_footprint"
+            style="@style/home_bottom_tab_menuitem"
+            android:drawableTop="@drawable/tab_menu_footprint"
+            android:text="@string/activity_bottom_text_footprint"/>
+
+        <RadioButton
+            android:id="@+id/tabBtn_mine"
+            style="@style/home_bottom_tab_menuitem"
+            android:drawableTop="@drawable/tab_menu_mine"
+            android:text="@string/activity_bottom_text_mine"/>
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/div_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_above="@id/rg_tab_bar"
+        android:background="@color/avtivity_topbarANDbottombar_lineView" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/div_tab_bar"
+        android:layout_below="@id/ly_top_bar"/>
+
+</RelativeLayout>

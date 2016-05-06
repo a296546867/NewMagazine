@@ -1,119 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
 
-    <RelativeLayout
-        android:id="@+id/ly_top_bar"
+    <FrameLayout
+        android:id="@+id/ly_content"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/avtivity_topbarANDbottombar_lineView">
-
-        <TextView
-            android:id="@+id/txt_topbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/avtivity_topbar_text"
-            android:text="@string/home_bar_text"/>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/avtivity_topbarANDbottombar_lineView"
-            android:layout_alignParentBottom="true"/>
-
-    </RelativeLayout>
-
-
+        android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/ly_tab_bar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/avtivity_bottom_bar_bg"
-        android:orientation="horizontal">
+        android:id="@+id/list_left_drawer"
+        android:layout_width="200dip"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/drawerLayout_bg"
+        >
 
         <TextView
-            android:id="@+id/txt_channel"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tab_menu_bg"
-            android:drawablePadding="3dp"
-            android:drawableTop="@drawable/ok"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/activity_bottom_text_home"
-            android:textColor="@drawable/tab_menu_text"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/txt_message"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tab_menu_bg"
-            android:drawablePadding="3dp"
-            android:drawableTop="@drawable/ok"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/activity_bottom_text_search"
-            android:textColor="@drawable/tab_menu_text"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/txt_better"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tab_menu_bg"
-            android:drawablePadding="3dp"
-            android:drawableTop="@drawable/ok"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/activity_bottom_text_collection"
-            android:textColor="@drawable/tab_menu_text"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/txt_setting"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tab_menu_bg"
-            android:drawablePadding="3dp"
-            android:drawableTop="@drawable/ok"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/activity_bottom_text_footprint"
-            android:textColor="@drawable/tab_menu_text"
-            android:textSize="16sp"/>
+            android:id="@+id/text"
+            android:text="111"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/div_tab_bar"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/avtivity_topbarANDbottombar_lineView"
-        android:layout_above="@id/ly_tab_bar"/>
+</android.support.v4.widget.DrawerLayout>
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ly_top_bar"
-        android:layout_above="@id/div_tab_bar"
-        android:id="@+id/ly_content">
 
-    </FrameLayout>
 
-</RelativeLayout>
