@@ -9,24 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
+
+    <FrameLayout
         android:id="@+id/list_left_drawer"
-        android:layout_width="200dip"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:orientation="vertical"
         android:background="@color/drawerLayout_bg"
-        >
+        android:layout_gravity="start"
+    />
 
-        <TextView
-            android:id="@+id/text"
-            android:text="111"
-            android:textColor="#000000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
 
-    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
 

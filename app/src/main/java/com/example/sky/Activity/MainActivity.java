@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import com.example.sky.Fragment.ContextFragment;
+import com.example.sky.Fragment.LeftFragment;
 
 import java.io.Serializable;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private  DrawerLayout drawerLayout;          //抽屉布局
     private  FrameLayout  contextFrameLayout;   //内容布局
-    private  LinearLayout linearLayout;          //左滑视图
+    private  FrameLayout  leftLayout;          //左滑视图
 
 
     @Override
@@ -44,13 +45,16 @@ public class MainActivity extends AppCompatActivity {
         contextFrameLayout = (FrameLayout)findViewById(R.id.ly_content);
 
         //左滑视图
-        linearLayout = (LinearLayout)findViewById(R.id.list_left_drawer) ;
+        leftLayout = (FrameLayout) findViewById(R.id.list_left_drawer) ;
 
         //内容视图初始化
-        ContextFragment contextFragment=new ContextFragment(drawerLayout,linearLayout);
-
+        ContextFragment contextFragment=new ContextFragment(drawerLayout,leftLayout);
         //设置内容视图到整个抽图布局
         getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,contextFragment).commit();
 
+        //左滑视图
+        LeftFragment leftFragment=new LeftFragment();
+        //设置左滑视图到整个抽图布局
+        getSupportFragmentManager().beginTransaction().replace(R.id.list_left_drawer,leftFragment).commit();
     }
 }

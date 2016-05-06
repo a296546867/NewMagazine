@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,7 +30,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     //整个抽屉布局
     DrawerLayout drawerLayout;
     //左滑视图
-    LinearLayout linearLayout;
+    FrameLayout leftLayout;
 
 
     //菜单字体
@@ -59,10 +60,10 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
 
     //构成函数
     public ContextFragment(){super();}
-    public ContextFragment( DrawerLayout drawerLayout,LinearLayout linearLayout){
+    public ContextFragment( DrawerLayout drawerLayout,FrameLayout leftLayout){
 
         this.drawerLayout=drawerLayout;//整个抽屉布局
-        this.linearLayout=linearLayout;//左滑视图
+        this.leftLayout=leftLayout;//左滑视图
     }
 
     @Override
@@ -83,7 +84,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
             @Override
             public void onClick(View v) {
                 //打开左滑视图
-                drawerLayout.openDrawer(linearLayout);
+                drawerLayout.openDrawer(leftLayout);
             }
         });
 
