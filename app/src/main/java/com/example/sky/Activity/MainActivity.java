@@ -8,6 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import com.example.sky.Fragment.ContextFragment;
 
+import java.io.Serializable;
+
 
 /**
  *
@@ -34,18 +36,21 @@ public class MainActivity extends AppCompatActivity {
      * 绑定控件
      */
     private void bindViews() {
+
         //抽屉布局
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //内容视图
         contextFrameLayout = (FrameLayout)findViewById(R.id.ly_content);
+
         //左滑视图
         linearLayout = (LinearLayout)findViewById(R.id.list_left_drawer) ;
 
         //内容视图初始化
-        ContextFragment contextFragment=new ContextFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.ly_content,contextFragment).commit();
+        ContextFragment contextFragment=new ContextFragment(drawerLayout,linearLayout);
+
+        //设置内容视图到整个抽图布局
+        getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,contextFragment).commit();
 
     }
 }
