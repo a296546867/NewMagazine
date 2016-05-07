@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         leftLayout = (FrameLayout) findViewById(R.id.list_left_drawer) ;
 
         //内容视图初始化
-        ContextFragment contextFragment=new ContextFragment(drawerLayout,leftLayout);
+//        ContextFragment contextFragment=new ContextFragment(drawerLayout,leftLayout);
         //设置内容视图到整个抽图布局
-        getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,contextFragment).commit();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,contextFragment).commit();
 
         //左滑视图
         LeftFragment leftFragment=new LeftFragment();
