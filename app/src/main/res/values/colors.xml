@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
+
+
     <!--首页底部按钮字体颜色-->
     <color name="tab_text_Nomaml">#000000</color>
     <color name="tab_text_Pressed">#ffffff</color>
@@ -27,8 +30,10 @@
     <!--界面顶部和底部分割线颜色-->
     <color name="avtivity_topbarANDbottombar_lineView">#CDC0B0</color>
 
-
+    <!--左滑菜单背景颜色-->
     <color name="drawerLayout_bg">#ffffff</color>
 
+    <!--左滑功能字体颜色-->
+    <color name="drawerLayout_text_bg">#000000</color>
 
 </resources>

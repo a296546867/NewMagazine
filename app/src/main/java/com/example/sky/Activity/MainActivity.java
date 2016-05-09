@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity{
 
     /**
      *
-     * 返回键退出程序
+     * 返回键双击退出程序
      *
      * @param keyCode
      * @param event
@@ -80,9 +80,6 @@ public class MainActivity extends BaseActivity{
             }
             return false;
         }
-
-
-
 
         return super.onKeyDown(keyCode, event);
 
