@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.sky.Activity.R;
+import com.example.sky.Utils.ActivityCollector;
 import com.example.sky.adapter.LeftMenuListAdapter;
 
 import java.util.ArrayList;
@@ -24,8 +26,9 @@ import java.util.List;
  * 修改时间：2016/5/6 17:23
  * 修改备注：
  */
-public class LeftFragment extends Fragment {
+public class LeftFragment extends Fragment implements LinearLayout.OnClickListener{
 
+    LinearLayout left_ment_toplayout;//左滑视图头部
     TextView name;//昵称
     TextView level;//会员等级
 
@@ -38,6 +41,12 @@ public class LeftFragment extends Fragment {
     final static  String GETVIP = "升级VIP会员";
     final static  String ABOUTUS = "关于我们";
     final static  String HELP = "帮助";
+
+
+
+    
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,12 +67,22 @@ public class LeftFragment extends Fragment {
      */
     private void bindViews(View view){
 
+        left_ment_toplayout=(LinearLayout)view.findViewById(R.id.left_ment_toplayout);
         name=(TextView)view.findViewById(R.id.left_ment_toplayout_text_name);
         level=(TextView)view.findViewById(R.id.left_ment_toplayout_text_level);
+
 
         listView=(ListView)view.findViewById(R.id.left_ment_list);
     }
 
+    /**
+     * 设置各种监听事件
+     */
+    private void setListener(){
+        //左滑视图头部点击事件
+        left_ment_toplayout.setOnClickListener(this);
+
+    }
 
     /**
      * 获得存放了左滑功能列表的List
@@ -80,12 +99,14 @@ public class LeftFragment extends Fragment {
     }
 
 
+    /**
+     * 设置适配器
+     */
     private  void setAdapter(){
 
         //listView适配器
         LeftMenuListAdapter leftMenuListAdapter=new LeftMenuListAdapter(leftMenuList,getActivity());
         listView.setAdapter(leftMenuListAdapter);
-
 
     }
 
@@ -104,9 +125,22 @@ public class LeftFragment extends Fragment {
         getLeftMenuList();
         //设置控件的适配器
         setAdapter();
-
+        //设置各种事件
+        setListener();
 
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.left_ment_toplayout){
+
+            //替换centerFragment为主内容视图
+            CenterFragment centerFragment=new CenterFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,centerFragment).commit();
+
+            //关闭抽屉菜单
+
+        }
+    }
 }
