@@ -1,4 +1,4 @@
-package com.example.sky.Fragment;
+package com.example.sky.MyAdapter;
 
 
 import android.support.v4.app.Fragment;
@@ -7,6 +7,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.example.sky.Activity.MainActivity;
+import com.example.sky.Fragment.CollectionFragment;
+import com.example.sky.Fragment.FootPrintFragment;
+import com.example.sky.Fragment.HomeFragment;
+import com.example.sky.Fragment.MineFragment;
+import com.example.sky.Fragment.SearchFragment;
 
 /**
  * 项目名称：NewMagazine
@@ -17,16 +22,16 @@ import com.example.sky.Activity.MainActivity;
  * 修改时间：2016/5/6 10:29
  * 修改备注：
  */
-public class MyFragmentPager extends FragmentPagerAdapter {
+public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private final int PAGER_COUNT = 5;
-    private HomeFragment         myFragment1 = null;
-    private SearchFragment       myFragment2 = null;
-    private CollectionFragment   myFragment3 = null;
-    private FootPrintFragment    myFragment4 = null;
-    private MineFragment         myFragment5 = null;
+    private HomeFragment myFragment1 = null;
+    private SearchFragment myFragment2 = null;
+    private CollectionFragment myFragment3 = null;
+    private FootPrintFragment myFragment4 = null;
+    private MineFragment myFragment5 = null;
 
-    public MyFragmentPager(FragmentManager fm) {
+    public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
         myFragment1 = new HomeFragment();
         myFragment2 = new SearchFragment();

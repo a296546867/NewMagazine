@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.sky.Activity.R;
+import com.example.sky.MyAdapter.MyFragmentPagerAdapter;
 
 /**
  * 项目名称：NewMagazine
@@ -47,7 +48,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     private ViewPager vpager;
 
     //滑动页面适配器
-    private MyFragmentPager mAdapter;
+    private MyFragmentPagerAdapter mAdapter;
 
     //几个代表页面的常量
     public static final int PAGE_ONE = 0;
@@ -116,7 +117,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
         menu = (TextView)view.findViewById(R.id.txt_topbar);
 
         //滑动控件适配器
-        mAdapter = new MyFragmentPager(getActivity().getSupportFragmentManager());
+        mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
 
         //滑动控件
         vpager = (ViewPager) view.findViewById(R.id.viewPager);
