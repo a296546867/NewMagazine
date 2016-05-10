@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/avtivity_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/loginactivity_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/avtivity_top_bar_bg"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/loginactivity_return_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_centerVertical="true"
+            android:text="返回"
+            android:textColor="@color/return_text_color"
+            android:textSize="@dimen/return_text_size" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/loginactivity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:text="登录"
+            android:textColor="@color/title_text_color"
+            android:textSize="@dimen/title_text_size" >
+        </TextView>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/table_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_ll"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp" >
+
+            <!-- 第1行 -->
+
+            <LinearLayout
+                android:id="@+id/row_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="手机号"
+                    android:textColor="#a6a6a6"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/register_edittext_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="#a6a6a6"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- 第2行 -->
+
+            <LinearLayout
+                android:id="@+id/row_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="密码"
+                    android:textColor="#a6a6a6"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/register_edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:password="true"
+                    android:singleLine="true"
+                    android:textColor="#a6a6a6"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/table_ll"
+        android:gravity="center"
+        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp" >
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/button_style"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:text="登  录"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/login_register_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_btn"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_style"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="注  册"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/forgetpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记密码"
+            android:textSize="15sp"
+            android:textColor="@color/forgetPassword_text_color"
+            android:layout_below="@+id/login_register_tv"
+            android:layout_alignRight="@+id/login_register_tv"
+            android:layout_marginTop="5dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
