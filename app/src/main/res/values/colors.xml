@@ -13,16 +13,16 @@
 
     <!--首页底部按钮背景颜色-->
     <color name="tab_bg_Pressed">#BABABA</color>
-    <color name="tab_bg_Nomaml">#FFD39B</color>
+    <color name="tab_bg_Nomaml">#efe7d7</color>
 
     <!--主界面背景色-->
-    <color name="avtivity_bg">#FFE7BA</color>
+    <color name="avtivity_bg">#f7f3e8</color>
 
     <!--主界顶部导航栏颜色-->
-    <color name="avtivity_top_bar_bg">#CDBA96</color>
+    <color name="avtivity_top_bar_bg">#efe7d7</color>
 
     <!--主界底部导航栏颜色-->
-    <color name="avtivity_bottom_bar_bg">#CDBA96</color>
+    <color name="avtivity_bottom_bar_bg">#efe7d7</color>
 
     <!--主界顶部导航栏字体颜色-->
     <color name="avtivity_topbar_text">#CD853F</color>
@@ -35,5 +35,15 @@
 
     <!--左滑功能字体颜色-->
     <color name="drawerLayout_text_bg">#000000</color>
+
+
+    <!--返回字体颜色-->
+    <color name="return_text_color">#998767</color>
+
+    <!--标题字体颜色-->
+    <color name="title_text_color">#998767</color>
+
+
+
 
 </resources>

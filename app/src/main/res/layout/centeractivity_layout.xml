@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/avtivity_bg"
+
+    >
+
+    <RelativeLayout
+        android:id="@+id/centerfragment_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/avtivity_top_bar_bg"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/centerfragment_return_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_centerVertical="true"
+            android:text="返回"
+            android:textColor="@color/return_text_color"
+            android:textSize="@dimen/return_text_size" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/ActivityUserCenter_titlbeack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:text="用户中心"
+            android:textColor="@color/title_text_color"
+            android:textSize="@dimen/title_text_size" >
+        </TextView>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:id="@+id/Info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/white"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/clickSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:text="点击登录"
+                android:textColor="@android:color/black"
+                android:textSize="23sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/showMyCollection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/white"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/imageViewMyFav"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/my_fav" />
+
+            <TextView
+                android:id="@+id/MyFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/imageViewMyFav"
+                android:text="我的收藏"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/showMyINFO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/white"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/imageViewMyInfo"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/my_info" />
+
+            <TextView
+                android:id="@+id/MyInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/imageViewMyInfo"
+                android:text="用户注册"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/showMyApply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/white"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/imageViewMyApply"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/my_apply" />
+
+            <TextView
+                android:id="@+id/MyApply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/imageViewMyApply"
+                android:text="我的申请"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/showMyEdito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/white"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/imageViewMyEdito"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/my_setting" />
+
+            <TextView
+                android:id="@+id/MyEdito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/imageViewMyEdito"
+                android:text="设置"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.sky.Activity;
 
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class MainActivity extends BaseActivity{
         getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,contextFragment).commit();
 
         //左滑视图
-        LeftFragment leftFragment=new LeftFragment();
+        LeftFragment leftFragment=new LeftFragment(drawerLayout);
         //设置左滑视图到整个抽图布局
         getSupportFragmentManager().beginTransaction().replace(R.id.list_left_drawer,leftFragment).commit();
     }
@@ -84,4 +85,5 @@ public class MainActivity extends BaseActivity{
         return super.onKeyDown(keyCode, event);
 
     }
+
 }

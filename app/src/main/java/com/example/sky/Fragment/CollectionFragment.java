@@ -54,13 +54,13 @@ public class CollectionFragment extends Fragment {
 
 
         mData = new ArrayList<CollectionItem>();
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","99"));
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","993"));
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","1"));
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","3"));
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","44"));
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","95"));
-        mData.add(new CollectionItem(R.drawable.women,R.drawable.close_btn,"helloworld","88"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","99"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","993"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","1"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","3"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","44"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","95"));
+        mData.add(new CollectionItem(R.mipmap.women,R.mipmap.close_btn,"helloworld","88"));
 
 
         mAdapter = new MyAdapter<CollectionItem>(mData, R.layout.collection_gridview_item_layout) {

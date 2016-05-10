@@ -15,6 +15,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!--用户中心-->
+        <activity
+            android:name=".CenterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
+        <!--用户中心_设置-->
+        <activity
+            android:name=".SettingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
+
     </application>
+
+
+
 
 </manifest>

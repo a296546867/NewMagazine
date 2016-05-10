@@ -1,15 +1,21 @@
 package com.example.sky.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.sky.Activity.CenterActivity;
 import com.example.sky.Activity.R;
 import com.example.sky.Utils.ActivityCollector;
 import com.example.sky.adapter.LeftMenuListAdapter;
@@ -32,8 +38,7 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     TextView name;//昵称
     TextView level;//会员等级
 
-    ListView listView;//抽屉功能列表
-
+    ListView listView;//抽屉功能列表布局
     List<String> leftMenuList;//存放左滑功能列表
 
     final static  String MYCOUNT = "我的账户";
@@ -43,16 +48,19 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     final static  String HELP = "帮助";
 
 
+    private DrawerLayout drawerLayout;          //抽屉布局
 
-    
 
+    public LeftFragment(){}
+    public LeftFragment(DrawerLayout drawerLayout){
+        this.drawerLayout=drawerLayout;
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.leftfragment, container, false);
-
 
         init(view);
 
@@ -135,12 +143,33 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     public void onClick(View v) {
         if (v.getId()==R.id.left_ment_toplayout){
 
-            //替换centerFragment为主内容视图
-            CenterFragment centerFragment=new CenterFragment();
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,centerFragment).commit();
+            //启动centerActivity
+//            startActivity(new Intent(getActivity(), CenterActivity.class));
+            startActivityForResult(new Intent(getActivity(), CenterActivity.class),0);
 
             //关闭抽屉菜单
-
+            drawerLayout.closeDrawers();
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //更新会员名和会员名称
+        if (requestCode==0) {
+            if (resultCode == 1) {
+                Bundle bundle = data.getExtras();
+                String nickName = bundle.getString("nickName");
+                String levelName = bundle.getString("level");
+
+                name.setText(nickName);//会员名称
+                level.setText(levelName);//会员等级
+
+                Toast.makeText(getActivity(), nickName + "  " + levelName, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
     }
 }
