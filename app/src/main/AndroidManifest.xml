@@ -20,14 +20,15 @@
         <!--用户中心-->
         <activity
             android:name=".CenterActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <!--用户中心_设置-->
         <activity
             android:name=".SettingActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
-
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <!--用户中心_登录-->
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 

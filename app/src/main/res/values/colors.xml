@@ -36,14 +36,19 @@
     <!--左滑功能字体颜色-->
     <color name="drawerLayout_text_bg">#000000</color>
 
-
     <!--返回字体颜色-->
     <color name="return_text_color">#998767</color>
 
     <!--标题字体颜色-->
     <color name="title_text_color">#998767</color>
 
+    <!--按钮颜色-->
+    <color name="button_bg_color">#eac02b</color>
 
+    <!--按钮按下颜色-->
+    <color name="button_pressed_bg_color">#CD950C</color>
 
+    <!--忘记密码颜色-->
+    <color name="forgetPassword_text_color">#0099FF</color>
 
 </resources>
