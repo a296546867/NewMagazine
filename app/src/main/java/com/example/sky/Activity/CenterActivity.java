@@ -46,7 +46,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     private void  binViews(){
 
         returnText=(TextView)findViewById(R.id.centerfragment_return_text);
-        InfoBtn=(RelativeLayout)findViewById(R.id.Info);
+        InfoBtn=(RelativeLayout)findViewById(R.id.center_login);
         showMyCollectionBtn=(RelativeLayout)findViewById(R.id.showMyCollection);
         showMyINFOBtn=(RelativeLayout)findViewById(R.id.showMyINFO);
         showMyApplyBtn=(RelativeLayout)findViewById(R.id.showMyApply);
@@ -76,9 +76,9 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 setNickNameAndLevelName();
                 this.finish();
                 break;
-            case R.id.Info:
+            case R.id.center_login:
 
-                Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,LoginActivity.class));
 
                 break;
             case R.id.showMyCollection:
@@ -107,6 +107,9 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     }
 
 
+    /**
+     * 返回的时候设置返回的数据更新侧滑菜单信息
+     */
     private void setNickNameAndLevelName(){
 
         Intent intent=new Intent();

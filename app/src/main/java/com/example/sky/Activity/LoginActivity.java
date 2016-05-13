@@ -41,7 +41,12 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
     @Override
     public void onClick(View view) {
 
-        this.finish();
+        switch (view.getId()){
+            case R.id.loginactivity_return_text:
+                this.finish();
+                break;
+
+        }
     }
 
     @Override

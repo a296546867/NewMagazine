@@ -50,11 +50,11 @@
         android:padding="10dp" >
 
         <RelativeLayout
-            android:id="@+id/Info"
+            android:id="@+id/center_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@android:color/white"
+            android:background="@drawable/layout_button_style"
             android:padding="10dp" >
 
             <TextView
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@android:color/white"
+            android:background="@drawable/layout_button_style"
             android:padding="10dp" >
 
             <ImageView
@@ -114,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@android:color/white"
+            android:background="@drawable/layout_button_style"
             android:padding="10dp" >
 
             <ImageView
@@ -147,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@android:color/white"
+            android:background="@drawable/layout_button_style"
             android:padding="10dp" >
 
             <ImageView
@@ -180,7 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@android:color/white"
+            android:background="@drawable/layout_button_style"
             android:padding="10dp" >
 
             <ImageView

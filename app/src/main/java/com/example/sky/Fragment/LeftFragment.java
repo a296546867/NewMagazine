@@ -163,7 +163,6 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
                 name.setText(nickName);//会员名称
                 level.setText(levelName);//会员等级
 
-                Toast.makeText(getActivity(), nickName + "  " + levelName, Toast.LENGTH_SHORT).show();
             }
         }
 
