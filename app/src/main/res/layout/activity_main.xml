@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+    <!--主视图-->
     <FrameLayout
         android:id="@+id/ly_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
+    <!--抽屉视图 必须要： android:layout_gravity="start"-->
     <FrameLayout
         android:id="@+id/list_left_drawer"
         android:layout_width="200dp"

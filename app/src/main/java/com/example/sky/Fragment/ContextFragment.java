@@ -127,7 +127,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
 
 
     }
-
+    //重写RadioGroup的方法
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {

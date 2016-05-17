@@ -5,9 +5,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.Fragment.ContextFragment;
 import com.example.sky.Fragment.LeftFragment;
 import com.example.sky.Utils.ActivityCollector;
@@ -19,7 +22,7 @@ import com.example.sky.Utils.ActivityCollector;
  * 设置抽屉布局
  *
  */
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity implements ImageView.OnClickListener{
 
 
     //保存点击的时间
@@ -33,9 +36,18 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        bindViews();
+        SharedHelper sp=new SharedHelper(MainActivity.this);
+        //检查是否第一次启动程序
+        if (sp.isFirstIN()){
+            setContentView(R.layout.isfirstrun_layout);
+            ImageView teachImage=(ImageView)findViewById(R.id.firstrun_teach);
+            teachImage.setOnClickListener(this);
+        }else {
+            setContentView(R.layout.activity_main);
+            bindViews();
+        }
+
     }
 
     /**
@@ -58,6 +70,7 @@ public class MainActivity extends BaseActivity{
         LeftFragment leftFragment=new LeftFragment(drawerLayout);
         //设置左滑视图到整个抽图布局
         getSupportFragmentManager().beginTransaction().replace(R.id.list_left_drawer,leftFragment).commit();
+
     }
 
     /**
@@ -86,4 +99,20 @@ public class MainActivity extends BaseActivity{
 
     }
 
+
+    /**
+     * 第一次启动程序，点击界面回到主界面
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.firstrun_teach:
+                setContentView(R.layout.activity_main);
+                bindViews();
+                break;
+
+        }
+    }
 }

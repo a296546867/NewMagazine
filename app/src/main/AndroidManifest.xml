@@ -33,7 +33,10 @@
         <activity
             android:name=".AboutUSActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+        <!--帮助-->
+        <activity
+            android:name=".HelpActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
 
 

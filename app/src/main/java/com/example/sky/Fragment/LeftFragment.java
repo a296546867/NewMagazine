@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.sky.Activity.AboutUSActivity;
 import com.example.sky.Activity.CenterActivity;
+import com.example.sky.Activity.HelpActivity;
 import com.example.sky.Activity.R;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
 
@@ -188,6 +189,8 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
      *
      * listView的item点击监听器
      *
+     * 跳转到对应的界面
+     *
      * @param parent
      * @param view
      * @param position
@@ -195,6 +198,9 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        //关闭抽屉菜单
+        drawerLayout.closeDrawers();
 
         // 0：我的账户 1:搜索 2:升级VIP 3:关于我们4：帮助
         switch (position){
@@ -209,14 +215,14 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
                 break;
             case 3:
 
-                //关闭抽屉菜单
-                drawerLayout.closeDrawers();
-
                 //跳转到我的账户界面
                 startActivity(new Intent(getActivity(), AboutUSActivity.class));
 
                 break;
             case 4:
+
+                //跳转到我的账户界面
+                startActivity(new Intent(getActivity(), HelpActivity.class));
 
                 break;
         }

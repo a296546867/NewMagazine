@@ -5,8 +5,6 @@
     android:background="@color/avtivity_bg"
     tools:context=".MainActivity"
     >
-
-
     <RelativeLayout
         android:id="@+id/ly_top_bar"
         android:layout_width="match_parent"
