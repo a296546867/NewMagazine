@@ -35,9 +35,6 @@
             android:textColor="@color/title_text_color"
             android:textSize="@dimen/title_text_size" >
         </TextView>
-
-
-
     </RelativeLayout>
 
     <FrameLayout
@@ -53,7 +50,7 @@
             <RelativeLayout
                 android:id="@+id/changeMode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/layout_button_style"
                 android:padding="20dp" >
@@ -70,17 +67,18 @@
 
                 <ImageView
                     android:id="@+id/modeimage"
-                    android:layout_width="30dp"
-                    android:layout_height="20dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/sunOrMoonTextView"
+                    android:layout_marginLeft="15dp"
                     android:src="@mipmap/sun" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/AdjustarticleTextSize"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginBottom="1dp"
                 android:background="@drawable/layout_button_style"
                 android:padding="20dp"
@@ -95,6 +93,7 @@
                     android:text="正文字体"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
+
 
                 <TextView
                     android:id="@+id/currentTextsize"
@@ -113,12 +112,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/moreitem" />
+
+
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/CheckUPdate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginBottom="1dp"
                 android:background="@drawable/layout_button_style"
                 android:padding="20dp"
@@ -145,7 +146,7 @@
             <RelativeLayout
                 android:id="@+id/AboutUs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/layout_button_style"
                 android:padding="20dp"

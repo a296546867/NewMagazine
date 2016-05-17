@@ -12,4 +12,29 @@
     <!--主界顶部导航栏字体-->
     <string name="home_bar_text">菜单</string>
 
+
+
+
+
+
+
+
+
+    <!--关于我们文字-->
+    <string name="aboutUsTitle"> 《银谷之友》俱乐部在广大的烘焙爱好者的支持和信赖之下，走过一个又一个春秋，本着专业，真诚的态度回馈每一位新老会员，每一年都为会员送出不同的烘焙资料和技术资讯：</string>
+    <string name="aboutUsContent">▲2013年，《经典面包制作大全》（51款面包，700多个必学秘诀）；</string>
+    <string name="aboutus1">▲2011年，《五星级精致西点蛋糕》（6大类70多款五星级西点）；</string>
+    <string name="aboutus2">▲2011年，《西式糕点制作大全》（60款西点500个诀窍）；</string>
+    <string name="aboutus3">▲2010年，《孟老师的100道面包》（全本彩图并附赠DVD光盘）；</string>
+    <string name="aboutus4">▲2009年，1g-5kg电子称（出口品牌，有重复去皮功能）；</string>
+    <string name="aboutus5">▲2008年，烘焙专用电子温度计（-50~300℃，德国科技，精密耐用）；</string>
+    <string name="aboutus6">▲2007年，推出《银谷荟萃》DVD（52款面包蛋糕西饼月饼）；</string>
+    <string name="aboutus7">▲2006年，推出《饼店创业经营宝典》一书；</string>
+    <string name="aboutus8">▲2004年和2005年，推出《烘焙技术宝典》一书；</string>
+    <string name="aboutus9">▲2003年，"银谷欧洲面包糕点西点制作"演示光盘；</string>
+    <string name="aboutus10">▲2002年，"银谷烘焙教学指引"光盘；</string>
+<string name="aboutustial">    我们一直坚持为朋友们提供最新最实用的烘焙技术、经营管理技巧和高品质的烘焙工具。加入
+    银谷之友俱乐部，提高烘焙技术，实现创业梦想！</string>
+
+
 </resources>

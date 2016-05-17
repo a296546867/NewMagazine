@@ -8,11 +8,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sky.Activity.AboutUSActivity;
 import com.example.sky.Activity.CenterActivity;
 import com.example.sky.Activity.R;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
@@ -29,7 +31,7 @@ import java.util.List;
  * 修改时间：2016/5/6 17:23
  * 修改备注：
  */
-public class LeftFragment extends Fragment implements LinearLayout.OnClickListener{
+public class LeftFragment extends Fragment implements LinearLayout.OnClickListener ,ListView.OnItemClickListener{
 
     LinearLayout left_ment_toplayout;//左滑视图头部
     TextView name;//昵称
@@ -112,7 +114,7 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         //listView适配器
         LeftMenuListAdapter leftMenuListAdapter=new LeftMenuListAdapter(leftMenuList,getActivity());
         listView.setAdapter(leftMenuListAdapter);
-
+        listView.setOnItemClickListener(this);
     }
 
 
@@ -136,19 +138,31 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     }
 
 
+    /**
+     * 启动用户中心
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.left_ment_toplayout){
 
-            //启动centerActivity
-//            startActivity(new Intent(getActivity(), CenterActivity.class));
-            startActivityForResult(new Intent(getActivity(), CenterActivity.class),0);
-
             //关闭抽屉菜单
             drawerLayout.closeDrawers();
+
+            //启动centerActivity
+            startActivityForResult(new Intent(getActivity(), CenterActivity.class),0);
+
         }
     }
 
+    /**
+     * 处理更新用户中心的信息
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -164,6 +178,47 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
                 level.setText(levelName);//会员等级
 
             }
+        }
+
+
+    }
+
+
+    /**
+     *
+     * listView的item点击监听器
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        // 0：我的账户 1:搜索 2:升级VIP 3:关于我们4：帮助
+        switch (position){
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                //关闭抽屉菜单
+                drawerLayout.closeDrawers();
+
+                //跳转到我的账户界面
+                startActivity(new Intent(getActivity(), AboutUSActivity.class));
+
+                break;
+            case 4:
+
+                break;
         }
 
 

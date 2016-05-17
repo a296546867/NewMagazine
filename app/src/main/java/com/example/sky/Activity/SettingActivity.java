@@ -1,9 +1,13 @@
 package com.example.sky.Activity;
 
-import android.os.Bundle;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +31,12 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
     RelativeLayout checkUpDate;         //检查更新
     RelativeLayout aboutUS;              //关于我们
 
+    ImageView      modeImage;            //白天夜间模式
+    TextView       wordSizeText;         //字体大小
+
+    final String[] wordSzie = new String[]{"偏小", "中等", "偏大"};
+    final String[] dayOrNightText = new String[]{"白天", "夜间"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +54,13 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
         zhengweiziti=(RelativeLayout)findViewById(R.id.AdjustarticleTextSize);
         checkUpDate=(RelativeLayout)findViewById(R.id.CheckUPdate);
         aboutUS=(RelativeLayout)findViewById(R.id.AboutUs);
+
+        //白天夜间模式图片
+        modeImage=(ImageView)findViewById(R.id.modeimage);
+
+        //字体大小文本
+        wordSizeText=(TextView)findViewById(R.id.currentTextsize);
+
     }
 
 
@@ -64,13 +81,52 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
                 this.finish();
                 break;
             case R.id.changeMode:
+
+                new AlertDialog.Builder(SettingActivity.this).setTitle("请选择显示模式：")
+                        .setSingleChoiceItems(dayOrNightText, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "你选择了" + dayOrNightText[which], Toast.LENGTH_SHORT).show();
+
+                                //设置白天或夜间图片
+                                if (which==0) {
+                                    modeImage.setImageResource(R.mipmap.sun);
+                                }else{
+                                    modeImage.setImageResource(R.mipmap.moon);
+                                }
+
+                                //关闭dialog
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+
                 break;
             case R.id.AdjustarticleTextSize:
+
+              new AlertDialog.Builder(SettingActivity.this).setTitle("请选择正文的字体大小：")
+                        .setSingleChoiceItems(wordSzie, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "你选择了" + wordSzie[which], Toast.LENGTH_SHORT).show();
+
+                                //设置大小
+                                wordSizeText.setText(wordSzie[which]);
+                                //关闭dialog
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+
+
                 break;
             case R.id.CheckUPdate:
                 break;
             case R.id.AboutUs:
-                Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
+
+
+                //跳转到关于我们
+                startActivity(new Intent(SettingActivity.this,AboutUSActivity.class));
+
+
                 break;
 
         }
