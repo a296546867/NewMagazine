@@ -12,6 +12,7 @@
         <mapping class="com.masson.bean.Article" />
 
         <mapping class="com.masson.bean.Journal" />
+
     </list>
 
 </litepal>

@@ -43,13 +43,15 @@
         android:id="@+id/table_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_ll"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingTop="10dp" >
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/rectangle"
+        >
 
             <!-- 第1行 -->
 
@@ -60,24 +62,29 @@
                 android:layout_marginBottom="2dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:src="@mipmap/phone"
                     android:padding="10dp"
-                    android:text="手机号"
-                    android:textColor="#a6a6a6"
-                    android:textSize="20sp" />
+                    />
 
                 <EditText
-                    android:id="@+id/register_edittext_phone"
+                    android:id="@+id/edittext_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
                     android:padding="10dp"
                     android:singleLine="true"
+                    android:maxLength="11"
+                    android:hint="手机号"
+                    android:textColorHint="#a6a6a6"
                     android:textColor="#a6a6a6"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:selectAllOnFocus="true"
+                    android:inputType="phone"
+                    android:paddingTop = "5dp"
+                    />
             </LinearLayout>
 
             <!-- 第2行 -->
@@ -86,27 +93,33 @@
                 android:id="@+id/row_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/passwd"
                     android:padding="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="密码"
-                    android:textColor="#a6a6a6"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="3dp"
+                     />
 
                 <EditText
-                    android:id="@+id/register_edittext_password"
+                    android:id="@+id/edittext_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="10dp"
                     android:password="true"
                     android:singleLine="true"
+                    android:hint="密码"
+                    android:textColorHint="#a6a6a6"
                     android:textColor="#a6a6a6"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:selectAllOnFocus="true"
+                    android:inputType="textPassword"
+                    android:paddingTop = "5dp"
+                    android:layout_marginLeft="3dp"
+                    />
             </LinearLayout>
 
     </LinearLayout>
@@ -138,7 +151,7 @@
             android:id="@+id/login_register_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_btn"
+            android:layout_below="@id/login_btn"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -149,6 +162,19 @@
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
+        <CheckBox
+            android:id="@+id/remember_passwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:textSize="15sp"
+            android:textColor="@color/forgetPassword_text_color"
+            android:layout_below="@id/login_register_tv"
+            android:layout_alignLeft="@id/login_register_tv"
+            android:layout_marginTop="15dp"
+
+             />
+
         <TextView
             android:id="@+id/forgetpassword"
             android:layout_width="wrap_content"
@@ -156,9 +182,9 @@
             android:text="忘记密码"
             android:textSize="15sp"
             android:textColor="@color/forgetPassword_text_color"
-            android:layout_below="@+id/login_register_tv"
-            android:layout_alignRight="@+id/login_register_tv"
-            android:layout_marginTop="5dp"
+            android:layout_below="@id/login_register_tv"
+            android:layout_alignRight="@id/login_register_tv"
+            android:layout_marginTop="20dp"
             />
 
     </RelativeLayout>
