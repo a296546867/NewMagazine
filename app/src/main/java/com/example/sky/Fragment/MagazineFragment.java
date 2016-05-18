@@ -20,14 +20,14 @@ import com.example.sky.Activity.R;
  * 修改时间：2016/5/6 8:46
  * 修改备注：
  */
-public class HomeFragment extends Fragment {
+public class MagazineFragment extends Fragment {
 
 
     private String content;
 
-    public HomeFragment(){}
+    public MagazineFragment(){}
 
-    public HomeFragment(String content) {
+    public MagazineFragment(String content) {
         this.content = content;
     }
 

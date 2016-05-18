@@ -6,10 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-import com.example.sky.Activity.MainActivity;
 import com.example.sky.Fragment.CollectionFragment;
 import com.example.sky.Fragment.FootPrintFragment;
-import com.example.sky.Fragment.HomeFragment;
+import com.example.sky.Fragment.MagazineFragment;
 import com.example.sky.Fragment.MineFragment;
 import com.example.sky.Fragment.SearchFragment;
 
@@ -25,7 +24,7 @@ import com.example.sky.Fragment.SearchFragment;
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private final int PAGER_COUNT = 5;
-    private HomeFragment myFragment1 = null;
+    private MagazineFragment myFragment1 = null;
     private SearchFragment myFragment2 = null;
     private CollectionFragment myFragment3 = null;
     private FootPrintFragment myFragment4 = null;
@@ -33,7 +32,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        myFragment1 = new HomeFragment();
+        myFragment1 = new MagazineFragment();
         myFragment2 = new SearchFragment();
         myFragment3 = new CollectionFragment();
         myFragment4 = new FootPrintFragment();

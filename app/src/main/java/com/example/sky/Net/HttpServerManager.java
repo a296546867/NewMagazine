@@ -3,6 +3,7 @@ package com.example.sky.Net;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,25 +26,22 @@ import java.util.Map;
  */
 public class HttpServerManager {
 
-    final String ERRMSG="网络异常,请稍后再试";
+    final static String ERRMSG="网络异常,请稍后再试";
 
 
 
     // 需要有handler回调
     public static void getJsonFromServerByPostWithHandler(String URL, final Map<String, String> map,final Handler handler,final Context context) {
 
-        StringRequest req = new StringRequest(Request.Method.POST, Configurator.Login, new Response.Listener<String>() {
+        StringRequest req = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                // Gson gson = new Gson();
-                // State state = gson.fromJson(response, State.class);
-
                 Message msg = new Message();
-
                 msg.obj = response;
-
                 handler.sendMessage(msg);
+
+                Log.i("LoginActivity","http");
 
             }
 

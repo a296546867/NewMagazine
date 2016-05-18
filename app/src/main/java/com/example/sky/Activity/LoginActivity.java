@@ -1,5 +1,6 @@
 package com.example.sky.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,12 +18,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sky.Bean.UserInfo;
 import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.Net.Configurator;
 import com.example.sky.Net.HttpServerManager;
 import com.example.sky.Utils.AES;
 import com.example.sky.Utils.LoaddingDialog;
 import com.example.sky.Utils.MD5;
+import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -151,6 +154,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
         return super.onKeyDown(keyCode, event);
     }
 
+
     /**
      * 登录
      */
@@ -188,40 +192,24 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
                         public void onError(okhttp3.Call call, Exception e) {
 
                             Toast.makeText(LoginActivity.this, "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
+                            //结束loadding
+                            loaddingDialog.dismiss();
                         }
 
                         @Override
                         public void onResponse(String s) {
-
-                            Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-                            Log.i("LoginActivity", s);
-
+                            //解析用户信息
+                            UserInfo userInfo=new Gson().fromJson(s,UserInfo.class);
+                            //保存用户信息
+                            sp.SaveUserSP(userInfo);
                             //结束loadding
                             loaddingDialog.dismiss();
+                            //设置返回的nick
+                            LoginActivity.this.setResult(0,new Intent().putExtra("nick",userInfo.getNick()));
+                            //关闭当前界面
+                            LoginActivity.this.finish();
                         }
                     });
-
-
-
-
-
-
-            // 处理登录信息的hanlder
-            Handler hanlder=new Handler(){
-
-            };
-
-
-            Map<String,String> map=new HashMap<String,String>();
-            map.put("appkey",appkey);
-            map.put("rand",rand);
-            map.put("request_token",request_token);
-            map.put("pwd",AES.encrypt(passwdEdt.getText().toString()));
-            map.put("mid", phone);
-
-            HttpServerManager.getJsonFromServerByPostWithHandler(Configurator.Login,map,hanlder,LoginActivity.this);
-
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -254,16 +242,16 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
         super.onDestroy();
 
 
-      OkHttpUtils.post().url(Configurator.Login).build().cancel();
+//      OkHttpUtils.post().url(Configurator.Login).build().cancel();
 
-        new OkHttpUtils(new OkHttpClient()).cancelTag(LoginActivity.this);//取消以Activity.this作为tag的请求
+//        new OkHttpUtils(new OkHttpClient()).cancelTag(LoginActivity.this);//取消以Activity.this作为tag的请求
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        new OkHttpUtils(new OkHttpClient()).cancelTag(LoginActivity.this);//取消以Activity.this作为tag的请求
+//        new OkHttpUtils(new OkHttpClient()).cancelTag(LoginActivity.this);//取消以Activity.this作为tag的请求
 
     }
 }

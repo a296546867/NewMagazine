@@ -8,6 +8,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sky.Bean.UserInfo;
+import com.example.sky.DataBase.SharedHelper;
 
 
 /**
@@ -23,6 +25,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
 
 
     TextView returnText;//返回按钮
+    TextView nickText;  //昵称
 
     RelativeLayout InfoBtn;                         //点击登录
     RelativeLayout showMyCollectionBtn;           //我的收藏
@@ -30,7 +33,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     RelativeLayout showMyApplyBtn;                 //我的申请
     RelativeLayout showMyEditoBtn;                 //设置
 
-
+    SharedHelper sp;                                 //sharedPreferences
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
 
         binViews();
         setListener();
+        init();
     }
 
     /**
@@ -51,7 +55,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         showMyINFOBtn=(RelativeLayout)findViewById(R.id.showMyINFO);
         showMyApplyBtn=(RelativeLayout)findViewById(R.id.showMyApply);
         showMyEditoBtn=(RelativeLayout)findViewById(R.id.showMyEdito);
-
+        nickText=(TextView)findViewById(R.id.clickSignIn);
     }
 
     /**
@@ -67,6 +71,17 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         showMyEditoBtn.setOnClickListener(this);
 
     }
+    /**
+     * 初始化
+     */
+    private void init(){
+
+        sp=new SharedHelper(CenterActivity.this);
+
+
+
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -78,7 +93,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 break;
             case R.id.center_login:
 
-                startActivity(new Intent(this,LoginActivity.class));
+                startActivityForResult(new Intent(this,LoginActivity.class),1);
 
                 break;
             case R.id.showMyCollection:
@@ -100,24 +115,50 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK) {
+            setNickNameAndLevelName();
 
-        setNickNameAndLevelName();
-        this.finish();
+            this.finish();
+        }
         return super.onKeyDown(keyCode, event);
     }
 
 
     /**
-     * 返回的时候设置返回的数据更新侧滑菜单信息
+     * 设置回传的nick
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==1){
+            if (resultCode==0){
+                //设置昵称
+                nickText.setText(data.getExtras().getString("nick"));
+            }
+        }
+
+
+    }
+
+    /**
+     * 设置返回的数据更新侧滑菜单信息
      */
     private void setNickNameAndLevelName(){
 
+
+        UserInfo userInfo=sp.ReadUserSP();
+
         Intent intent=new Intent();
         Bundle bundle=new Bundle();
-        bundle.putString("nickName","hadesky");
-        bundle.putString("level","VIP会员");
+        bundle.putString("nickName",userInfo.getNick());
+        bundle.putString("level",userInfo.getViplevel());
         intent.putExtras(bundle);
         this.setResult(1,intent);
 
     }
+
 }
