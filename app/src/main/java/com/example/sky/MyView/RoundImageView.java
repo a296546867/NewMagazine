@@ -1,4 +1,4 @@
-package com.example.sky.Utils;
+package com.example.sky.MyView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
