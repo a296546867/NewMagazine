@@ -1,7 +1,13 @@
 package com.example.sky.Activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -34,6 +40,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     RelativeLayout showMyEditoBtn;                 //设置
 
     SharedHelper sp;                                 //sharedPreferences
+    MyBRReceiver myReceiver;                        //广播
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,13 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         binViews();
         setListener();
         init();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //取消注册广播
+        LocalBroadcastManager.getInstance(CenterActivity.this).unregisterReceiver(myReceiver);
     }
 
     /**
@@ -76,10 +90,19 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
      */
     private void init(){
 
+        //sharedSpreferences
         sp=new SharedHelper(CenterActivity.this);
 
+        //注册广播更新昵称
+        MyBRReceiver myReceiver = new MyBRReceiver();
+        IntentFilter itFilter = new IntentFilter();
+        itFilter.addAction("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL");
+        LocalBroadcastManager.getInstance(CenterActivity.this).registerReceiver(myReceiver, itFilter);
 
-
+        //登录状态，则设置昵称
+        if (sp.readIsLogin().equals("true")){
+            nickText.setText(sp.readNick());
+        }
     }
 
 
@@ -92,8 +115,36 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 this.finish();
                 break;
             case R.id.center_login:
+                if(nickText.getText().toString().equals("点击登录")){
+                    //跳转到登录界面
+                    startActivity(new Intent(this,LoginActivity.class));
+                }else{
+                    new AlertDialog.Builder(CenterActivity.this)
+                            .setMessage("退出登录？")
+                            .setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(sp.saveOutLogin()){
+                                        nickText.setText("点击登录");
+                                        //退出登录_发送广播，更新昵称或会员等级
+                                        LocalBroadcastManager.getInstance(CenterActivity.this).sendBroadcast(new Intent("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
+                                        //关闭dialog
+                                        dialog.dismiss();
+                                    }
 
-                startActivityForResult(new Intent(this,LoginActivity.class),1);
+
+                                }
+                            })
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //关闭dialog
+                                    dialog.dismiss();
+                                }
+                            }).create().show();
+                }
+
+
 
                 break;
             case R.id.showMyCollection:
@@ -122,28 +173,6 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
-    /**
-     * 设置回传的nick
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode==1){
-            if (resultCode==0){
-                //设置昵称
-                nickText.setText(data.getExtras().getString("nick"));
-            }
-        }
-
-
-    }
-
     /**
      * 设置返回的数据更新侧滑菜单信息
      */
@@ -160,5 +189,14 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         this.setResult(1,intent);
 
     }
-
+    /**
+     * 广播要做的事情，更新昵称
+     */
+    public class MyBRReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //设置昵称
+            nickText.setText(sp.readNick());
+        }
+    }
 }

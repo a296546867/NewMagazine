@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -111,7 +112,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
             passwdEdt.setText(map.get("passwd"));
             rememberPasswd.setChecked(true);
         }else {
-            phoneEdt.setText(sp.readName());
+            phoneEdt.setText(sp.readPhone());
             rememberPasswd.setChecked(false);
         }
 
@@ -131,7 +132,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
                     sp.saveNameAndPasswd(phoneEdt.getText().toString(),passwdEdt.getText().toString());
                 }else {
                     //只记录手机号
-                    sp.saveName(phoneEdt.getText().toString());
+                    sp.savePhone(phoneEdt.getText().toString());
                 }
                 //记住密码标记
                 sp.saveRememberPasswd(rememberPasswd);
@@ -198,14 +199,16 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
 
                         @Override
                         public void onResponse(String s) {
+//                            Log.i("myInfo",s);
+
                             //解析用户信息
                             UserInfo userInfo=new Gson().fromJson(s,UserInfo.class);
                             //保存用户信息
                             sp.SaveUserSP(userInfo);
                             //结束loadding
                             loaddingDialog.dismiss();
-                            //设置返回的nick
-                            LoginActivity.this.setResult(0,new Intent().putExtra("nick",userInfo.getNick()));
+                            //发送广播，更新昵称
+                            LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(new Intent("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
                             //关闭当前界面
                             LoginActivity.this.finish();
                         }
@@ -238,20 +241,8 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
      * @return
      */
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-
-//      OkHttpUtils.post().url(Configurator.Login).build().cancel();
-
-//        new OkHttpUtils(new OkHttpClient()).cancelTag(LoginActivity.this);//取消以Activity.this作为tag的请求
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
-
 //        new OkHttpUtils(new OkHttpClient()).cancelTag(LoginActivity.this);//取消以Activity.this作为tag的请求
-
     }
 }

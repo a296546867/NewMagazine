@@ -75,14 +75,14 @@ public class SharedHelper {
         return data;
     }
     //定义一个保存用户账号的方法
-    public void saveName(String phone) {
+    public void savePhone(String phone) {
         sp = mContext.getSharedPreferences(baseSP, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.putString("phone", phone);
         editor.commit();
     }
     //定义一个读取用户账号的方法
-    public String readName() {
+    public String readPhone() {
         sp = mContext.getSharedPreferences(baseSP, Context.MODE_PRIVATE);
         editor = sp.edit();
         return sp.getString("phone", "");
@@ -108,6 +108,9 @@ public class SharedHelper {
     public void SaveUserSP(UserInfo userInfo){
         sp = mContext.getSharedPreferences("UserSP", Context.MODE_PRIVATE);
         editor = sp.edit();
+
+        //是否登录的标记
+        editor.putString("isLogin", "true");
 
         editor.putString("expires_time", userInfo.getExpires_time());
         editor.putString("homeid", userInfo.getHomeid());
@@ -174,7 +177,37 @@ public class SharedHelper {
 
         return userInfo;
     }
-
-
-
+    //读取昵称的方法
+    public String readNick() {
+        sp = mContext.getSharedPreferences("UserSP", Context.MODE_PRIVATE);
+        editor = sp.edit();
+        return sp.getString("nick", "");
+    }
+    //读取昵称和会员等级的方法
+    public Map<String, String> readNickAndLevel() {
+        sp = mContext.getSharedPreferences("UserSP", Context.MODE_PRIVATE);
+        editor = sp.edit();
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("nick", sp.getString("nick", ""));
+        data.put("viplevel", sp.getString("viplevel", ""));
+        return data;
+    }
+    //是否登录
+    public String readIsLogin() {
+        sp = mContext.getSharedPreferences("UserSP", Context.MODE_PRIVATE);
+        editor = sp.edit();
+        String isLogin=sp.getString("isLogin", "true");
+        return isLogin;
+    }
+    //退出登录
+    public Boolean saveOutLogin(){
+        sp = mContext.getSharedPreferences("UserSP", Context.MODE_PRIVATE);
+        editor = sp.edit();
+        //是否登录的标记
+        editor.putString("isLogin", "false");
+        if(editor.commit()){
+            return true;
+        }
+        return false;
+    }
 }

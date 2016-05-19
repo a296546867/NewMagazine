@@ -20,21 +20,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="23sp"
-            android:text="离开"
+            android:text="请登录"
             android:textColor="@android:color/black"
             />
-
-
-        <TextView
-            android:id="@+id/left_ment_toplayout_text_level"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="等级:普通会员"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@android:color/black"
-            />
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/left_ment_toplayout_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="等级:"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/left_ment_toplayout_text_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="无"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

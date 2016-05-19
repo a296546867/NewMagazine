@@ -1,9 +1,13 @@
 package com.example.sky.Fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +22,12 @@ import com.example.sky.Activity.AboutUSActivity;
 import com.example.sky.Activity.CenterActivity;
 import com.example.sky.Activity.HelpActivity;
 import com.example.sky.Activity.R;
+import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目名称：NewMagazine
@@ -47,9 +53,8 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     final static  String ABOUTUS = "关于我们";
     final static  String HELP = "帮助";
 
-
     private DrawerLayout drawerLayout;          //抽屉布局
-
+    SharedHelper    sp;                            //sharedPreferences
 
     public LeftFragment(){}
     public LeftFragment(DrawerLayout drawerLayout){
@@ -62,7 +67,16 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.leftfragment, container, false);
 
-        init(view);
+        //获得控件
+        bindViews(view);
+        //获得存放了左滑功能列表的List
+        getLeftMenuList();
+        //设置控件的适配器
+        setAdapter();
+        //设置各种事件
+        setListener();
+        //初始化
+        init();
 
         return view;
     }
@@ -79,10 +93,9 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         name=(TextView)view.findViewById(R.id.left_ment_toplayout_text_name);
         level=(TextView)view.findViewById(R.id.left_ment_toplayout_text_level);
 
-
         listView=(ListView)view.findViewById(R.id.left_ment_list);
-    }
 
+    }
     /**
      * 设置各种监听事件
      */
@@ -91,7 +104,6 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         left_ment_toplayout.setOnClickListener(this);
 
     }
-
     /**
      * 获得存放了左滑功能列表的List
      */
@@ -105,8 +117,6 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         leftMenuList.add(HELP);
 
     }
-
-
     /**
      * 设置适配器
      */
@@ -117,28 +127,30 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         listView.setAdapter(leftMenuListAdapter);
         listView.setOnItemClickListener(this);
     }
-
-
     /**
      *
      * 初始化
      *
-     * @param view
+     * @param
      */
-    private void init(View view){
+    private void init(){
+        //sharedPreferences
+        sp=new SharedHelper(getActivity());
 
-        //获得控件
-        bindViews(view);
-        //获得存放了左滑功能列表的List
-        getLeftMenuList();
-        //设置控件的适配器
-        setAdapter();
-        //设置各种事件
-        setListener();
+        //注册广播，登录时更新昵称和会员等级
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new LoginBRReceiver(), new IntentFilter("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
 
+        //注册广播，退出登录时更新昵称和会员等级
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new OutLoginBRReceiver(), new IntentFilter("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
+
+        //登录状态，则设置昵称和会员等级
+        if (sp.readIsLogin().equals("true")){
+            //设置昵称和会员等级
+            Map<String,String> map = sp.readNickAndLevel();
+            name.setText(map.get("nick"));
+            level.setText(map.get("viplevel"));
+        }
     }
-
-
     /**
      * 启动用户中心
      *
@@ -147,44 +159,12 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.left_ment_toplayout){
-
             //关闭抽屉菜单
             drawerLayout.closeDrawers();
-
             //启动centerActivity
-            startActivityForResult(new Intent(getActivity(), CenterActivity.class),0);
-
+            startActivity(new Intent(getActivity(), CenterActivity.class));
         }
     }
-
-    /**
-     * 处理更新用户中心的信息
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //更新会员名和会员名称
-        if (requestCode==0) {
-            if (resultCode == 1) {
-                Bundle bundle = data.getExtras();
-                String nickName = bundle.getString("nickName");
-                String levelName = bundle.getString("level");
-
-                name.setText(nickName);//会员名称
-                level.setText(levelName);//会员等级
-
-            }
-        }
-
-
-    }
-
-
     /**
      *
      * listView的item点击监听器
@@ -214,19 +194,40 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
 
                 break;
             case 3:
-
                 //跳转到我的账户界面
                 startActivity(new Intent(getActivity(), AboutUSActivity.class));
-
                 break;
             case 4:
-
                 //跳转到我的账户界面
                 startActivity(new Intent(getActivity(), HelpActivity.class));
-
                 break;
         }
 
 
+    }
+
+    /**
+     * 登录广播要做的事情，更新昵称和会员等级
+     */
+    public class LoginBRReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //设置昵称和会员等级
+            Map<String,String> map = sp.readNickAndLevel();
+            name.setText(map.get("nick"));
+            level.setText(map.get("viplevel"));
+        }
+    }
+    /**
+     * 退出登录广播要做的事情，更新昵称和会员等级
+     */
+    public class OutLoginBRReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //设置昵称和会员等级
+            Map<String,String> map = sp.readNickAndLevel();
+            name.setText("请登录");
+            level.setText("无");
+        }
     }
 }
