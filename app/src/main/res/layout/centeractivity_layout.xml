@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/avtivity_bg"
-
     >
 
     <RelativeLayout
@@ -36,9 +35,6 @@
             android:textColor="@color/title_text_color"
             android:textSize="@dimen/title_text_size" >
         </TextView>
-
-
-
     </RelativeLayout>
 
     <LinearLayout
@@ -66,6 +62,39 @@
                 android:text="点击登录"
                 android:textColor="@android:color/black"
                 android:textSize="23sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/showMyINFO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/layout_button_style"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/imageViewMyInfo"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/my_info" />
+
+            <TextView
+                android:id="@+id/MyInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/imageViewMyInfo"
+                android:text="用户注册"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -109,38 +138,7 @@
                 android:src="@mipmap/go" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/showMyINFO"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
-            android:background="@drawable/layout_button_style"
-            android:padding="10dp" >
 
-            <ImageView
-                android:id="@+id/imageViewMyInfo"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@mipmap/my_info" />
-
-            <TextView
-                android:id="@+id/MyInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/imageViewMyInfo"
-                android:text="用户注册"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/go" />
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/showMyApply"

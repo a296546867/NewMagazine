@@ -27,13 +27,17 @@
         <activity
             android:name=".CenterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <!--用户中心_设置-->
+        <!--设置-->
         <activity
             android:name=".SettingActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <!--用户中心_登录-->
+        <!--登录-->
         <activity
             android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <!--注册-->
+        <activity
+            android:name=".RegisterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <!--关于我们-->
         <activity

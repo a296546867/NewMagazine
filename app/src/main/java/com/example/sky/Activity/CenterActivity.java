@@ -149,7 +149,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.showMyINFO:
-                Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CenterActivity.this,RegisterActivity.class));
                 break;
             case R.id.showMyApply:
                 Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();

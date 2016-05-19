@@ -59,6 +59,9 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     DBManager       db;                            //数据库操作对象
 
 
+    LoginBRReceiver loginBRReceiver;//登录广播
+    OutLoginBRReceiver outLoginBRReceiver;//退出广播
+
     public LeftFragment(){}
     public LeftFragment(DrawerLayout drawerLayout){
         this.drawerLayout=drawerLayout;
@@ -82,6 +85,14 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         init();
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //取消注册广播
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(loginBRReceiver);
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(outLoginBRReceiver);
     }
 
     /**
@@ -141,9 +152,11 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         sp=new SharedHelper(getActivity());
 
         //注册广播，登录时更新昵称和会员等级
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new LoginBRReceiver(), new IntentFilter("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
+        LoginBRReceiver loginBRReceiver = new LoginBRReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(loginBRReceiver, new IntentFilter("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
         //注册广播，退出登录时更新昵称和会员等级
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new OutLoginBRReceiver(), new IntentFilter("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
+        OutLoginBRReceiver outLoginBRReceiver = new OutLoginBRReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(outLoginBRReceiver, new IntentFilter("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
 
         //登录状态，则设置昵称和会员等级
         if (sp.readIsLogin().equals("true")){

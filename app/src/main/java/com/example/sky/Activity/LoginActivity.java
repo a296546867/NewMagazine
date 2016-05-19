@@ -134,6 +134,9 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
                     LoginGetUserInfo();
                 }
             break;
+            case R.id.login_register_tv:
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                break;
         }
     }
 
@@ -145,8 +148,6 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
     /**
      * 登录,获取用户信息
      */
