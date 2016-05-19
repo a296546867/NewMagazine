@@ -98,7 +98,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/edittext_passwd"
+                    android:id="@+id/register_edittext_passwd"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -133,7 +133,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/edittext_repasswd"
+                    android:id="@+id/register_edittext_repasswd"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -168,7 +168,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/edittext_authcode"
+                    android:id="@+id/register_edittext_authcode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

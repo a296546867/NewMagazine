@@ -50,9 +50,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void binViews(){
         returnText=(TextView)findViewById(R.id.register_return_text);
         phoneEdt=(EditText)findViewById(R.id.register_edittext_phone);
-        passwdEdt=(EditText)findViewById(R.id.edittext_password);
-        rePaaawdEdt=(EditText)findViewById(R.id.edittext_repasswd);
-        authCodeEdt=(EditText)findViewById(R.id.edittext_authcode);
+        passwdEdt=(EditText)findViewById(R.id.register_edittext_passwd);
+        rePaaawdEdt=(EditText)findViewById(R.id.register_edittext_repasswd);
+        authCodeEdt=(EditText)findViewById(R.id.register_edittext_authcode);
         getAuthCodeBtn=(Button) findViewById(R.id.authcode_btn);
         registerBtn=(Button) findViewById(R.id.register_btn);
     }
@@ -92,8 +92,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
     //获取验证码
     private void GetAuthCode(){
-        //检查信息合法性
-        if(checkResgister()){
+        if (checkResgister()) {
             loaddingDialog.show();
             //请求数据
             OkHttpUtils
@@ -113,28 +112,30 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                         @Override
                         public void onResponse(String s) {
-                            Log.i("myInfo",s);
+                            Log.i("myInfo", s);
 
                             //结束loadding
                             loaddingDialog.dismiss();
+                            //提示
+                            Toast.makeText(RegisterActivity.this, "发送成功,请查看手机短信", Toast.LENGTH_SHORT).show();
 
                         }
                     });
-
-        }else {
-            Toast.makeText(RegisterActivity.this,"信息不完整或两次密码不一致",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(RegisterActivity.this, "信息不完整或两次密码不一致", Toast.LENGTH_SHORT).show();
         }
     }
 
     //检查信息合法性
     private boolean checkResgister(){
-//        if(phoneEdt.getText().toString().length()>0&&passwdEdt.getText().toString().length()>0&&rePaaawdEdt.getText().toString().length()>0){
-//            if(passwdEdt.getText().toString().equals(rePaaawdEdt.getText().toString())){
-//                return true;
-//            }
-//            return false;
-//        }
-//        return false;
-        return true;
+        if(phoneEdt.getText().toString().length()>0&&passwdEdt.getText().toString().length()>0&&rePaaawdEdt.getText().toString().length()>0){
+            if (passwdEdt.getText().toString().equals(rePaaawdEdt.getText().toString())){
+                return true;
+            }else{
+                return false;
+            }
+        }else {
+            return false;
+        }
     }
 }
