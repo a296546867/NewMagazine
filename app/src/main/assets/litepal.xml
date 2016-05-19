@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <!--数据库名字-->
+    <dbname value="ygmagazine" ></dbname>
+    <!--数据库版本-->
+    <version value="1" ></version>
+    <!--数据表-->
+    <list>
+        <!--用户信息-->
+        <mapping class="com.example.sky.Bean.UserInfo" />
+        <!--用户认证信息-->
+        <mapping class="com.example.sky.Bean.UserAuthInfo" />
+        <!--用户认证信息中的缴费历史-->
+        <mapping class="com.example.sky.Bean.History" />
+    </list>
+</litepal>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sky.Bean.UserInfo;
+import com.example.sky.DataBase.DBManager;
 import com.example.sky.DataBase.SharedHelper;
 
 
@@ -39,6 +40,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     RelativeLayout showMyApplyBtn;                 //我的申请
     RelativeLayout showMyEditoBtn;                 //设置
 
+    DBManager db;                                    //数据库操作对象
     SharedHelper sp;                                 //sharedPreferences
     MyBRReceiver myReceiver;                        //广播
     @Override
@@ -89,19 +91,17 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
      * 初始化
      */
     private void init(){
-
+        //数据库操作对象
+        db=new DBManager();
         //sharedSpreferences
         sp=new SharedHelper(CenterActivity.this);
 
         //注册广播更新昵称
-        MyBRReceiver myReceiver = new MyBRReceiver();
-        IntentFilter itFilter = new IntentFilter();
-        itFilter.addAction("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL");
-        LocalBroadcastManager.getInstance(CenterActivity.this).registerReceiver(myReceiver, itFilter);
+        LocalBroadcastManager.getInstance(CenterActivity.this).registerReceiver( new MyBRReceiver(), new IntentFilter("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
 
         //登录状态，则设置昵称
         if (sp.readIsLogin().equals("true")){
-            nickText.setText(sp.readNick());
+            nickText.setText(db.readNick());
         }
     }
 
@@ -111,7 +111,6 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
 
         switch (v.getId()){
             case  R.id.centerfragment_return_text:
-                setNickNameAndLevelName();
                 this.finish();
                 break;
             case R.id.center_login:
@@ -124,15 +123,17 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                             .setPositiveButton("退出", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    //设置退出标记成功
                                     if(sp.saveOutLogin()){
+                                        //删除数据，用户信息，用户认证信息
+                                        db.DeleteInfo();
+                                        //修改昵称
                                         nickText.setText("点击登录");
                                         //退出登录_发送广播，更新昵称或会员等级
                                         LocalBroadcastManager.getInstance(CenterActivity.this).sendBroadcast(new Intent("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
                                         //关闭dialog
                                         dialog.dismiss();
                                     }
-
-
                                 }
                             })
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -143,9 +144,6 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                                 }
                             }).create().show();
                 }
-
-
-
                 break;
             case R.id.showMyCollection:
                 Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
@@ -167,27 +165,9 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode==KeyEvent.KEYCODE_BACK) {
-            setNickNameAndLevelName();
-
             this.finish();
         }
         return super.onKeyDown(keyCode, event);
-    }
-    /**
-     * 设置返回的数据更新侧滑菜单信息
-     */
-    private void setNickNameAndLevelName(){
-
-
-        UserInfo userInfo=sp.ReadUserSP();
-
-        Intent intent=new Intent();
-        Bundle bundle=new Bundle();
-        bundle.putString("nickName",userInfo.getNick());
-        bundle.putString("level",userInfo.getViplevel());
-        intent.putExtras(bundle);
-        this.setResult(1,intent);
-
     }
     /**
      * 广播要做的事情，更新昵称
@@ -196,7 +176,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         @Override
         public void onReceive(Context context, Intent intent) {
             //设置昵称
-            nickText.setText(sp.readNick());
+            nickText.setText(db.readNick());
         }
     }
 }

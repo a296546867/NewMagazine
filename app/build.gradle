@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.example.sky.Activity"
+        applicationId "com.example.sky.magazine"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

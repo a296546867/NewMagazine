@@ -1,18 +1,20 @@
 package com.example.sky.Bean;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.List;
 
 /**
  * 项目名称：NewMagazine
- * 类描述：
+ * 类描述：用户信息
  * 创建人：sky
  * 创建时间：2016/5/18 21:58
  * 修改人：sky
  * 修改时间：2016/5/18 21:58
  * 修改备注：
  */
-public class UserInfo {
-
+public class UserInfo extends DataSupport {
+    private int id;//数据表中的id，和实体无关
     private String homeid;//:10000028,身份ID
     private String curr_head;//Resources/uploa.jpg",身份头像
     private String nick;//":"FIND ME！",身份名称
@@ -32,6 +34,15 @@ public class UserInfo {
     private String msg;//":”获取成功”,
     private String expires_time;
     private String access_token;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getViplevel() {
         return viplevel;

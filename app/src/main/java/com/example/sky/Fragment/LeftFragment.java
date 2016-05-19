@@ -22,6 +22,7 @@ import com.example.sky.Activity.AboutUSActivity;
 import com.example.sky.Activity.CenterActivity;
 import com.example.sky.Activity.HelpActivity;
 import com.example.sky.Activity.R;
+import com.example.sky.DataBase.DBManager;
 import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
 
@@ -55,6 +56,8 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
 
     private DrawerLayout drawerLayout;          //抽屉布局
     SharedHelper    sp;                            //sharedPreferences
+    DBManager       db;                            //数据库操作对象
+
 
     public LeftFragment(){}
     public LeftFragment(DrawerLayout drawerLayout){
@@ -128,32 +131,30 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         listView.setOnItemClickListener(this);
     }
     /**
-     *
      * 初始化
-     *
      * @param
      */
     private void init(){
+        //实例化数据库操作对象
+        db=new DBManager();
         //sharedPreferences
         sp=new SharedHelper(getActivity());
 
         //注册广播，登录时更新昵称和会员等级
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new LoginBRReceiver(), new IntentFilter("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
-
         //注册广播，退出登录时更新昵称和会员等级
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new OutLoginBRReceiver(), new IntentFilter("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
 
         //登录状态，则设置昵称和会员等级
         if (sp.readIsLogin().equals("true")){
             //设置昵称和会员等级
-            Map<String,String> map = sp.readNickAndLevel();
+            Map<String,String> map = db.readNickAndLevel();
             name.setText(map.get("nick"));
-            level.setText(map.get("viplevel"));
+            level.setText(map.get("eligible"));
         }
     }
     /**
      * 启动用户中心
-     *
      * @param v
      */
     @Override
@@ -166,11 +167,8 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         }
     }
     /**
-     *
      * listView的item点击监听器
-     *
      * 跳转到对应的界面
-     *
      * @param parent
      * @param view
      * @param position
@@ -205,7 +203,6 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
 
 
     }
-
     /**
      * 登录广播要做的事情，更新昵称和会员等级
      */
@@ -213,9 +210,9 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         @Override
         public void onReceive(Context context, Intent intent) {
             //设置昵称和会员等级
-            Map<String,String> map = sp.readNickAndLevel();
+            Map<String,String> map = db.readNickAndLevel();
             name.setText(map.get("nick"));
-            level.setText(map.get("viplevel"));
+            level.setText(map.get("eligible"));
         }
     }
     /**
@@ -225,7 +222,6 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         @Override
         public void onReceive(Context context, Intent intent) {
             //设置昵称和会员等级
-            Map<String,String> map = sp.readNickAndLevel();
             name.setText("请登录");
             level.setText("无");
         }
