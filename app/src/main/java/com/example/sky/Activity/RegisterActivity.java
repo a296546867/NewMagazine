@@ -79,6 +79,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 GetAuthCode();
                 break;
             case R.id.register_btn:
+
                 break;
         }
     }
@@ -92,7 +93,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
     //获取验证码
     private void GetAuthCode(){
-        if (checkResgister()) {
+        if (checkforAuthCode()) {
             loaddingDialog.show();
             //请求数据
             OkHttpUtils
@@ -125,9 +126,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             Toast.makeText(RegisterActivity.this, "信息不完整或两次密码不一致", Toast.LENGTH_SHORT).show();
         }
     }
-
     //检查信息合法性
-    private boolean checkResgister(){
+    private boolean checkforAuthCode(){
         if(phoneEdt.getText().toString().length()>0&&passwdEdt.getText().toString().length()>0&&rePaaawdEdt.getText().toString().length()>0){
             if (passwdEdt.getText().toString().equals(rePaaawdEdt.getText().toString())){
                 return true;
