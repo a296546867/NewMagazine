@@ -79,4 +79,9 @@ public class DBManager {
         UserAuthInfo userAuthInfo = readUserAuthInfo();
         return userAuthInfo.getName();
     }
+    //读取access_token
+    public String readAccessToken(){
+        UserInfo userInfo = readUserInfo();
+        return userInfo.getAccess_token();
+    }
 }

@@ -26,6 +26,11 @@ public class BaseActivity extends AppCompatActivity {
         //添加到管理中
         ActivityCollector.addActivity(this);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
     }
 }

@@ -60,7 +60,7 @@ public class Configurator {
     public static final String SEARCH_ARTICLE = URL + "/jour/search.json?key=";
     // 产品
     public static final String PRODUCT = URL + "/jour/show_product.json?productid=";
-    // 提交申请表
+    // 提交申请表，普通会员，vip会员都是用该接口
     public static final String MEMBERAPPLYFORM = URL + "/jour/apply.json";
     // 分页获取我的申请信息列表
     public static final String GETAPPLYFORMINPAGE = URL + "/jour/my_apply.json?";

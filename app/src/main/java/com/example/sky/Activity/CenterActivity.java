@@ -114,6 +114,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 this.finish();
                 break;
             case R.id.center_login:
+                //点击登录
                 if(nickText.getText().toString().equals("点击登录")){
                     //跳转到登录界面
                     startActivity(new Intent(this,LoginActivity.class));
@@ -155,9 +156,8 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.showMyEdito:
-
+                //跳转到设置界面
                 startActivity(new Intent(this,SettingActivity.class));
-
                 break;
         }
     }

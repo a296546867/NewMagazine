@@ -49,12 +49,12 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
 
-
-
-
+        <!-- 版本更新Service -->
+        <service android:name="com.example.sky.UpdateService.UpdateApkService">
+            <intent-filter>
+                <action android:name="com.example.sky.service.Setting_UpdateService"/>
+            </intent-filter>
+        </service>
     </application>
-
-
-
 
 </manifest>
