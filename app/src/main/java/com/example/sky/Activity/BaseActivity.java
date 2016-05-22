@@ -1,5 +1,6 @@
 package com.example.sky.Activity;
 
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,7 +18,6 @@ import com.example.sky.Utils.ActivityCollector;
 public class BaseActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +25,10 @@ public class BaseActivity extends AppCompatActivity {
 
         //添加到管理中
         ActivityCollector.addActivity(this);
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
 }
