@@ -137,7 +137,6 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
                                 Bundle bundle = new Bundle();
                                 //设置白天或夜间图片
                                 if (which==0) {
-                                    if(sp.readDayORNight().equals("night")){
                                         //白天
                                         modeImage.setImageResource(R.mipmap.sun);
                                         bundle.putString("mode","day");
@@ -147,9 +146,8 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
                                         intentMode.putExtras(bundle);
                                         //发送广播，切换白天夜间模式
                                         LocalBroadcastManager.getInstance(SettingActivity.this).sendBroadcast(intentMode);
-                                    }
+
                                 }else{
-                                    if(sp.readDayORNight().equals("day")){
                                         //夜间
                                         modeImage.setImageResource(R.mipmap.moon);
                                         bundle.putString("mode","night");
@@ -159,7 +157,7 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
                                         intentMode.putExtras(bundle);
                                         //发送广播，切换白天夜间模式
                                         LocalBroadcastManager.getInstance(SettingActivity.this).sendBroadcast(intentMode);
-                                    }
+
                                 }
                                 //关闭dialog
                                 dialog.dismiss();

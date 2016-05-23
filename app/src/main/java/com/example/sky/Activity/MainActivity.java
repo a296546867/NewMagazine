@@ -22,6 +22,8 @@ import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.Fragment.ContextFragment;
 import com.example.sky.Fragment.LeftFragment;
 import com.example.sky.Utils.ActivityCollector;
+import com.example.sky.Utils.CheckUpDate;
+import com.example.sky.Utils.LoaddingDialog;
 
 
 /**
@@ -36,10 +38,10 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
     //保存点击的时间
     private long exitTime = 0;
 
-
     private  DrawerLayout drawerLayout;          //抽屉布局
     private  FrameLayout  leftLayout;          //左滑视图
 
+    CheckUpDate checkUpdate;//检查更新
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,10 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
         }
 
 
-
-
+        //检查更新服务
+        checkUpdate=new CheckUpDate(MainActivity.this,new LoaddingDialog(MainActivity.this));
+        //检查更新
+        checkUpdate.CheckVersionUpdate();
     }
 
     /**

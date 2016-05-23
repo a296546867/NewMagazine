@@ -116,7 +116,7 @@ public class CheckUpDate {
                         if(Integer.parseInt(apkVersion.getVtitle())>getLocalApkVersion()){
                             //结束loadding
                             loaddingDialog.dismiss();
-                            new AlertDialog.Builder(context)
+                            AlertDialog alertDialog =  new AlertDialog.Builder(context)
                                     .setTitle("发现新版本:")
                                     .setMessage(apkVersion.getDes())
                                     .setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
@@ -137,9 +137,13 @@ public class CheckUpDate {
                                             dialog.dismiss();
                                         }
                                     })
-                                    .create().show();
-                        }
+                                    .create();
+                            //点击屏幕不取消
+                            alertDialog.setCanceledOnTouchOutside(false);
+                            //显示
+                            alertDialog.show();
 
+                        }
                     }
                 });
     }
