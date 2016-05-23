@@ -131,4 +131,19 @@ public class SharedHelper {
         editor.putString("isLogin", "true");
         editor.commit();
     }
+    //保存白天夜间模式
+    public void SaveDayORNight(String  dayORnight){
+        sp = mContext.getSharedPreferences(baseSP, Context.MODE_PRIVATE);
+        editor = sp.edit();
+        //是否登录的标记
+        editor.putString("Mode", dayORnight);
+        editor.commit();
+    }
+    //读取白天夜间模式
+    public String readDayORNight() {
+        sp = mContext.getSharedPreferences(baseSP, Context.MODE_PRIVATE);
+        editor = sp.edit();
+        String mode = sp.getString("Mode", "day");
+        return mode;
+    }
 }

@@ -47,17 +47,15 @@ import okhttp3.Call;
  */
 public class CheckUpDate {
 
+    public static final int UPDATEAPKNotification = 0;//标识是下载apk的通知
+
     private Context context;
     private LoaddingDialog loaddingDialog;
 
-    Intent intent;
     Notification.Builder localBuilder;//通知栏
     NotificationManager mNManager;//通知栏管理
-    Handler handler;
+    Handler handler;//处理apk下载进度
 
-    public static final String UPLOAD_RESULT = "com.example.sky.intentservice.UPLOAD_RESULT";
-
-    private BroadcastReceiver uploadImgReceiver;
 
     /**
      * @param context
@@ -68,33 +66,29 @@ public class CheckUpDate {
         this.context=context;
         this.loaddingDialog=loaddingDialog;
 
-        intent = new Intent("com.example.sky.service.Setting_UpdateService");
-
-
+        //通知
         localBuilder = new Notification.Builder(context);
+        // 通知管理
         mNManager=(NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
 
-        uploadImgReceiver = new BroadcastReceiver()
-        {
+        //apk下载进度
+        handler = new Handler(){
             @Override
-            public void onReceive(Context context, Intent intent)
-            {
-                if (intent.getAction() == UPLOAD_RESULT)
-                {
-                    Bundle bundle = intent.getExtras();
-
-                    localBuilder.setProgress(100,bundle.getInt("count"),false);
-                    mNManager.notify(0,localBuilder.build());
-
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.arg1!=1) {
+                    //更新进度
+                    localBuilder.setProgress(msg.arg2, msg.arg1, false);
+                    mNManager.notify(0, localBuilder.build());
                 }
-
+                else{
+                    //关闭通知
+                    localBuilder.setAutoCancel(true);
+                    mNManager.cancel(UPDATEAPKNotification);
+                }
             }
         };
-
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(UPLOAD_RESULT);
-        context.registerReceiver(uploadImgReceiver, filter);
 
     }
 
@@ -128,13 +122,10 @@ public class CheckUpDate {
                                     .setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-
-                                            //intent传递apk下载地址
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("apkURL",apkVersion.getUrl());
-                                            intent.putExtras(bundle);
-                                            //启动服务更新
-                                            context.startService(intent);
+                                            //创建notification
+                                            createNotification(localBuilder,mNManager,context);
+                                            //启动线程下载apk
+                                            new DownloadApkThread(apkVersion.getUrl(),handler,context).start();
                                             //关闭dialog
                                             dialog.dismiss();
                                         }
@@ -164,10 +155,6 @@ public class CheckUpDate {
         }
         return localApkVersion;
     }
-    //解除服务
-    public void StopMyService(){
-        context.stopService(intent);
-    }
     //创建Notification
     public void createNotification(Notification.Builder localBuilder,NotificationManager mNManager,Context context){
         localBuilder.setAutoCancel(false);
@@ -177,7 +164,7 @@ public class CheckUpDate {
         localBuilder.setContentTitle("银谷杂志");
         localBuilder.setContentText("正在下载...");
         localBuilder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(PendingIntent.FLAG_ONE_SHOT), 0));//如果Intent要启动的Activity在栈顶，则无须创建新的实例
-        mNManager.notify(0,localBuilder.build());
+        mNManager.notify(UPDATEAPKNotification,localBuilder.build());
     }
 
 

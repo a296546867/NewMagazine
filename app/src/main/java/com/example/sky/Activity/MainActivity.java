@@ -1,13 +1,21 @@
 package com.example.sky.Activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.PixelFormat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sky.DataBase.SharedHelper;
@@ -47,6 +55,9 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
             setContentView(R.layout.activity_main);
             bindViews();
         }
+
+
+
 
     }
 
@@ -115,4 +126,9 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
 
         }
     }
+
+
+
+
+
 }

@@ -1,5 +1,9 @@
 package com.example.sky.UpdateService;
 
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -23,21 +27,17 @@ import java.net.URL;
 public class DownloadApkThread extends Thread {
 
 
-    private static final int DOWNLOAD = 1;//apk的下载进度
     private static final int DOWNLOAD_FINISH = 2;//apk下载结束
-
 
     private String apkURL;
     private Handler handler;
+    private Context context;
 
-    private int nowProgress;
 
-    public DownloadApkThread(String apkURL, Handler handler){
+    public DownloadApkThread(String apkURL, Handler handler,Context context){
         this.apkURL=apkURL;
         this.handler=handler;
-
-        nowProgress=0;
-
+        this.context=context;
     }
 
 
@@ -81,16 +81,25 @@ public class DownloadApkThread extends Thread {
                     len += readsize ;
                     float d =((float)len/length)*100;
                     // 计算进度条位置
-                    if (length%len==2){
+//                    if (length%len==2){
                         // 更新进度
                         Message msg = new Message();
                         msg.arg1=len;
                         msg.arg2=length;
                         handler.sendMessage(msg);
-                    }
+//                    }
                 }
+                //关闭输入输出流
                 fos.close();
                 is.close();
+
+                //关闭下载apk的通知
+                Message msg = new Message();
+                msg.arg1=1;
+                handler.sendMessage(msg);
+                //安装新版apk
+                installApk();
+
             }
         }
         catch (MalformedURLException e) {
@@ -101,4 +110,16 @@ public class DownloadApkThread extends Thread {
         }
 
     }
+
+    // 安装apk方法
+    private void installApk() {
+        File file = new File(Environment.getExternalStorageDirectory() + "/" + "YGdownload" + "/" + "Magazine.apk");
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(Intent.ACTION_VIEW);
+        String type = "application/vnd.android.package-archive";
+        intent.setDataAndType(Uri.fromFile(file), type);
+        context.startActivity(intent);
+    }
+
 }
