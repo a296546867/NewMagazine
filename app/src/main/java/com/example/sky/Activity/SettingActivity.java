@@ -3,18 +3,23 @@ package com.example.sky.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,6 +34,10 @@ import com.example.sky.Utils.LoaddingDialog;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.w3c.dom.Text;
+
+import java.io.Serializable;
 
 import okhttp3.Call;
 
@@ -49,7 +58,8 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
     RelativeLayout zhengweiziti;//正文字体
     RelativeLayout checkUpDate;//检查更新
     RelativeLayout aboutUS;//关于我们
-    ImageView modeImage;//白天夜间模式
+    TextView modeText;//白天夜间模式文字
+    ImageView modeImage;//白天夜间模式图片
     TextView  wordSizeText;//字体大小
 
     LoaddingDialog loaddingDialog;//loadding
@@ -62,8 +72,6 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +80,8 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
         binViews();
         setListener();
         init();
+        //白天夜间文字图标
+        isDayORnight();
     }
 
     @Override
@@ -79,7 +89,10 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
         super.onDestroy();
         //解除更新服务
 //        checkUpdate.StopMyService();
+
+
     }
+
 
     //绑定控件
     private void binViews(){
@@ -89,7 +102,9 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
         checkUpDate=(RelativeLayout)findViewById(R.id.CheckUPdate);
         aboutUS=(RelativeLayout)findViewById(R.id.AboutUs);
 
-        //白天夜间模式
+        //白天夜间模式文字
+        modeText = (TextView)findViewById(R.id.sunOrMoonTextView);
+        //白天夜间模式图片
         modeImage=(ImageView)findViewById(R.id.modeimage);
         //字体大小文本
         wordSizeText=(TextView)findViewById(R.id.currentTextsize);
@@ -114,8 +129,21 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
 
         //检查更新服务
         checkUpdate=new CheckUpDate(SettingActivity.this,loaddingDialog);
-    }
 
+
+    }
+    //进入该界面时根据保存的标签设置白天夜间文字和图标
+    private void isDayORnight(){
+        if (sp.readDayORNight().equals("day")){
+            //白天
+            modeImage.setImageResource(R.mipmap.sun);
+            modeText.setText("白天模式");
+        }else{
+            //夜间
+            modeImage.setImageResource(R.mipmap.moon);
+            modeText.setText("夜间模式");
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -137,27 +165,33 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
                                 Bundle bundle = new Bundle();
                                 //设置白天或夜间图片
                                 if (which==0) {
+                                    if (sp.readDayORNight().equals("night")) {
                                         //白天
                                         modeImage.setImageResource(R.mipmap.sun);
-                                        bundle.putString("mode","day");
+                                        modeText.setText("白天模式");
                                         //保存白天夜间标签
                                         sp.SaveDayORNight("day");
                                         //传递参数
+                                        bundle.putString("mode", "day");
                                         intentMode.putExtras(bundle);
                                         //发送广播，切换白天夜间模式
                                         LocalBroadcastManager.getInstance(SettingActivity.this).sendBroadcast(intentMode);
 
+                                    }
                                 }else{
+                                    if (sp.readDayORNight().equals("day")) {
                                         //夜间
                                         modeImage.setImageResource(R.mipmap.moon);
-                                        bundle.putString("mode","night");
+                                        modeText.setText("夜间模式");
                                         //保存白天夜间标签
                                         sp.SaveDayORNight("night");
                                         //传递参数
+                                        bundle.putString("mode", "night");
                                         intentMode.putExtras(bundle);
                                         //发送广播，切换白天夜间模式
                                         LocalBroadcastManager.getInstance(SettingActivity.this).sendBroadcast(intentMode);
 
+                                    }
                                 }
                                 //关闭dialog
                                 dialog.dismiss();
@@ -199,5 +233,9 @@ public class SettingActivity extends BaseActivity implements TextView.OnClickLis
         if(keyCode==event.KEYCODE_BACK){this.finish();}
         return super.onKeyDown(keyCode, event);
     }
+
+
+
+
 
 }

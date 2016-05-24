@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
         }
 
 
-        //检查更新服务
+        //检查版本更新
         checkUpdate=new CheckUpDate(MainActivity.this,new LoaddingDialog(MainActivity.this));
         //检查更新
         checkUpdate.CheckVersionUpdate();
