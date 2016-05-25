@@ -5,9 +5,17 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.sky.Activity.R;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.litepal.LitePalApplication;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * 项目名称：NewMagazine
@@ -21,56 +29,27 @@ import org.litepal.LitePalApplication;
 public class MApplication extends LitePalApplication{
 
 
-    public WindowManager manager;
-    public WindowManager.LayoutParams params;
-    public View tv;
+    private static MApplication instance;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
 
-        //获得一个window
-        manager = (WindowManager)getSystemService(MApplication.this.WINDOW_SERVICE);
-        params = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE|WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT);
-
-        //设置位置
-        params.gravity = Gravity.CENTER;
-
-
-        //定义一个view，颜色，透明度，用来设置夜间模式
-        tv = new View(MApplication.this);
-        tv.setBackgroundColor(getResources().getColor(R.color.text_black_color));
-        tv.setAlpha(0.7f);
-
     }
 
-    public WindowManager getManager() {
-        return manager;
+    // 单例标准中获得唯一的Application实例
+    public static MApplication getInstance(){
+
+        if(instance==null){
+            synchronized(MApplication.class){
+                if(instance==null){
+                    instance=new MApplication();
+                }
+            }
+        }
+        return instance;
     }
 
-    public void setManager(WindowManager manager) {
-        this.manager = manager;
-    }
 
-    public WindowManager.LayoutParams getParams() {
-        return params;
-    }
-
-    public void setParams(WindowManager.LayoutParams params) {
-        this.params = params;
-    }
-
-    public View getTv() {
-        return tv;
-    }
-
-    public void setTv(View tv) {
-        this.tv = tv;
-    }
 }

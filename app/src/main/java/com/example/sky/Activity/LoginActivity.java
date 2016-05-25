@@ -2,6 +2,8 @@ package com.example.sky.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -11,10 +13,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.sky.Bean.UserInfo;
 import com.example.sky.DataBase.DBManager;
 import com.example.sky.Bean.UserAuthInfo;
-import com.example.sky.Bean.UserInfo;
 import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.Net.Configurator;
 import com.example.sky.Utils.AES;
@@ -23,10 +24,9 @@ import com.example.sky.Utils.MD5;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-
 import java.util.Map;
-
 import okhttp3.Call;
+import okhttp3.OkHttpClient;
 
 /**
  * 项目名称：NewMagazine
@@ -51,6 +51,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
     DBManager db;                           //数据库操作对象
     SharedHelper sp;                        // SharedPreference帮助类
     LoaddingDialog loaddingDialog;        //loadding
+
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -110,6 +111,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
             rememberPasswd.setChecked(false);
         }
 
+
     }
 
     @Override
@@ -152,6 +154,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
      * 登录,获取用户信息
      */
     private void LoginGetUserInfo(){
+
         try {
             //显示loadding
             loaddingDialog.show();
@@ -209,10 +212,10 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
                         }
                     });
 
+
         }catch (Exception e){
             e.printStackTrace();
         }
-
 
     }
     /**

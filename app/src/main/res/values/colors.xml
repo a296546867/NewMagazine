@@ -54,4 +54,7 @@
     <!--忘记密码颜色-->
     <color name="forgetPassword_text_color">#0099FF</color>
 
+    <!--vip界面中的字体-->
+    <color name="vip_text">#624d1e</color>
+
 </resources>

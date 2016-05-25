@@ -34,9 +34,6 @@
             android:textColor="@color/title_text_color"
             android:textSize="@dimen/title_text_size" >
         </TextView>
-
-
-
     </RelativeLayout>
 
     <LinearLayout

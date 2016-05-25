@@ -16,16 +16,14 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.sky.Activity.AboutUSActivity;
 import com.example.sky.Activity.CenterActivity;
 import com.example.sky.Activity.HelpActivity;
 import com.example.sky.Activity.R;
+import com.example.sky.Activity.VIPActivity;
 import com.example.sky.DataBase.DBManager;
 import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -125,8 +123,8 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
 
         leftMenuList=new ArrayList<>();
         leftMenuList.add(MYCOUNT);
-        leftMenuList.add(GETVIP);
         leftMenuList.add(SEARCH);
+        leftMenuList.add(GETVIP);
         leftMenuList.add(ABOUTUS);
         leftMenuList.add(HELP);
 
@@ -202,7 +200,8 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
 
                 break;
             case 2:
-
+                //升级VIP界面
+                startActivity(new Intent(getActivity(), VIPActivity.class));
                 break;
             case 3:
                 //跳转到我的账户界面

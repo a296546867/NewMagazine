@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +46,11 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     DBManager db;                                    //数据库操作对象
     SharedHelper sp;                                 //sharedPreferences
     MyBRReceiver myReceiver;                        //广播
+
+
+
+
+
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +111,10 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         if (sp.readIsLogin().equals("true")){
             nickText.setText(db.readNick());
         }
+
+
     }
+
 
 
     @Override
@@ -153,7 +164,8 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                 startActivity(new Intent(CenterActivity.this,RegisterActivity.class));
                 break;
             case R.id.showMyApply:
-                Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
+                //升级VIP界面
+                startActivity(new Intent(CenterActivity.this, VIPActivity.class));
                 break;
             case R.id.showMyEdito:
                 //跳转到设置界面
@@ -179,4 +191,7 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
             nickText.setText(db.readNick());
         }
     }
+
+
+
 }

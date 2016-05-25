@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!--文件写权限-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+
     <!--org.litepal.LitePalApplication 配置使用litepal数据库-->
     <application
         android:name="com.example.sky.Application.MApplication"
@@ -41,6 +44,10 @@
         <!--注册-->
         <activity
             android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <!--VIP升级-->
+        <activity
+            android:name=".VIPActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <!--关于我们-->
         <activity

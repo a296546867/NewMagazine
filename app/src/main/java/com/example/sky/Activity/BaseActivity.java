@@ -34,9 +34,8 @@ public class BaseActivity extends AppCompatActivity {
     WindowManager manager;
     WindowManager.LayoutParams params;
     View tv;
-    Window window
-            ;
     SharedHelper sp;
+    SetDayOrNightBRReceiver setDayOrNightBRReceiver;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -46,7 +45,8 @@ public class BaseActivity extends AppCompatActivity {
         ActivityCollector.addActivity(this);
 
         //获得一个window
-        manager = (WindowManager)getSystemService(BaseActivity.this.WINDOW_SERVICE);
+        manager = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+//        manager = getWindowManager();
         params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -66,15 +66,23 @@ public class BaseActivity extends AppCompatActivity {
 
         //进入界面时判断白天夜间模式
         sp = new SharedHelper(BaseActivity.this);
-        isDayORnight();
+        isDayORnightt();
+
+        SetDayOrNightBRReceiver setDayOrNightBRReceiver = new SetDayOrNightBRReceiver();
 
         //注册广播切换白天夜间模式
-        LocalBroadcastManager.getInstance(this).registerReceiver( new SetDayOrNightBRReceiver(), new IntentFilter("com.chen.mybcreceiver.Mode"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(setDayOrNightBRReceiver, new IntentFilter("com.chen.mybcreceiver.Mode"));
     }
+
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //取消注册广播
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(setDayOrNightBRReceiver);
+
+
     }
 
     /**
@@ -96,7 +104,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     //进入界面时判断是白天还是夜间
-    private void isDayORnight(){
+    private void isDayORnightt(){
         if (sp.readDayORNight().equals("night")){
             //把view添加到window中
             manager.addView(tv,params);

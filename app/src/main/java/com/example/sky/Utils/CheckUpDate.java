@@ -103,7 +103,7 @@ public class CheckUpDate {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e) {
-                        Toast.makeText(context, "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "网络异常", Toast.LENGTH_SHORT).show();
                         //结束loadding
                         loaddingDialog.dismiss();
                     }
