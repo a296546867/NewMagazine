@@ -10,7 +10,7 @@
         android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:id="@+id/applyform_ll"
+            android:id="@+id/vip1_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -38,7 +38,7 @@
             </LinearLayout>
 
             <TableLayout
-                android:id="@+id/register_tablelayout"
+                android:id="@+id/vip1_tablelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -56,7 +56,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="姓名 *"
+                        android:text="*姓名"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp"
                         android:gravity="end"
@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:padding="10dp"
-                        android:text="移动电话*"
+                        android:text="*移动电话"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp"
                         android:gravity="end"
@@ -98,8 +98,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/rectangle"
-                        android:enabled="false"
                         android:padding="10dp"
+                        android:inputType="phone"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="省份 *"
+                        android:text="*省份"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp"
                         android:gravity="end"
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="城市 *"
+                        android:text="*城市"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp"
                         android:gravity="end"
@@ -209,13 +209,14 @@
                         android:gravity="end"
                         />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/memberSexEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/rectangle"
                         android:padding="10dp"
+                        android:text="男"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -289,7 +290,7 @@
                 android:padding="10dp" >
 
                 <Button
-                    android:id="@+id/commonnumber"
+                    android:id="@+id/common_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -304,7 +305,7 @@
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/vipnumber"
+                    android:id="@+id/vip_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

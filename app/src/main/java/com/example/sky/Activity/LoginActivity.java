@@ -192,6 +192,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
 
                         @Override
                         public void onResponse(String s) {
+                            Log.i("myInfo","userInfo: "+s);
                             //解析用户信息
                             UserInfo userInfo = new Gson().fromJson(s, UserInfo.class);
                             //保存用户信息
@@ -237,6 +238,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
                     }
                     @Override
                     public void onResponse(String s) {
+                        Log.i("myInfo","userAuthInfo: "+s);
                         //设置登录标记
                         sp.SaveLogin();
                         //保存用户认证信息

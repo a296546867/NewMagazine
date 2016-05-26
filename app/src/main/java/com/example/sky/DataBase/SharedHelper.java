@@ -146,4 +146,5 @@ public class SharedHelper {
         String mode = sp.getString("Mode", "day");
         return mode;
     }
+
 }

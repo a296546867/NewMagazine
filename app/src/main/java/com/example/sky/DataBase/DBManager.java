@@ -84,4 +84,16 @@ public class DBManager {
         UserInfo userInfo = readUserInfo();
         return userInfo.getAccess_token();
     }
+    //检查是否提交过普通会员
+    public boolean readIsCommon(){
+        List<UserAuthInfo> listUserAuthInfo = DataSupport.findAll(UserAuthInfo.class);
+        if (listUserAuthInfo.size()!=0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+
 }

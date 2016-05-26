@@ -24,6 +24,8 @@ import com.example.sky.Activity.VIPActivity;
 import com.example.sky.DataBase.DBManager;
 import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
+import com.example.sky.Utils.LoaddingDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +58,7 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     SharedHelper    sp;                            //sharedPreferences
     DBManager       db;                            //数据库操作对象
 
+    LoaddingDialog loaddingDialog;
 
     LoginBRReceiver loginBRReceiver;//登录广播
     OutLoginBRReceiver outLoginBRReceiver;//退出广播
@@ -138,6 +141,10 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         LeftMenuListAdapter leftMenuListAdapter=new LeftMenuListAdapter(leftMenuList,getActivity());
         listView.setAdapter(leftMenuListAdapter);
         listView.setOnItemClickListener(this);
+
+        //loadding
+        loaddingDialog = new LoaddingDialog(getActivity());
+        loaddingDialog.setCanceledOnTouchOutside(false);//点击屏幕不取消
     }
     /**
      * 初始化
@@ -187,10 +194,10 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        //loadding
+        loaddingDialog.show();
         //关闭抽屉菜单
         drawerLayout.closeDrawers();
-
         // 0：我的账户 1:搜索 2:升级VIP 3:关于我们4：帮助
         switch (position){
             case 0:
@@ -212,8 +219,7 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
                 startActivity(new Intent(getActivity(), HelpActivity.class));
                 break;
         }
-
-
+        loaddingDialog.dismiss();
     }
     /**
      * 登录广播要做的事情，更新昵称和会员等级
