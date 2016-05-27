@@ -62,7 +62,7 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
     CheckBox MemberINFOCheckBox_5;
     CheckBox MemberINFOCheckBox_6;
     CheckBox MemberINFOCheckBox_7;
-    EditText MemberINFOCheckBox_7_EditText;//其它的内容
+    CheckBox MemberINFOCheckBox_8;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -95,7 +95,7 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
         MemberINFOCheckBox_5 = (CheckBox) view.findViewById(R.id.MemberINFOCheckBox_5);
         MemberINFOCheckBox_6 = (CheckBox) view.findViewById(R.id.MemberINFOCheckBox_6);
         MemberINFOCheckBox_7 = (CheckBox) view.findViewById(R.id.MemberINFOCheckBox_7);
-        MemberINFOCheckBox_7_EditText = (EditText)view.findViewById(R.id.MemberINFOCheckBox_7_EditText);
+        MemberINFOCheckBox_8 = (CheckBox) view.findViewById(R.id.MemberINFOCheckBox_8);
     }
     private void setListener(){
         former_step.setOnClickListener(this);
@@ -111,6 +111,7 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
         MemberINFOCheckBox_5.setOnCheckedChangeListener(new MyCheckBoxCheckSelect());
         MemberINFOCheckBox_6.setOnCheckedChangeListener(new MyCheckBoxCheckSelect());
         MemberINFOCheckBox_7.setOnCheckedChangeListener(new MyCheckBoxCheckSelect());
+        MemberINFOCheckBox_8.setOnCheckedChangeListener(new MyCheckBoxCheckSelect());
     }
     private void init(){
         //数据库操作
@@ -156,6 +157,9 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
         };
 
 
+        //初始化
+        vipForm.setEligible("VIP会员");
+        vipForm.setApplyyears(1);
 
     }
 
@@ -177,6 +181,8 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
                                 years =Integer.parseInt(yearNum[which]);
                                 //发送消息通知更新费用
                                 handler.sendEmptyMessage(0);
+                                //记录vip申请年限
+                                vipForm.setApplyyears(Integer.parseInt(yearNum[which]));
                                 //关闭dialog
                                 dialog.dismiss();
                             }
@@ -191,12 +197,18 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
                 break;
             case R.id.next_step:
                 //下一步
-
+                if (checkNext()){
+                    //装载vip申请的数据
+                    setVIPForm();
+                    //跳转节目
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .hide(vipActivity.getVip2Fragment())
+                            .show(vipActivity.getVip3Fragment())
+                            .commit();
+                }
                 break;
         }
     }
-
-
     @Override  //会员类型选择
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (group.getId()) {
@@ -219,7 +231,6 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
         handler.sendEmptyMessage(0);
 
     }
-
     // 材料监听器
     class MyCheckBoxCheckSelect implements CheckBox.OnCheckedChangeListener {
         @Override
@@ -237,7 +248,6 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
             handler.sendEmptyMessage(0);
         }
     }
-
     //获得材料字符串
     private String getDataString(){
         String choose = "";
@@ -248,7 +258,35 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
         if(MemberINFOCheckBox_4.isChecked())choose += ","+MemberINFOCheckBox_4.getText().toString() + "";
         if(MemberINFOCheckBox_5.isChecked())choose += ","+MemberINFOCheckBox_5.getText().toString() + "";
         if(MemberINFOCheckBox_6.isChecked())choose += ","+MemberINFOCheckBox_6.getText().toString() + "";
-        if(MemberINFOCheckBox_7.isChecked())choose += ",其它:"+MemberINFOCheckBox_7_EditText.getText().toString() + "";
+        if(MemberINFOCheckBox_7.isChecked())choose += ","+MemberINFOCheckBox_7.getText().toString() + "";
+        if(MemberINFOCheckBox_8.isChecked())choose += ","+MemberINFOCheckBox_8.getText().toString() + "";
         return choose;
     }
+    //下一步时检查有没有选择材料
+    private boolean checkNext(){
+        if (MemberINFOCheckBox_0.isChecked()||MemberINFOCheckBox_1.isChecked()||MemberINFOCheckBox_2.isChecked()
+                ||MemberINFOCheckBox_3.isChecked()||MemberINFOCheckBox_4.isChecked()||MemberINFOCheckBox_5.isChecked()
+                ||MemberINFOCheckBox_6.isChecked()||MemberINFOCheckBox_7.isChecked()||MemberINFOCheckBox_8.isChecked()){
+
+            return true;
+        }else{
+            new AlertDialog.Builder(getActivity())
+                    .setMessage("请至少选择一个材料")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).create().show();
+            return false;
+        }
+    }
+    //装载vip申请的数据
+    private void setVIPForm(){
+        vipForm.setCardno(usercodeEditText.getText().toString());//会员编号
+        vipForm.setPaymoney(SumCostTextView.getText().toString());//缴费合计
+
+        //vip申请年限，在选择年限时候记录
+    }
+
 }

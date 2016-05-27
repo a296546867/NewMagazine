@@ -246,36 +246,26 @@
                     android:id="@+id/MemberINFOCheckBox_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="《65°C汤种面包》"
+                    android:textColor="#9b9b9b"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/MemberINFOCheckBox_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="《最全面的蛋糕教科书》"
+                    android:textColor="#9b9b9b"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/MemberINFOCheckBox_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="电子称"
                     android:textColor="#9b9b9b"
                     android:textSize="20sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <CheckBox
-                        android:id="@+id/MemberINFOCheckBox_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="其他："
-                        android:textColor="#9b9b9b"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/MemberINFOCheckBox_7_EditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="10dp"
-                        android:singleLine="true"
-                        android:textColor="#9b9b9b"
-                        android:textSize="20sp" />
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

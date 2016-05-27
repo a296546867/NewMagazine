@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/avtivity_bg"
+    android:orientation="vertical" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="会员资费"
+            android:textColor="@color/vip_text"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#867655"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center" >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="缴费合计/元"
+            android:textColor="@color/vip_text_gray"
+            android:textSize="@dimen/text_size"
+            android:gravity="end"
+            />
+
+        <TextView
+            android:id="@+id/vip4_paymoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/vip_text_gray"/>
+    </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="缴费方式"
+                android:textColor="@color/vip_text_gray"
+                android:textSize="@dimen/text_size"
+                android:gravity="end"
+                />
+
+            <TextView
+                android:id="@+id/vip4_paymode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/vip_text_gray"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="缴费单号"
+                android:textColor="@color/vip_text_gray"
+                android:textSize="@dimen/text_size"
+                android:gravity="end"
+                />
+
+            <TextView
+                android:id="@+id/vip4_ordercode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/vip_text_gray"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="缴费时间"
+                android:textColor="@color/vip_text_gray"
+                android:textSize="@dimen/text_size"
+                android:gravity="end"
+                />
+
+            <TextView
+                android:id="@+id/vip4_paytime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/vip_text_gray"/>
+        </TableRow>
+    </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="基本资料"
+                android:textColor="@color/vip_text"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#867655"
+                android:orientation="vertical" />
+        </LinearLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center" >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="姓名"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="移动电话"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="年龄"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="性别"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="单位名称"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="职业"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="省份"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_province"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="城市"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="邮寄信息"
+                android:textColor="@color/vip_text"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#867655"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center" >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="收货人姓名"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_consignee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="收货人电话"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="邮寄地址"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="邮编"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_postcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="传真"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_fas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="电子邮箱"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="微信"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_weixin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="入会/续会"
+                android:textColor="@color/vip_text"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#867655"
+                android:orientation="vertical" />
+        </LinearLayout>
+        <RadioGroup
+            android:id="@+id/vip4_RadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/vip4_RadioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:clickable="false"
+                android:text="入会"
+                android:textColor="@color/vip_text_gray" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/vip4_RadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="续会"
+                android:textColor="@color/vip_text_gray" >
+            </RadioButton>
+        </RadioGroup>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center" >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="会员资料"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_gifetype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="会员编号"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_cardno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="年限"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_years"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="类型选择"
+                    android:textColor="@color/vip_text_gray"
+                    android:textSize="@dimen/text_size"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/vip4_eligible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/vip_text_gray"/>
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/vip4_former_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_style"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="10dp"
+                android:text="重新申请"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/vip4_next_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_style"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="10dp"
+                android:text="确定提交"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

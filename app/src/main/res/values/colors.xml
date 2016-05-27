@@ -57,4 +57,6 @@
     <!--vip界面中的字体-->
     <color name="vip_text">#624d1e</color>
 
+    <!--vip中的灰色字体-->
+    <color name="vip_text_gray">#a6a6a6</color>
 </resources>

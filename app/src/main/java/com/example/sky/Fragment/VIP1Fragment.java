@@ -166,7 +166,6 @@ public class VIP1Fragment extends Fragment implements View.OnClickListener{
                 .addParams("name", memberNameEditText.getText().toString())
                 .addParams("mobile", membermMobileEditText.getText().toString())
                 .addParams("province", memberProvinceEditText.getText().toString())
-                .addParams("mobile", membermMobileEditText.getText().toString())
                 .addParams("city", memberCityEditText.getText().toString())
                 .addParams("age", memberAgeEditText.getText().toString())
                 .addParams("sex", memberSexEditText.getText().toString())
@@ -238,7 +237,7 @@ public class VIP1Fragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    //装载下一步的数据
+    //装载vip申请的数据
     private void setVIPForm(){
         vipActivity.getVipForm().setName(memberNameEditText.getText().toString());
         vipActivity.getVipForm().setMobile(membermMobileEditText.getText().toString());
@@ -248,6 +247,5 @@ public class VIP1Fragment extends Fragment implements View.OnClickListener{
         vipActivity.getVipForm().setSex(memberSexEditText.getText().toString());
         vipActivity.getVipForm().setCompany(memberCompanyEditText.getText().toString());
         vipActivity.getVipForm().setJob(memberJobEditText.getText().toString());
-        vipActivity.getVipForm().setCardno(dbManager.readUserAuthInfo().getCardno());
     }
 }
