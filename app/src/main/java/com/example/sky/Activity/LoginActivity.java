@@ -24,6 +24,9 @@ import com.example.sky.Utils.MD5;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.w3c.dom.Text;
+
 import java.util.Map;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -47,6 +50,7 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
     EditText phoneEdt;                     //手机号
     EditText passwdEdt;                    //密码
     CheckBox rememberPasswd;              //记住密码
+    TextView forgetPasswd;                //忘记密码
 
     DBManager db;                           //数据库操作对象
     SharedHelper sp;                        // SharedPreference帮助类
@@ -67,25 +71,22 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
      * 绑定控件
      */
     private void binViews(){
-
         returnText=(TextView)findViewById(R.id.loginactivity_return_text);
         loginBtn=(Button)findViewById(R.id.login_btn);
         registerBtn=(Button)findViewById(R.id.login_register_tv);
         phoneEdt=(EditText)findViewById(R.id.edittext_phone);
         passwdEdt=(EditText)findViewById(R.id.edittext_password);
         rememberPasswd=(CheckBox)findViewById(R.id.remember_passwd);
-
-
+        forgetPasswd=(TextView) findViewById(R.id.forgetpassword);
     }
     /**
      * 控件监听器
      */
     private void setListener(){
-
         returnText.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
-
+        forgetPasswd.setOnClickListener(this);
     }
     /**
      * 实例化初值
@@ -137,7 +138,12 @@ public class LoginActivity extends BaseActivity implements TextView.OnClickListe
                 }
             break;
             case R.id.login_register_tv:
+                //注册界面
                 startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                break;
+            case R.id.forgetpassword:
+                //密码修改界面
+                startActivity(new Intent(LoginActivity.this,ForgetPassWord.class));
                 break;
         }
     }

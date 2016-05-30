@@ -2,10 +2,13 @@ package com.example.sky.Activity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.sky.Bean.VIPApplyHistory;
 import com.example.sky.Bean.VIPForm;
 import com.example.sky.DataBase.DBManager;
 import com.example.sky.Fragment.VIP1Fragment;
@@ -13,6 +16,8 @@ import com.example.sky.Fragment.VIP2Fragment;
 import com.example.sky.Fragment.VIP3Fragment;
 import com.example.sky.Fragment.VIP4FormFragment;
 import com.example.sky.Net.Configurator;
+import com.example.sky.Utils.LoaddingDialog;
+import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -29,15 +34,17 @@ import okhttp3.Call;
  */
 public class VIPActivity extends BaseActivity implements View.OnClickListener{
 
-
     TextView returnText;//返回按钮
-
     VIP1Fragment vip1Fragment;
     VIP2Fragment vip2Fragment;
     VIP3Fragment vip3Fragment;
     VIP4FormFragment vip4FormFragment;
-
     VIPForm vipForm;
+    VIPApplyHistory vipApplyHistory;
+
+    LoaddingDialog loaddingDialog;
+
+    String gifetype;//额外开了个字段来保存会员申请资料,vipForm中这个字段有问题,获取不到
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +70,18 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener{
         returnText.setOnClickListener(this);
     }
     private void init(){
+        //实例化loadding
+        loaddingDialog=new LoaddingDialog(VIPActivity.this);
+        loaddingDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         //vip升级数据对象
         vipForm = new VIPForm();
         //fragment
         vip1Fragment = new VIP1Fragment();
         vip2Fragment = new VIP2Fragment();
         vip3Fragment = new VIP3Fragment();
-        //显示界面
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.vip_context, vip1Fragment,"vip1fragment")
-                .add(R.id.vip_context,vip2Fragment,"vip2fragment")
-                .hide(vip2Fragment)
-                .add(R.id.vip_context,vip3Fragment,"vip3fragment")
-                .hide(vip3Fragment)
-                .commit();
 
-
+        //判断显示申请单界面还是会员升级界面
+        getVIPApplyHistory();
 
     }
     @Override
@@ -100,7 +103,7 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void getVIPApplyHistory(){
-
+        loaddingDialog.show();
         //请求数据
         OkHttpUtils
                 .get()
@@ -110,12 +113,46 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener{
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e) {
-
+                        //结束loadding
+                        loaddingDialog.dismiss();
+                        VIPActivity.this.finish();
+                        Toast.makeText(VIPActivity.this, "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onResponse(String s) {
-
+                        Log.i("myInfo",s);
+                        //解析申请单
+                        vipApplyHistory = new Gson().fromJson(s,VIPApplyHistory.class);
+                        //判断显示的界面
+                        if (vipApplyHistory.getObj().size()>0){
+                            //获得申请单数据
+                            vipForm =vipApplyHistory.getObj().get(0);
+                            gifetype = vipForm.getGifeType();
+                            //实例化申请单
+                            vip4FormFragment = new VIP4FormFragment();
+                            //显示申请单界面
+                            getSupportFragmentManager().beginTransaction()
+                                    .add(R.id.vip_context, vip1Fragment,"vip1fragment")
+                                    .hide(vip1Fragment)
+                                    .add(R.id.vip_context,vip2Fragment,"vip2fragment")
+                                    .hide(vip2Fragment)
+                                    .add(R.id.vip_context,vip3Fragment,"vip3fragment")
+                                    .hide(vip3Fragment)
+                                    .add(R.id.vip_context,vip4FormFragment,"vip4FormFragment")
+                                    .commit();
+                        }else {
+                            //显示会员升级界面
+                            getSupportFragmentManager().beginTransaction()
+                                    .add(R.id.vip_context, vip1Fragment,"vip1fragment")
+                                    .add(R.id.vip_context,vip2Fragment,"vip2fragment")
+                                    .hide(vip2Fragment)
+                                    .add(R.id.vip_context,vip3Fragment,"vip3fragment")
+                                    .hide(vip3Fragment)
+                                    .commit();
+                        }
+                        //结束loadding
+                        loaddingDialog.dismiss();
                     }
                 });
     }
@@ -123,18 +160,24 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     /*********************************************get/set****************************************************/
+
+
+    public String getGifetype() {
+        return gifetype;
+    }
+
+    public void setGifetype(String gifetype) {
+        this.gifetype = gifetype;
+    }
+
+    public VIPApplyHistory getVipApplyHistory() {
+        return vipApplyHistory;
+    }
+
+    public void setVipApplyHistory(VIPApplyHistory vipApplyHistory) {
+        this.vipApplyHistory = vipApplyHistory;
+    }
     public VIP4FormFragment getVip4FormFragment() {
         return vip4FormFragment;
     }

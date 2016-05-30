@@ -120,7 +120,7 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
         vipActivity = (VIPActivity)getActivity();
         // 得到表对象
         vipForm = vipActivity.getVipForm();
-        vipForm.setGifetype("");
+        vipForm.setGifeType("");
         //会员编号
         usercodeEditText.setText(dbManager.readUserAuthInfo().getCardno());
         //入会或者续会
@@ -159,7 +159,7 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
 
         //初始化
         vipForm.setEligible("VIP会员");
-        vipForm.setApplyyears(1);
+        vipForm.setApplyYears(1);
 
     }
 
@@ -182,7 +182,7 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
                                 //发送消息通知更新费用
                                 handler.sendEmptyMessage(0);
                                 //记录vip申请年限
-                                vipForm.setApplyyears(Integer.parseInt(yearNum[which]));
+                                vipForm.setApplyYears(Integer.parseInt(yearNum[which]));
                                 //关闭dialog
                                 dialog.dismiss();
                             }
@@ -243,7 +243,8 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
             }
 //            Log.i("myInfo",getDataString());
             //记录申请的材料
-            vipForm.setGifetype(getDataString());
+            vipForm.setGifeType(getDataString());
+            vipActivity.setGifetype(getDataString());
             //发送消息更新费用
             handler.sendEmptyMessage(0);
         }
@@ -252,14 +253,14 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
     private String getDataString(){
         String choose = "";
         if(MemberINFOCheckBox_0.isChecked())choose += MemberINFOCheckBox_0.getText().toString() + "";
-        if(MemberINFOCheckBox_1.isChecked())choose += ","+MemberINFOCheckBox_1.getText().toString() + "";
-        if(MemberINFOCheckBox_2.isChecked())choose += ","+MemberINFOCheckBox_2.getText().toString() + "";
-        if(MemberINFOCheckBox_3.isChecked())choose += ","+MemberINFOCheckBox_3.getText().toString() + "";
-        if(MemberINFOCheckBox_4.isChecked())choose += ","+MemberINFOCheckBox_4.getText().toString() + "";
-        if(MemberINFOCheckBox_5.isChecked())choose += ","+MemberINFOCheckBox_5.getText().toString() + "";
-        if(MemberINFOCheckBox_6.isChecked())choose += ","+MemberINFOCheckBox_6.getText().toString() + "";
-        if(MemberINFOCheckBox_7.isChecked())choose += ","+MemberINFOCheckBox_7.getText().toString() + "";
-        if(MemberINFOCheckBox_8.isChecked())choose += ","+MemberINFOCheckBox_8.getText().toString() + "";
+        if(MemberINFOCheckBox_1.isChecked())choose += " "+MemberINFOCheckBox_1.getText().toString() + "";
+        if(MemberINFOCheckBox_2.isChecked())choose += " "+MemberINFOCheckBox_2.getText().toString() + "";
+        if(MemberINFOCheckBox_3.isChecked())choose += " "+MemberINFOCheckBox_3.getText().toString() + "";
+        if(MemberINFOCheckBox_4.isChecked())choose += " "+MemberINFOCheckBox_4.getText().toString() + "";
+        if(MemberINFOCheckBox_5.isChecked())choose += " "+MemberINFOCheckBox_5.getText().toString() + "";
+        if(MemberINFOCheckBox_6.isChecked())choose += " "+MemberINFOCheckBox_6.getText().toString() + "";
+        if(MemberINFOCheckBox_7.isChecked())choose += " "+MemberINFOCheckBox_7.getText().toString() + "";
+        if(MemberINFOCheckBox_8.isChecked())choose += " "+MemberINFOCheckBox_8.getText().toString() + "";
         return choose;
     }
     //下一步时检查有没有选择材料
@@ -283,8 +284,8 @@ public class VIP2Fragment extends Fragment implements View.OnClickListener ,Radi
     }
     //装载vip申请的数据
     private void setVIPForm(){
-        vipForm.setCardno(usercodeEditText.getText().toString());//会员编号
-        vipForm.setPaymoney(SumCostTextView.getText().toString());//缴费合计
+        vipForm.setCardNo(usercodeEditText.getText().toString());//会员编号
+        vipForm.setPayMoney(SumCostTextView.getText().toString());//缴费合计
 
         //vip申请年限，在选择年限时候记录
     }

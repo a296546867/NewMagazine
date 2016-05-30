@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.sky.Activity.AboutUSActivity;
 import com.example.sky.Activity.CenterActivity;
 import com.example.sky.Activity.HelpActivity;
@@ -198,6 +200,7 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         loaddingDialog.show();
         //关闭抽屉菜单
         drawerLayout.closeDrawers();
+        if (sp.readIsLogin().equals("true")){
         // 0：我的账户 1:搜索 2:升级VIP 3:关于我们4：帮助
         switch (position){
             case 0:
@@ -218,6 +221,9 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
                 //跳转到我的账户界面
                 startActivity(new Intent(getActivity(), HelpActivity.class));
                 break;
+        }
+        }else {
+            Toast.makeText(getActivity(),"请登录",Toast.LENGTH_SHORT).show();
         }
         loaddingDialog.dismiss();
     }

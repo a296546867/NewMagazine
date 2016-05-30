@@ -124,7 +124,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             //结束loadding
                             loaddingDialog.dismiss();
                             //提示
-                            Toast.makeText(RegisterActivity.this, "发送成功,请确保手机号码正确", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "发送成功,请查看手机短信", Toast.LENGTH_LONG).show();
 
                         }
                     });

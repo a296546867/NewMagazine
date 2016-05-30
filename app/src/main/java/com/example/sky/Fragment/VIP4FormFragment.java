@@ -24,6 +24,8 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import okhttp3.Call;
+
 /**
  * 项目名称：NewMagazine
  * 类描述：
@@ -146,15 +148,16 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
         }else {
             vip4_RadioButton1.setChecked(true);
         }
+
     }
     private void initData(){
         //会员资费
-        vip4_paymoney.setText(vipForm.getPaymoney());
-        vip4_paymode.setText(vipForm.getPaymode());
-        vip4_ordercode.setText(vipForm.getOrdercode());
-        vip4_paytime.setText(vipForm.getPaytime());
+        vip4_paymoney.setText(vipForm.getPayMoney());
+        vip4_paymode.setText(vipForm.getPayMode());
+        vip4_ordercode.setText(vipForm.getOrderCode());
+        vip4_paytime.setText(vipForm.getPayTime());
         //基本信息
-        vip4_name.setText(vipForm.getName());
+        vip4_name.setText(vipForm.getMemberName());
         vip4_mobile.setText(vipForm.getMobile());
         vip4_age.setText(vipForm.getAge());//字段废弃
         vip4_sex.setText(vipForm.getSex());
@@ -166,14 +169,15 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
         vip4_consignee.setText(vipForm.getConsignee());
         vip4_phone.setText(vipForm.getPhone());
         vip4_address.setText(vipForm.getAddress());
-        vip4_postcode.setText(vipForm.getPostcode());
+        vip4_postcode.setText(vipForm.getPostCode());
         vip4_fas.setText(vipForm.getFax());//字段废弃
         vip4_email.setText(vipForm.getEmail());
-        vip4_weixin.setText(vipForm.getWeixin());//字段废弃
+        vip4_weixin.setText(vipForm.getWeiXin());//字段废弃
         //入会/续会
-        vip4_gifetype.setText(vipForm.getGifetype());
-        vip4_cardno.setText(vipForm.getCardno());
-        vip4_years.setText(vipForm.getApplyyears()+"年");
+//        vip4_gifetype.setText(vipForm.getGifeType());
+        vip4_gifetype.setText(vipActivity.getGifetype());
+        vip4_cardno.setText(vipForm.getCardNo());
+        vip4_years.setText(vipForm.getApplyYears()+"年");
         vip4_eligible.setText(vipForm.getEligible());
     }
     @Override
@@ -181,15 +185,36 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.vip4_former_step:
                 //重新申请
+                //如果有申请单，就取消原有申请单
+                if (vipActivity.getVipApplyHistory().getObj().size()==0){
                 //跳转界面
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(vipActivity.getVip4FormFragment())
                         .show(vipActivity.getVip1Fragment())
                         .commit();
+                }else{
+                    CancelVIPForm();
+                }
+
                 break;
             case R.id.vip4_next_step:
                 //确定提交vip
-                PostVIP();
+                //如果有申请单，就取消原有申请单
+                if (vipActivity.getVipApplyHistory().getObj().size()==0){
+                    //取消申请单
+                    PostVIP();
+                }else {
+                    new AlertDialog.Builder(getActivity())
+                            .setMessage("已经提交过,请等待审核结果")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //关闭dialog
+                                    dialog.dismiss();
+                                }
+                            })
+                            .create().show();
+                }
                 break;
         }
     }
@@ -203,7 +228,7 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
                 .url(Configurator.MEMBERAPPLYFORM)
                 .addParams("token", dbManager.readAccessToken())
                 .addParams("eligible", vipForm.getEligible())/***************基本信息********/
-                .addParams("name", vipForm.getName())
+                .addParams("name", vipForm.getMemberName())
                 .addParams("mobile", vipForm.getMobile())
                 .addParams("province", vipForm.getProvince())
                 .addParams("city", vipForm.getCity())
@@ -211,20 +236,20 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
                 .addParams("sex", vipForm.getSex())
                 .addParams("company", vipForm.getCompany())
                 .addParams("job", vipForm.getJob())//该字段没用
-                .addParams("cardno", vipForm.getCardno())/***************申请材料********/
-                .addParams("applyyears", vipForm.getApplyyears()+"")
-                .addParams("gifetype", vipForm.getGifetype())
-                .addParams("paymoney", vipForm.getPaymoney())
+                .addParams("cardno", vipForm.getCardNo())/***************申请材料********/
+                .addParams("applyyears", vipForm.getApplyYears()+"")
+                .addParams("gifetype", vipForm.getGifeType())
+                .addParams("paymoney", vipForm.getPayMoney())
                 .addParams("consignee", vipForm.getConsignee())/***************邮寄信息********/
                 .addParams("phone", vipForm.getPhone())
-                .addParams("postcode", vipForm.getPostcode())
+                .addParams("postcode", vipForm.getPostCode())
                 .addParams("address", vipForm.getAddress())
                 .addParams("fax", vipForm.getFax())//该字段没用
                 .addParams("email", vipForm.getEmail())
-                .addParams("weixin", vipForm.getWeixin())//该字段没用
-                .addParams("paymode", vipForm.getPaymode())
-                .addParams("ordercode", vipForm.getOrdercode())
-                .addParams("paytime", vipForm.getPaytime())
+                .addParams("weixin", vipForm.getWeiXin())//该字段没用
+                .addParams("paymode", vipForm.getPayMode())
+                .addParams("ordercode", vipForm.getOrderCode())
+                .addParams("paytime", vipForm.getPayTime())
                 .tag(getActivity())
                 .build()
                 .execute(new StringCallback() {
@@ -255,4 +280,32 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
                     }
                 });
     }
+    //重新申请，取消原有的申请单
+    //跳转到会员升级界面
+    private void CancelVIPForm(){
+        OkHttpUtils
+                .post()
+                .url(Configurator.DELETEAPPLYINFO)
+                .addParams("token", dbManager.readAccessToken())
+                .addParams("ID", vipForm.getApplyID())
+                .tag("cancelVIPForm")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e) {
+                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(String s) {
+                        Log.i("myInfo",s);
+                        //跳转界面
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .remove(vipActivity.getVip4FormFragment())
+                                .show(vipActivity.getVip1Fragment())
+                                .commit();
+                    }
+                });
+    }
+
 }

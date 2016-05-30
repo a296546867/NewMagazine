@@ -19,6 +19,7 @@ import com.example.sky.Activity.R;
 import com.example.sky.Activity.VIPActivity;
 import com.example.sky.Bean.Result;
 import com.example.sky.Bean.UserInfo;
+import com.example.sky.Bean.VIPApplyHistory;
 import com.example.sky.Bean.VIPForm;
 import com.example.sky.DataBase.DBManager;
 import com.example.sky.Net.Configurator;
@@ -29,6 +30,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.text.Normalizer;
 import java.util.Calendar;
+
+import okhttp3.Call;
 
 /**
  * 项目名称：NewMagazine
@@ -132,7 +135,7 @@ public class VIP3Fragment extends Fragment implements View.OnClickListener ,Date
         switch (v.getId()){
             case R.id.vip3_payway:
                 //缴费方式
-                final String[] yearNum = new String[]{"邮寄汇款"};
+                final String[] yearNum = new String[]{"邮寄付款"};
                 //缴费方式
                 new AlertDialog.Builder(getActivity()).setTitle("请选择缴费方式：")
                         .setSingleChoiceItems(yearNum, 0, new DialogInterface.OnClickListener() {
@@ -161,20 +164,13 @@ public class VIP3Fragment extends Fragment implements View.OnClickListener ,Date
                 //确定保存
                 setVIPForm(); //装载数据
                 if (checkVIPData()){
-                    //实例化，并设置vip申请的数据
-                    VIP4FormFragment vip4FormFragment = new VIP4FormFragment();
-                    //用activity来管理fragment
-                    vipActivity.setVip4FormFragment(vip4FormFragment);
-                    //跳转界面
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .hide(vipActivity.getVip3Fragment())
-                            .add(R.id.vip_context,vip4FormFragment,"vip4formfragment")
-                            .commit();
+                    //跳转到申请单界面
+                    getVIPApplyHistory();
                 }
                 break;
         }
     }
-    @Override //设置日期选择器
+    @Override //设置日期选择监听器
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         //记录选择的年月日
         mYear = year;
@@ -183,30 +179,30 @@ public class VIP3Fragment extends Fragment implements View.OnClickListener ,Date
         //设置日期
         vip3_paytime.setText(year+"-"+monthOfYear+"-"+dayOfMonth);
         //记录申请vip的数据
-        vipForm.setPaytime(year+"-"+monthOfYear+"-"+dayOfMonth);
+        vipForm.setPayTime(year+"-"+monthOfYear+"-"+dayOfMonth);
     }
     //装载vip申请的数据
     private void setVIPForm(){
         vipForm.setConsignee(vip3_consigneeEdt.getText().toString());
         vipForm.setPhone(vip3_phoneEdt.getText().toString());
-        vipForm.setPostcode(vip3_PostCodeEdt.getText().toString());
+        vipForm.setPostCode(vip3_PostCodeEdt.getText().toString());
         vipForm.setAddress(vip3_AddressEdt.getText().toString());
         vipForm.setFax(vip3_faxEdt.getText().toString());//该字段接口上貌似废弃了
         vipForm.setEmail(vip3_emailEdt.getText().toString());
-        vipForm.setWeixin(vip3_weixinEdt.getText().toString());//该字段接口上貌似废弃了
-        vipForm.setPaymode(vip3_payway.getText().toString());
-        vipForm.setOrdercode(vip3_paynum.getText().toString());
-        vipForm.setPaytime(vip3_paytime.getText().toString());
+        vipForm.setWeiXin(vip3_weixinEdt.getText().toString());//该字段接口上貌似废弃了
+        vipForm.setPayMode(vip3_payway.getText().toString());
+        vipForm.setOrderCode(vip3_paynum.getText().toString());
+        vipForm.setPayTime(vip3_paytime.getText().toString());
     }
     //提交vip时检查数据
     private boolean checkVIPData(){
         if (vip3_consigneeEdt.getText().toString().length()!=0&&vip3_phoneEdt.getText().toString().length()!=0&&vip3_PostCodeEdt.getText().toString().length()!=0
                 &&vip3_AddressEdt.getText().toString().length()!=0){
             if (vip3_phoneEdt.getText().toString().length()==11){
-                if (vip3_payway.getText().toString().equals("邮寄汇款")&&vip3_paynum.getText().toString().length()!=0&&vip3_paytime.getText().toString().length()!=0){
+                if (vip3_payway.getText().toString().equals("邮寄付款")&&vip3_paynum.getText().toString().length()!=0&&vip3_paytime.getText().toString().length()!=0){
                     return true;
                 }else{
-                    Toast.makeText(getActivity(),"汇款信息不完整",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"会员资费信息不完整",Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }else{
@@ -218,5 +214,44 @@ public class VIP3Fragment extends Fragment implements View.OnClickListener ,Date
             return false;
         }
     }
+    //获得申请单,查看是否申请过
+    private void getVIPApplyHistory(){
+        loaddingDialog.show();
+        //请求数据
+        OkHttpUtils
+                .get()
+                .url(Configurator.GETAPPLYFORMINPAGE + "token=" + new DBManager().readAccessToken() + "&size=" + 15 + "&index=" + 1)
+                .tag(getActivity())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e) {
+                        //结束loadding
+                        loaddingDialog.dismiss();
+                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onResponse(String s) {
+                        Log.i("myInfo",s);
+                        //解析申请单
+                        VIPApplyHistory vipApplyHistory = new Gson().fromJson(s,VIPApplyHistory.class);
+                        vipActivity.setVipApplyHistory(vipApplyHistory);
+                        if (vipApplyHistory.getObj().size()==0){
+                            //实例化
+                            VIP4FormFragment vip4FormFragment = new VIP4FormFragment();
+                            //用activity来管理fragment
+                            vipActivity.setVip4FormFragment(new VIP4FormFragment());
+                            //跳转界面
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .hide(vipActivity.getVip3Fragment())
+                                    .add(R.id.vip_context,vip4FormFragment,"vip4formfragment")
+                                    .commit();
+                        }
+
+                        //结束loadding
+                        loaddingDialog.dismiss();
+                    }
+                });
+    }
 }

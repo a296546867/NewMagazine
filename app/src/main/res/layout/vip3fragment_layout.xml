@@ -288,7 +288,7 @@
                         android:layout_weight="1"
                         android:padding="10dp"
                         android:textSize="20sp"
-                        android:text="邮寄汇款"
+                        android:text="邮寄付款"
                         android:textColor="#a6a6a6"
                         android:background="@drawable/rectangle"
                         >

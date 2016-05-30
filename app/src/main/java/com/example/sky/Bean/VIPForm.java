@@ -12,244 +12,319 @@ import java.io.Serializable;
  * 修改备注：
  */
 public class VIPForm implements Serializable {
-    private String name;// 姓名
-    private String mobile;// 移动电话
-    private String province;// 省份
-    private String city;// 城市
-    private String age;// 年龄
-    private String sex;// 性别
-    private String company;// 单位名称
-    private String job;// 职业
+    private String MemberName;// 姓名
+    private String Mobile;// 移动电话
+    private String Province;// 省份
+    private String City;// 城市
+    private String Age;// 年龄
+    private String Sex;// 性别
+    private String Company;// 单位名称
+    private String Job;// 职业
     /****************************************************/
-    private String cardno;// 会员编号
-    private int applyyears;// 会员年限
-    private String eligible;// 会员类型
-    private String gifetype;// 会员资料
-    private String paymoney;// 缴费合计
+    private String CardNo;// 会员编号
+    private int ApplyYears;// 会员年限
+    private String Eligible;// 会员类型
+    private String GifeType;// 会员资料
+    private String PayMoney;// 缴费合计
     /****************************************************/
-    private String consignee;// 收货人姓名
-    private String phone;// 收货人电话
-    private String postcode;// 邮编
-    private String address;// 邮寄地址
-    private String fax;// 传真
-    private String email;// 电子邮箱
-    private String weixin;// 微信
+    private String Consignee;// 收货人姓名
+    private String Phone;// 收货人电话
+    private String PostCode;// 邮编
+    private String Address;// 邮寄地址
+    private String Fax;// 传真
+    private String Email;// 电子邮箱
+    private String WeiXin;// 微信
 
-    private String paymode;// 缴费方式
-    private String ordercode;// 缴费单号
-    private String paytime;// 缴费时间
-    /****************************************************/
-
-    private int status;// 状态 0为未处理 1为处理中 2为已处理 -1为已拒绝
-    private String remark;//备注
-    private String applyID;
+    private String PayMode;// 缴费方式
+    private String OrderCode;// 缴费单号
+    private String PayTime;// 缴费时间
     /****************************************************/
 
-    public String getName() {
-        return name;
+    private int Status;// 状态 0为未处理 1为处理中 2为已处理 -1为已拒绝
+    private String Remark;//备注
+    private String ApplyID;
+    /****************************************************/
+
+    private String $id;
+    private String GID;
+    private String CreateTime;
+    private String Auditor;
+    private String AuditTime;
+//    private String Remark;
+    private String EffectiveTime;
+    private String IsEffective;
+    private EntityKey entityKey;
+
+
+    public String getGifeType() {
+        return GifeType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGifeType(String gifeType) {
+        GifeType = gifeType;
+    }
+
+    public EntityKey getEntityKey() {
+        return entityKey;
+    }
+
+    public void setEntityKey(EntityKey entityKey) {
+        this.entityKey = entityKey;
+    }
+
+    public String getMemberName() {
+        return MemberName;
+    }
+
+    public void setMemberName(String memberName) {
+        MemberName = memberName;
     }
 
     public String getMobile() {
-        return mobile;
+        return Mobile;
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        Mobile = mobile;
     }
 
     public String getProvince() {
-        return province;
+        return Province;
     }
 
     public void setProvince(String province) {
-        this.province = province;
+        Province = province;
     }
 
     public String getCity() {
-        return city;
+        return City;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        City = city;
     }
 
     public String getAge() {
-        return age;
+        return Age;
     }
 
     public void setAge(String age) {
-        this.age = age;
+        Age = age;
     }
 
     public String getSex() {
-        return sex;
+        return Sex;
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        Sex = sex;
     }
 
     public String getCompany() {
-        return company;
+        return Company;
     }
 
     public void setCompany(String company) {
-        this.company = company;
+        Company = company;
     }
 
     public String getJob() {
-        return job;
+        return Job;
     }
 
     public void setJob(String job) {
-        this.job = job;
+        Job = job;
     }
 
-    public String getCardno() {
-        return cardno;
+    public String getCardNo() {
+        return CardNo;
     }
 
-    public void setCardno(String cardno) {
-        this.cardno = cardno;
+    public void setCardNo(String cardNo) {
+        CardNo = cardNo;
     }
 
-    public int getApplyyears() {
-        return applyyears;
+    public int getApplyYears() {
+        return ApplyYears;
     }
 
-    public void setApplyyears(int applyyears) {
-        this.applyyears = applyyears;
+    public void setApplyYears(int applyYears) {
+        ApplyYears = applyYears;
     }
 
     public String getEligible() {
-        return eligible;
+        return Eligible;
     }
 
     public void setEligible(String eligible) {
-        this.eligible = eligible;
+        Eligible = eligible;
     }
 
-    public String getGifetype() {
-        return gifetype;
+    public String getPayMoney() {
+        return PayMoney;
     }
 
-    public void setGifetype(String gifetype) {
-        this.gifetype = gifetype;
-    }
-
-    public String getPaymoney() {
-        return paymoney;
-    }
-
-    public void setPaymoney(String paymoney) {
-        this.paymoney = paymoney;
+    public void setPayMoney(String payMoney) {
+        PayMoney = payMoney;
     }
 
     public String getConsignee() {
-        return consignee;
+        return Consignee;
     }
 
     public void setConsignee(String consignee) {
-        this.consignee = consignee;
+        Consignee = consignee;
     }
 
     public String getPhone() {
-        return phone;
+        return Phone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        Phone = phone;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostCode() {
+        return PostCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostCode(String postCode) {
+        PostCode = postCode;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        Address = address;
     }
 
     public String getFax() {
-        return fax;
+        return Fax;
     }
 
     public void setFax(String fax) {
-        this.fax = fax;
+        Fax = fax;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
-    public String getWeixin() {
-        return weixin;
+    public String getWeiXin() {
+        return WeiXin;
     }
 
-    public void setWeixin(String weixin) {
-        this.weixin = weixin;
+    public void setWeiXin(String weiXin) {
+        WeiXin = weiXin;
     }
 
-    public String getPaymode() {
-        return paymode;
+    public String getPayMode() {
+        return PayMode;
     }
 
-    public void setPaymode(String paymode) {
-        this.paymode = paymode;
+    public void setPayMode(String payMode) {
+        PayMode = payMode;
     }
 
-    public String getOrdercode() {
-        return ordercode;
+    public String getOrderCode() {
+        return OrderCode;
     }
 
-    public void setOrdercode(String ordercode) {
-        this.ordercode = ordercode;
+    public void setOrderCode(String orderCode) {
+        OrderCode = orderCode;
     }
 
-    public String getPaytime() {
-        return paytime;
+    public String getPayTime() {
+        return PayTime;
     }
 
-    public void setPaytime(String paytime) {
-        this.paytime = paytime;
+    public void setPayTime(String payTime) {
+        PayTime = payTime;
     }
 
     public int getStatus() {
-        return status;
+        return Status;
     }
 
     public void setStatus(int status) {
-        this.status = status;
+        Status = status;
     }
 
     public String getRemark() {
-        return remark;
+        return Remark;
     }
 
     public void setRemark(String remark) {
-        this.remark = remark;
+        Remark = remark;
     }
 
     public String getApplyID() {
-        return applyID;
+        return ApplyID;
     }
 
     public void setApplyID(String applyID) {
-        this.applyID = applyID;
+        ApplyID = applyID;
+    }
+
+    public String get$id() {
+        return $id;
+    }
+
+    public void set$id(String $id) {
+        this.$id = $id;
+    }
+
+    public String getGID() {
+        return GID;
+    }
+
+    public void setGID(String GID) {
+        this.GID = GID;
+    }
+
+    public String getCreateTime() {
+        return CreateTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        CreateTime = createTime;
+    }
+
+    public String getAuditor() {
+        return Auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        Auditor = auditor;
+    }
+
+    public String getAuditTime() {
+        return AuditTime;
+    }
+
+    public void setAuditTime(String auditTime) {
+        AuditTime = auditTime;
+    }
+
+    public String getEffectiveTime() {
+        return EffectiveTime;
+    }
+
+    public void setEffectiveTime(String effectiveTime) {
+        EffectiveTime = effectiveTime;
+    }
+
+    public String getIsEffective() {
+        return IsEffective;
+    }
+
+    public void setIsEffective(String isEffective) {
+        IsEffective = isEffective;
     }
 }

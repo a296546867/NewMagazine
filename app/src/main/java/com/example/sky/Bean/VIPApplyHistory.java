@@ -1,5 +1,6 @@
 package com.example.sky.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * 修改时间：2016/5/27 17:26
  * 修改备注：
  */
-public class VIPApplyHistory {
+public class VIPApplyHistory implements Serializable {
     private String curr_index;
     private String page;
     private String curr_count;

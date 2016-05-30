@@ -57,7 +57,10 @@
         <activity
             android:name=".HelpActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+        <!--密码修改-->
+        <activity
+            android:name=".ForgetPassWord"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         
 
     </application>

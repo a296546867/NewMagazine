@@ -239,7 +239,7 @@ public class VIP1Fragment extends Fragment implements View.OnClickListener{
 
     //装载vip申请的数据
     private void setVIPForm(){
-        vipActivity.getVipForm().setName(memberNameEditText.getText().toString());
+        vipActivity.getVipForm().setMemberName(memberNameEditText.getText().toString());
         vipActivity.getVipForm().setMobile(membermMobileEditText.getText().toString());
         vipActivity.getVipForm().setProvince(memberProvinceEditText.getText().toString());
         vipActivity.getVipForm().setCity(memberCityEditText.getText().toString());
