@@ -28,6 +28,23 @@ public class FootPrintFragment extends Fragment {
         View view = inflater.inflate(R.layout.footprintfragment_context, container, false);
         TextView txt_content = (TextView) view.findViewById(R.id.footprint_txt_content);
         txt_content.setText("第四个Fragment");
+
+        binViews();
+        setListener();
+        init();
+
         return view;
     }
+    private void binViews(){
+
+    }
+    private void setListener(){
+
+    }
+    private void init(){
+
+    }
+
+
+
 }
