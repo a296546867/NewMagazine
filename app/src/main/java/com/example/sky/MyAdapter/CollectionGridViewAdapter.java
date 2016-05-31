@@ -118,7 +118,6 @@ public class CollectionGridViewAdapter extends BaseAdapter {
         TextView collection_item_title;//标题
         TextView collection_item_collectionnum;//简介
     }
-
     //删除收藏文章
     private void deleteCollection(final int position){
         OkHttpUtils
@@ -150,10 +149,7 @@ public class CollectionGridViewAdapter extends BaseAdapter {
                     }
                 });
     }
-
-    /**
-     * 广播要做的事情，显示删除图标
-     */
+    //广播要做的事情，显示删除图标
     public class MyBRReceiver extends BroadcastReceiver {
         GridViewViewHolder gridViewViewHolder;
         public MyBRReceiver(GridViewViewHolder gridViewViewHolder){
@@ -172,4 +168,7 @@ public class CollectionGridViewAdapter extends BaseAdapter {
             }
         }
     }
+
+
+
 }
