@@ -12,5 +12,7 @@
         <mapping class="com.example.sky.Bean.UserAuthInfo" />
         <!--用户认证信息中的缴费历史-->
         <mapping class="com.example.sky.Bean.History" />
+        <!--保存文章信息，用到足迹功能-->
+        <mapping class="com.example.sky.Bean.Article" />
     </list>
 </litepal>

@@ -1,0 +1,46 @@
+<!-- 足迹item布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/avtivity_bg"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+
+    <ImageView
+        android:id="@+id/footprint_item_Image"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
+        android:background="@mipmap/empty_photo"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/footprint_item_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="title"
+            android:maxLines="2"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/footprint_item_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:text="test"
+            android:textSize="20sp"
+            android:maxLines="4"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</LinearLayout>
