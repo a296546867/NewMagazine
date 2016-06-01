@@ -116,7 +116,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
         //菜单字体
         menu = (TextView)view.findViewById(R.id.txt_topbar);
 
-        //滑动控件适配器
+        //滑动控件适配器,绑定fragment
         mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
 
         //滑动控件

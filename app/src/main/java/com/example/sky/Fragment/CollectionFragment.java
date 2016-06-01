@@ -4,6 +4,7 @@ package com.example.sky.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -59,8 +60,14 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
 
         binViews(view);
         setListener();
-        init();
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
     }
 
     private void  binViews(View view){
@@ -78,9 +85,11 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
         //获取收藏数据，设置界面
         GetCollectionData();
     }
+
+
     //获取杂志文章收藏数据
     private void GetCollectionData(){
-        loaddingDialog.show();
+//        loaddingDialog.show();
         OkHttpUtils
                 .get()
                 .url(Configurator.CollectionShow+"?token="+dbManager.readAccessToken())
@@ -90,7 +99,7 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
                     @Override
                     public void onError(Call call, Exception e) {
 //                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
-                        loaddingDialog.dismiss();
+//                        loaddingDialog.dismiss();
                     }
 
                     @Override
@@ -100,7 +109,7 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
                         collectionList = new Gson().fromJson(s,CollectionList.class);
                         //设置适配器
                         grid_collection.setAdapter(new CollectionGridViewAdapter(collectionList.getObj(),getActivity(),dbManager));
-                        loaddingDialog.dismiss();
+//                        loaddingDialog.dismiss();
                     }
                 });
     }

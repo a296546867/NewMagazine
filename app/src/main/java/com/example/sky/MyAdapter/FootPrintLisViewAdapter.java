@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.sky.Activity.R;
 import com.example.sky.Bean.Article;
-import com.example.sky.Fragment.ContextFragment;
 
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class FootPrintLisViewAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
         if (convertView==null){
             viewHolder = new ViewHolder();
-            convertView= LayoutInflater.from(context).inflate(R.layout.footprint_item_layout,null);
+            convertView= LayoutInflater.from(context).inflate(R.layout.footprint_and_search_item_layout,null);
             viewHolder.footprint_Image = (ImageView)convertView.findViewById(R.id.footprint_item_Image);
             viewHolder.footprint_Title = (TextView)convertView.findViewById(R.id.footprint_item_Title);
             viewHolder.footprint_Text = (TextView) convertView.findViewById(R.id.footprint_item_Text);

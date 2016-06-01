@@ -94,7 +94,7 @@ public class FootPrintFragment extends Fragment implements View.OnClickListener,
         //创建一个TextView
         TextView textView = new TextView(getActivity());
         textView.setId(0);
-        textView.setText("暂无历史,请先浏览");
+        textView.setText("搜索不到相关内容");
         textView.setTextColor(getResources().getColor(R.color.title_text_color));
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(20);

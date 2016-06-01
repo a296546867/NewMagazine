@@ -7,6 +7,9 @@
     <!--黑色字体-->
     <color name="text_black_color">#000000</color>
 
+    <!--红色-->
+    <color name="magazine_red_color">#8E0202</color>
+
     <!--首页底部按钮字体颜色-->
     <color name="layout_button_pressed">#C7C7C7</color>
 
