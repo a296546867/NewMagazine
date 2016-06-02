@@ -17,7 +17,7 @@ public class History extends DataSupport {
     private String sendinfo;// 寄送信息
     private String createtime;// 创建时间
     private String mailno;// 邮寄单号
-    private UserAuthInfo userAuthInfo;//UserAuthInfo表和该表的映射关系
+    private UserAuthInfo userAuthInfo;//UserAuthInfo表和该表的映射关系，和实体无关
 
     public int getId() {
         return id;

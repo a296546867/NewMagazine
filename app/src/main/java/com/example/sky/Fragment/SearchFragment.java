@@ -1,20 +1,14 @@
 package com.example.sky.Fragment;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.sky.Activity.R;
 import com.example.sky.Bean.SearchItem;
 import com.example.sky.Bean.SearchList;
@@ -25,11 +19,9 @@ import com.example.sky.Utils.LoaddingDialog;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.Call;
 
 /**
