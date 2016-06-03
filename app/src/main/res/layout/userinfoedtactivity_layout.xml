@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/avtivity_bg"
+    android:orientation="vertical" >
+    <!--头部-->
+    <RelativeLayout
+            android:id="@+id/userinfoedit_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/avtivity_top_bar_bg"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/userinfoedit_return_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:layout_centerVertical="true"
+                android:text="返回"
+                android:textColor="@color/return_text_color"
+                android:textSize="@dimen/return_text_size" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/userinfoedit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="5dp"
+                android:text="信息编辑"
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/title_text_size" >
+            </TextView>
+        </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:background="@drawable/rectangle"
+        android:layout_margin="10dp"
+            >
+            <!--内容-->
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+                <!--基本资料-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="基本资料"
+                        android:textColor="@color/text_black_color"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="10dp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#867655"
+                        android:orientation="vertical" />
+                </LinearLayout>
+                <!-- 第1行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="姓名"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第2行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="省份"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_province"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第3行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="城市"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第4行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="移动电话"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第5行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="电子邮箱"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第6行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公司名称"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!--邮寄信息-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="邮寄信息"
+                        android:textColor="@color/text_black_color"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="10dp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#867655"
+                        android:orientation="vertical" />
+                </LinearLayout>
+                <!-- 第7行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收货人姓名"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_consignee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第8行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收货人电话"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第9行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="邮政编码"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_postcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <!-- 第10行 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收货地址"
+                        android:textColor="#a6a6a6"
+                        android:textSize="18sp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/userinfoeditor_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="#a6a6a6" />
+                </TableRow>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/userinfoeditor_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_style"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="10dp"
+                        android:text="取消返回"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/userinfoeditor_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_style"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="10dp"
+                        android:text="保存信息"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </TableLayout>
+        </ScrollView>
+
+</LinearLayout>

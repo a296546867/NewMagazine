@@ -2,6 +2,7 @@ package com.example.sky.Fragment;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -164,9 +165,10 @@ public class VIP3Fragment extends Fragment implements View.OnClickListener ,Date
                 //确定保存
                 setVIPForm(); //装载数据
                 if (checkVIPData()){
-                    //跳转到申请单界面
-                    getVIPApplyHistory();
+                    //申请vip
+                    PostVIP();
                 }
+
                 break;
         }
     }
@@ -214,44 +216,63 @@ public class VIP3Fragment extends Fragment implements View.OnClickListener ,Date
             return false;
         }
     }
-    //获得申请单,查看是否申请过
-    private void getVIPApplyHistory(){
+    //vip申请
+    private void PostVIP(){
+        //loadding
         loaddingDialog.show();
         //请求数据
         OkHttpUtils
-                .get()
-                .url(Configurator.GETAPPLYFORMINPAGE + "token=" + new DBManager().readAccessToken() + "&size=" + 15 + "&index=" + 1)
+                .post()
+                .url(Configurator.MEMBERAPPLYFORM)
+                .addParams("token", dbManager.readAccessToken())
+                .addParams("eligible", vipForm.getEligible())/***************基本信息********/
+                .addParams("name", vipForm.getMemberName())
+                .addParams("mobile", vipForm.getMobile())
+                .addParams("province", vipForm.getProvince())
+                .addParams("city", vipForm.getCity())
+                .addParams("age", vipForm.getAge())//该字段没用
+                .addParams("sex", vipForm.getSex())
+                .addParams("company", vipForm.getCompany())
+                .addParams("job", vipForm.getJob())//该字段没用
+                .addParams("cardno", vipForm.getCardNo())/***************申请材料********/
+                .addParams("applyyears", vipForm.getApplyYears()+"")
+                .addParams("gifetype", vipForm.getGifeType())
+                .addParams("paymoney", vipForm.getPayMoney())
+                .addParams("consignee", vipForm.getConsignee())/***************邮寄信息********/
+                .addParams("phone", vipForm.getPhone())
+                .addParams("postcode", vipForm.getPostCode())
+                .addParams("address", vipForm.getAddress())
+                .addParams("fax", vipForm.getFax())//该字段没用
+                .addParams("email", vipForm.getEmail())
+                .addParams("weixin", vipForm.getWeiXin())//该字段没用
+                .addParams("paymode", vipForm.getPayMode())
+                .addParams("ordercode", vipForm.getOrderCode())
+                .addParams("paytime", vipForm.getPayTime())
                 .tag(getActivity())
                 .build()
                 .execute(new StringCallback() {
                     @Override
-                    public void onError(Call call, Exception e) {
+                    public void onError(okhttp3.Call call, Exception e) {
+                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
                         //结束loadding
                         loaddingDialog.dismiss();
-                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onResponse(String s) {
-                        Log.i("myInfo",s);
-                        //解析申请单
-                        VIPApplyHistory vipApplyHistory = new Gson().fromJson(s,VIPApplyHistory.class);
-                        vipActivity.setVipApplyHistory(vipApplyHistory);
-                        if (vipApplyHistory.getObj().size()==0){
-                            //实例化
-                            VIP4FormFragment vip4FormFragment = new VIP4FormFragment();
-                            //用activity来管理fragment
-                            vipActivity.setVip4FormFragment(new VIP4FormFragment());
-                            //跳转界面
-                            getActivity().getSupportFragmentManager().beginTransaction()
-                                    .hide(vipActivity.getVip3Fragment())
-                                    .add(R.id.vip_context,vip4FormFragment,"vip4formfragment")
-                                    .commit();
+                        Log.i("myInfo","postVIp: "+s);
+                        Result result = new Gson().fromJson(s,Result.class);
+                        if (result.getCode().equals("100")){
+                            //开启一个新的vipavtivity界面，可以看到新的申请单
+                            startActivity(new Intent(getActivity(),VIPActivity.class));
+                            //关闭原有的界面
+                            getActivity().finish();
+                        }else {
+                            Toast.makeText(getActivity(), "提交失败", Toast.LENGTH_SHORT).show();
                         }
-
                         //结束loadding
                         loaddingDialog.dismiss();
                     }
                 });
     }
+
 }

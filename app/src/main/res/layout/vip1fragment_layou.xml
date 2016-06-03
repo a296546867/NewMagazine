@@ -2,8 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/avtivity_bg"
-    android:orientation="vertical" >
+    android:background="@drawable/rectangle"
+    android:scrollbars="none"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+
+    >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -41,9 +45,11 @@
                 android:id="@+id/vip1_tablelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
                 android:gravity="center"
-                android:padding="0dp" >
+
+                >
 
                 <!-- 第1行 -->
 
@@ -67,8 +73,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -78,7 +84,8 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    >
 
                     <TextView
                         android:id="@+id/membermMobileTextView"
@@ -97,8 +104,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:inputType="phone"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
@@ -127,8 +134,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -156,8 +163,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -185,8 +192,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -214,8 +221,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:text="男"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
@@ -245,8 +252,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -274,8 +281,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6"
                         android:textSize="20sp" />
@@ -286,8 +293,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp" >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/common_btn"
@@ -302,7 +308,7 @@
                     android:paddingTop="10dp"
                     android:text="提交为普通会员"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/vip_btn"
@@ -318,7 +324,7 @@
                     android:singleLine="true"
                     android:text="继续申请VIP或尊贵会员"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 

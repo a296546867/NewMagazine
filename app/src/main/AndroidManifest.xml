@@ -27,8 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <!--用户中心-->
         <activity
             android:name=".CenterActivity"
@@ -61,7 +59,10 @@
         <activity
             android:name=".ForgetPassWord"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        
+        <!--用户信息编辑-->
+        <activity
+            android:name=".UserInfoEdtActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
     </application>
 

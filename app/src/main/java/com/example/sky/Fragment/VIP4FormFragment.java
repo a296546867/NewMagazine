@@ -75,7 +75,6 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
     RadioButton vip4_RadioButton2;
 
     Button vip4_former_step;//重新申请
-    Button vip4_next_step;//确认提交
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -121,14 +120,12 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
         vip4_eligible = (TextView)view.findViewById(R.id.vip4_eligible);
         //按钮
         vip4_former_step = (Button) view.findViewById(R.id.vip4_former_step);//重新申请
-        vip4_next_step = (Button) view.findViewById(R.id.vip4_next_step);//确认提交
         //入会/续会标签
         vip4_RadioButton1 = (RadioButton)view.findViewById(R.id.vip4_RadioButton1);
         vip4_RadioButton2 = (RadioButton)view.findViewById(R.id.vip4_RadioButton2);
     }
     private void setListener(){
         vip4_former_step.setOnClickListener(this);
-        vip4_next_step.setOnClickListener(this);
     }
     private void init(){
         //数据库操作
@@ -185,102 +182,15 @@ public class VIP4FormFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.vip4_former_step:
                 //重新申请
-                //如果有申请单，就取消原有申请单
-                if (vipActivity.getVipApplyHistory().getObj().size()==0){
                 //跳转界面
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(vipActivity.getVip4FormFragment())
                         .show(vipActivity.getVip1Fragment())
                         .commit();
-                }else{
-                    CancelVIPForm();
-                }
-
-                break;
-            case R.id.vip4_next_step:
-                //确定提交vip
-                //如果有申请单，就取消原有申请单
-                if (vipActivity.getVipApplyHistory().getObj().size()==0){
-                    //取消申请单
-                    PostVIP();
-                }else {
-                    new AlertDialog.Builder(getActivity())
-                            .setMessage("已经提交过,请等待审核结果")
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //关闭dialog
-                                    dialog.dismiss();
-                                }
-                            })
-                            .create().show();
-                }
                 break;
         }
     }
-    //vip申请
-    private void PostVIP(){
-        //loadding
-        loaddingDialog.show();
-        //请求数据
-        OkHttpUtils
-                .post()
-                .url(Configurator.MEMBERAPPLYFORM)
-                .addParams("token", dbManager.readAccessToken())
-                .addParams("eligible", vipForm.getEligible())/***************基本信息********/
-                .addParams("name", vipForm.getMemberName())
-                .addParams("mobile", vipForm.getMobile())
-                .addParams("province", vipForm.getProvince())
-                .addParams("city", vipForm.getCity())
-                .addParams("age", vipForm.getAge())//该字段没用
-                .addParams("sex", vipForm.getSex())
-                .addParams("company", vipForm.getCompany())
-                .addParams("job", vipForm.getJob())//该字段没用
-                .addParams("cardno", vipForm.getCardNo())/***************申请材料********/
-                .addParams("applyyears", vipForm.getApplyYears()+"")
-                .addParams("gifetype", vipForm.getGifeType())
-                .addParams("paymoney", vipForm.getPayMoney())
-                .addParams("consignee", vipForm.getConsignee())/***************邮寄信息********/
-                .addParams("phone", vipForm.getPhone())
-                .addParams("postcode", vipForm.getPostCode())
-                .addParams("address", vipForm.getAddress())
-                .addParams("fax", vipForm.getFax())//该字段没用
-                .addParams("email", vipForm.getEmail())
-                .addParams("weixin", vipForm.getWeiXin())//该字段没用
-                .addParams("paymode", vipForm.getPayMode())
-                .addParams("ordercode", vipForm.getOrderCode())
-                .addParams("paytime", vipForm.getPayTime())
-                .tag(getActivity())
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(okhttp3.Call call, Exception e) {
-                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
-                        //结束loadding
-                        loaddingDialog.dismiss();
-                    }
-                    @Override
-                    public void onResponse(String s) {
-                        Log.i("myInfo","postVIp: "+s);
-                        Result result = new Gson().fromJson(s,Result.class);
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage(result.getMsg())
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        //关闭会员升级界面
-                                        getActivity().finish();
-                                        //关闭dialog
-                                        dialog.dismiss();
-                                    }
-                                })
-                                .create().show();
-                        //结束loadding
-                        loaddingDialog.dismiss();
-                    }
-                });
-    }
-    //重新申请，取消原有的申请单
+    //重新申请
     //跳转到会员升级界面
     private void CancelVIPForm(){
         OkHttpUtils

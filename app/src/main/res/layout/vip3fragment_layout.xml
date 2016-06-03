@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/avtivity_bg"
+    android:background="@drawable/rectangle"
+    android:scrollbars="none"
+    android:layout_margin="10dp"
     android:orientation="vertical" >
 
     <FrameLayout
@@ -69,8 +71,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -94,9 +96,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
+                        android:background="@drawable/rectangle_corner"
                         android:inputType="phone"
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -120,9 +122,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
+                        android:background="@drawable/rectangle_corner"
                         android:inputType="number"
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -150,8 +152,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -176,8 +178,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -202,8 +204,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -228,8 +230,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
-                        android:padding="10dp"
+                        android:background="@drawable/rectangle_corner"
+                        android:padding="5dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </TableRow>
@@ -290,12 +292,11 @@
                         android:textSize="20sp"
                         android:text="邮寄付款"
                         android:textColor="#a6a6a6"
-                        android:background="@drawable/rectangle"
+                        android:background="@drawable/rectangle_corner"
                         >
                     </TextView>
                     </TableRow>
                 </TableLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -308,7 +309,6 @@
                         android:text="注：选择邮寄汇款请在10天内进行汇款，汇款完成后在下方填写汇款信息和汇款编号"
                         android:textColor="#8a0d0b" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -328,12 +328,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
+                        android:background="@drawable/rectangle_corner"
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="#a6a6a6" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -353,7 +352,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle"
+                        android:background="@drawable/rectangle_corner"
                         android:padding="10dp"
                         android:text="点击选取时间"
                         android:textColor="#a6a6a6"

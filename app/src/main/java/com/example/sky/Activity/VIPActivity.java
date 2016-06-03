@@ -101,7 +101,7 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener{
         }
         return super.onKeyDown(keyCode, event);
     }
-
+    //判断显示申请单界面还是会员升级界面
     private void getVIPApplyHistory(){
         loaddingDialog.show();
         //请求数据
@@ -126,7 +126,7 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener{
                         vipApplyHistory = new Gson().fromJson(s,VIPApplyHistory.class);
                         //判断显示的界面
                         if (vipApplyHistory.getObj().size()>0){
-                            //获得申请单数据
+                            //获得最近一个申请单数据
                             vipForm =vipApplyHistory.getObj().get(0);
                             gifetype = vipForm.getGifeType();
                             //实例化申请单

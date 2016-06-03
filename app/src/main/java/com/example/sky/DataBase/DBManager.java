@@ -66,6 +66,12 @@ public class DBManager {
         DataSupport.deleteAll(UserAuthInfo.class);
         DataSupport.deleteAll(History.class);
     }
+    //删除用户认证信息
+    public void DeleteAuthInfo(){
+        DataSupport.deleteAll(UserAuthInfo.class);
+        DataSupport.deleteAll(History.class);
+    }
+
     //读取昵称和用户名
     public Map<String, String> readNickAndLevel(){
         Map<String, String> map = new HashMap<String, String>();
