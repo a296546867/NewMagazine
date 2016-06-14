@@ -66,7 +66,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
         minefragment_edit = (TextView)view.findViewById(R.id.minefragment_edit);
         minefragment_upvip = (TextView)view.findViewById(R.id.minefragment_upvip);
         minefragment_datatime_layout = (TableRow)view.findViewById(R.id.minefragment_datatime_layout);
-        minefragment_historylistview = (ListView) view.findViewById(R.id.minefragment_historylistview);
+        minefragment_historylistview = (ListView)view.findViewById(R.id.minefragment_historylistview);
 
     }
     private void setListener(){
@@ -82,20 +82,25 @@ public class MineFragment extends Fragment implements View.OnClickListener{
         minefragment_level.setText(userAuthInfo.getEligible());
         minefragment_name.setText(userAuthInfo.getName());
         minefragment_mobile.setText(userAuthInfo.getMobile());
+
         //是否显示到期时间和历史
         if (!userAuthInfo.getEligible().equals("普通会员")){
             //到期时间
             minefragment_datatime.setText(userAuthInfo.getExpire_time());
-            mineListViewAdapter = new MineListViewAdapter(userAuthInfo.getHistorylist(),getActivity());
-            //events
-            minefragment_historylistview.setAdapter(mineListViewAdapter);
+//            mineListViewAdapter = new MineListViewAdapter(userAuthInfo.getHistorylist(),getActivity());
+//            //events
+//            minefragment_historylistview.setAdapter(mineListViewAdapter);
         }else{
             //隐藏
             minefragment_datatime_layout.setVisibility(View.GONE);
             datatimelayout.setVisibility(View.GONE);
-            minefragment_historylistview.setVisibility(View.GONE);
-
+//            minefragment_historylistview.setVisibility(View.GONE);
         }
+
+        //设置事件记录
+        mineListViewAdapter = new MineListViewAdapter(userAuthInfo.getHistorylist(),getActivity());
+        //events
+        minefragment_historylistview.setAdapter(mineListViewAdapter);
     }
 
     @Override

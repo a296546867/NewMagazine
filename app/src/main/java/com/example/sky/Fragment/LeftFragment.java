@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.MyAdapter.LeftMenuListAdapter;
 import com.example.sky.Utils.LoaddingDialog;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,10 +67,12 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
     LoginBRReceiver loginBRReceiver;//登录广播
     OutLoginBRReceiver outLoginBRReceiver;//退出广播
 
+    ContextFragment contextFragment;//内容布局
+    ViewPager viewPager;//内容布局中的滑动控件
     public LeftFragment(){}
-    public LeftFragment(DrawerLayout drawerLayout){
+    public LeftFragment(DrawerLayout drawerLayout,ContextFragment contextFragment){
         this.drawerLayout=drawerLayout;
-
+        this.contextFragment=contextFragment;
     }
 
     @Override
@@ -158,6 +162,9 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         //sharedPreferences
         sp=new SharedHelper(getActivity());
 
+        //获得内容布局中的滑动控件
+        viewPager =  contextFragment.getVpager();
+
         //注册广播，登录时更新昵称和会员等级
         LoginBRReceiver loginBRReceiver = new LoginBRReceiver();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(loginBRReceiver, new IntentFilter("com.chen.mybcreceiver.UPDATE_NICK_OR_LEVEL"));
@@ -172,6 +179,7 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
             name.setText(map.get("nick"));
             level.setText(map.get("eligible"));
         }
+
     }
     /**
      * 启动用户中心
@@ -182,8 +190,11 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         if (v.getId()==R.id.left_ment_toplayout){
             //关闭抽屉菜单
             drawerLayout.closeDrawers();
+
+
             //启动centerActivity
             startActivity(new Intent(getActivity(), CenterActivity.class));
+
         }
     }
     /**
@@ -204,10 +215,12 @@ public class LeftFragment extends Fragment implements LinearLayout.OnClickListen
         // 0：我的账户 1:搜索 2:升级VIP 3:关于我们4：帮助
         switch (position){
             case 0:
-
+                //我的账户界面
+                viewPager.setCurrentItem(4);
                 break;
             case 1:
-
+                //搜索界面
+                viewPager.setCurrentItem(1);
                 break;
             case 2:
                 //升级VIP界面

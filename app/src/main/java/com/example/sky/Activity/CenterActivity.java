@@ -38,7 +38,6 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     TextView nickText;  //昵称
 
     RelativeLayout InfoBtn;                         //点击登录
-    RelativeLayout showMyCollectionBtn;           //我的收藏
     RelativeLayout showMyINFOBtn;                  //用户注册
     RelativeLayout showMyApplyBtn;                 //我的申请
     RelativeLayout showMyEditoBtn;                 //设置
@@ -46,9 +45,6 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
     DBManager db;                                    //数据库操作对象
     SharedHelper sp;                                 //sharedPreferences
     MyBRReceiver myReceiver;                        //广播
-
-
-
 
 
     @Override
@@ -72,10 +68,8 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
      * 绑定控件
      */
     private void  binViews(){
-
         returnText=(TextView)findViewById(R.id.centerfragment_return_text);
         InfoBtn=(RelativeLayout)findViewById(R.id.center_login);
-        showMyCollectionBtn=(RelativeLayout)findViewById(R.id.showMyCollection);
         showMyINFOBtn=(RelativeLayout)findViewById(R.id.showMyINFO);
         showMyApplyBtn=(RelativeLayout)findViewById(R.id.showMyApply);
         showMyEditoBtn=(RelativeLayout)findViewById(R.id.showMyEdito);
@@ -86,10 +80,8 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
      * 设置控件的监听器
      */
     private void  setListener(){
-
         returnText.setOnClickListener(this);
         InfoBtn.setOnClickListener(this);
-        showMyCollectionBtn.setOnClickListener(this);
         showMyINFOBtn.setOnClickListener(this);
         showMyApplyBtn.setOnClickListener(this);
         showMyEditoBtn.setOnClickListener(this);
@@ -111,7 +103,6 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
         if (sp.readIsLogin().equals("true")){
             nickText.setText(db.readNick());
         }
-
 
     }
 
@@ -157,10 +148,8 @@ public class CenterActivity extends BaseActivity implements TextView.OnClickList
                             }).create().show();
                 }
                 break;
-            case R.id.showMyCollection:
-                Toast.makeText(this,"de",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.showMyINFO:
+                //用户注册
                 startActivity(new Intent(CenterActivity.this,RegisterActivity.class));
                 break;
             case R.id.showMyApply:

@@ -185,4 +185,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     }
 
 
+    public ViewPager getVpager() {
+        return vpager;
+    }
 }

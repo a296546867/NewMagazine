@@ -81,8 +81,8 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
         //设置内容视图到整个抽图布局
         getSupportFragmentManager().beginTransaction().replace(R.id.ly_content,contextFragment).commit();
 
-        //左滑视图
-        LeftFragment leftFragment=new LeftFragment(drawerLayout);
+        //左滑视图初始化
+        LeftFragment leftFragment=new LeftFragment(drawerLayout,contextFragment);
         //设置左滑视图到整个抽图布局
         getSupportFragmentManager().beginTransaction().replace(R.id.list_left_drawer,leftFragment).commit();
 
@@ -130,8 +130,6 @@ public class MainActivity extends BaseActivity implements ImageView.OnClickListe
 
         }
     }
-
-
 
 
 
