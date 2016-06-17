@@ -26,7 +26,6 @@ public class MineListViewAdapter extends BaseAdapter {
 
     Context context;
     List<History> historyList;
-    int height=0;
     public MineListViewAdapter(List<History> historyList,Context context){
         this.historyList=historyList;
         this.context=context;
@@ -68,9 +67,6 @@ public class MineListViewAdapter extends BaseAdapter {
         viewHolder.history_sendinfo_text.setText(historyList.get(position).getSendinfo());
         viewHolder.history_issend.setText(historyList.get(position).getMailno()==null?"暂未派发":historyList.get(position).getMailno());
 
-        height = height+viewHolder.history_createtime.getHeight()+ viewHolder.history_event.getHeight()+viewHolder.history_sendinfo_text.getHeight();
-
-
         return convertView;
     }
 
@@ -82,11 +78,4 @@ public class MineListViewAdapter extends BaseAdapter {
 
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
 }

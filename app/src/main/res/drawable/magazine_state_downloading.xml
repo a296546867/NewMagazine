@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--杂志下载的百分比动画-->
+<animation-list android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="200" android:drawable="@drawable/magazine_state_downloading_bg1" />
+    <item android:duration="200" android:drawable="@drawable/magazine_state_downloading_bg2" />
+    <item android:duration="200" android:drawable="@drawable/magazine_state_downloading_bg3" />
+    <item android:duration="200" android:drawable="@drawable/magazine_state_downloading_bg4" />
+    <item android:duration="200" android:drawable="@drawable/magazine_state_downloading_bg5" />
+</animation-list>

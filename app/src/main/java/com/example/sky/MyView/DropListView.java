@@ -15,7 +15,7 @@ import com.example.sky.Utils.GetTimeUtils;
 
 /**
  * 项目名称：NewMagazine
- * 类描述：
+ * 类描述：上拉加载，下拉刷新Listview
  * 创建人：meigong
  * 创建时间：2016/6/2 9:20
  * 修改人：meigong

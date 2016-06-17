@@ -18,4 +18,13 @@
     <!-- 图片大小 -->
     <dimen name="image_width">100dp</dimen>
     <dimen name="image_height">150dp</dimen>
+
+    <!-- 杂志列表图片的宽 -->
+    <dimen name="magazine_cover_image_width">100dp</dimen>
+
+    <!-- 杂志列表图片的髙 -->
+    <dimen name="magazine_cover_image_height">150dp</dimen>
+
+    <!-- 我的账户事件字体大小 -->
+    <dimen name="mine_events_text">15sp</dimen>
 </resources>

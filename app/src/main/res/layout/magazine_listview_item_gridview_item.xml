@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center">
+
+    <FrameLayout
+        android:id="@+id/magazine_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <!-- 杂志封面 -->
+        <ImageButton
+            android:id="@+id/magazin_photo"
+            android:layout_width="@dimen/magazine_cover_image_width"
+            android:layout_height="@dimen/magazine_cover_image_height"
+            android:layout_gravity="center_horizontal"
+            android:background="@mipmap/empty_photo"
+            android:focusable="false" />
+
+        <!-- 杂志页面右上角下载时的百分比 -->
+        <TextView
+            android:id="@+id/magazine_download_text"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="top|right"
+            android:background="@drawable/magazine_state_downloading"
+            android:gravity="center"
+            android:text="0%0"
+            android:textColor="#663300"
+            android:textSize="10sp"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <!-- 杂志封面底部描述 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/magazine_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/magazine_year_color"
+            android:text="第一期"/>
+    </LinearLayout>
+
+</LinearLayout>

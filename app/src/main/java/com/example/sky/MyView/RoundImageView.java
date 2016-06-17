@@ -13,10 +13,7 @@ import android.widget.ImageView;
 
 /**
  * 项目名称：NewMagazine
- * 类描述：
- *
- * 圆形图片
- *
+ * 类描述：圆形图片
  * 创建人：sky
  * 创建时间：2016/5/8 1:45
  * 修改人：sky

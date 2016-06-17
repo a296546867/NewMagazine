@@ -62,4 +62,10 @@
 
     <!--vip中的灰色字体-->
     <color name="vip_text_gray">#a6a6a6</color>
+
+    <!--杂志列表年数颜色-->
+    <color name="magazine_listview_year">#998767</color>
+
+    <!--杂志期数字体颜色-->
+    <color name="magazine_year_color">#840200</color>
 </resources>

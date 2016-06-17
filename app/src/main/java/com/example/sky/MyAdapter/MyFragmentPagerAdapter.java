@@ -1,6 +1,7 @@
 package com.example.sky.MyAdapter;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -30,9 +31,9 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     private FootPrintFragment myFragment4 = null;
     private MineFragment myFragment5 = null;
 
-    public MyFragmentPagerAdapter(FragmentManager fm) {
+    public MyFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-        myFragment1 = new MagazineFragment();
+        myFragment1 = new MagazineFragment(context);
         myFragment2 = new SearchFragment();
         myFragment3 = new CollectionFragment();
         myFragment4 = new FootPrintFragment();
