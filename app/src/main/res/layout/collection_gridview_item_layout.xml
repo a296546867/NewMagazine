@@ -30,7 +30,7 @@
             android:layout_below="@id/collection_item_img"
             android:layout_marginTop="10dp"
             android:text="name"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="@color/title_text_color"
             />
 
