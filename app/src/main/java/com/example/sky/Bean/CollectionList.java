@@ -17,6 +17,25 @@ public class CollectionList  {
     private int page;//:10每页数量
     private int curr_count;//10取出数量
     private int total_count;//:100总数量
+    private String code;
+    private String msg;
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public List<Article> getObj() {
         return obj;

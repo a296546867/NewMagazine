@@ -12,9 +12,13 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sky.Activity.R;
+import com.example.sky.DataBase.DBManager;
+import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.MyAdapter.MyFragmentPagerAdapter;
+import com.example.sky.MyView.MyViewPager;
 
 /**
  * 项目名称：NewMagazine
@@ -32,7 +36,6 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     //左滑视图
     FrameLayout leftLayout;
 
-
     //菜单字体
     private TextView    menu;
 
@@ -45,7 +48,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     private RadioButton rb_mine;
 
     //滑动控件
-    private ViewPager vpager;
+    private MyViewPager vpager;
 
     //滑动页面适配器
     private MyFragmentPagerAdapter mAdapter;
@@ -57,7 +60,7 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     public static final int PAGE_FOUR = 3;
     public static final int PAGE_FIVE = 4;
 
-
+    SharedHelper sharedHelper;
     //构成函数
     public ContextFragment(){super();}
     public ContextFragment( DrawerLayout drawerLayout,FrameLayout leftLayout){
@@ -120,32 +123,42 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
         mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager(),getActivity());
 
         //滑动控件
-        vpager = (ViewPager) view.findViewById(R.id.viewPager);
+        vpager = (MyViewPager) view.findViewById(R.id.viewPager);
         vpager.setAdapter(mAdapter);
         vpager.setCurrentItem(0);
         vpager.addOnPageChangeListener(this);//滑动控件改变监听
 
+        //没有登录
+        sharedHelper = new SharedHelper(getContext());
+        if (sharedHelper.readIsLogin().equals("false")){
+            vpager.setScrollble(false);
+//            Toast.makeText(getContext(),"请登录",Toast.LENGTH_SHORT).show();
+        }
 
     }
     //重写RadioGroup的方法
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.tabBtn_home:
-                vpager.setCurrentItem(PAGE_ONE);
-                break;
-            case R.id.tabBtn_search:
-                vpager.setCurrentItem(PAGE_TWO);
-                break;
-            case R.id.tabBtn_collection:
-                vpager.setCurrentItem(PAGE_THREE);
-                break;
-            case R.id.tabBtn_footprint:
-                vpager.setCurrentItem(PAGE_FOUR);
-                break;
-            case R.id.tabBtn_mine:
-                vpager.setCurrentItem(PAGE_FIVE);
-                break;
+        if (sharedHelper.readIsLogin().equals("false")){
+            Toast.makeText(getContext(),"请登录",Toast.LENGTH_SHORT).show();
+        }else {
+            switch (checkedId) {
+                case R.id.tabBtn_home:
+                    vpager.setCurrentItem(PAGE_ONE);
+                    break;
+                case R.id.tabBtn_search:
+                    vpager.setCurrentItem(PAGE_TWO);
+                    break;
+                case R.id.tabBtn_collection:
+                    vpager.setCurrentItem(PAGE_THREE);
+                    break;
+                case R.id.tabBtn_footprint:
+                    vpager.setCurrentItem(PAGE_FOUR);
+                    break;
+                case R.id.tabBtn_mine:
+                    vpager.setCurrentItem(PAGE_FIVE);
+                    break;
+            }
         }
     }
 
@@ -153,10 +166,12 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
     //重写ViewPager页面切换的处理方法
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
     }
 
     @Override
     public void onPageSelected(int position) {
+
     }
 
     @Override

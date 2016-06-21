@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.sky.Activity.R;
+import com.example.sky.Application.MApplication;
 import com.example.sky.Bean.Journal;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
+
 
 /**
  * 项目名称：NewMagazine
@@ -31,6 +33,7 @@ public class MagazineListView_GridView extends BaseAdapter {
     public MagazineListView_GridView(Context context,List<Journal> list){
         this.context=context;
         this.list=list;
+
     }
 
 
@@ -61,8 +64,10 @@ public class MagazineListView_GridView extends BaseAdapter {
         }else{
             viewHolder=(ViewHolder) convertView.getTag();
         }
-        // 第几期名字
+        // 设置杂志名字
         viewHolder.magazine_name.setText(list.get(position).getJname());
+        //获取图片
+        ImageLoader.getInstance().displayImage(list.get(position).getSurfacethumbimage(),viewHolder.magazin_photo, MApplication.GetDisplayImageOptions()); // imageUrl代表图片的URL地址，imageView代表承载图片的IMAGEVIEW控件 ， options代表DisplayImageOptions配置文件
         return convertView;
     }
 
@@ -70,4 +75,7 @@ public class MagazineListView_GridView extends BaseAdapter {
         ImageView magazin_photo;//杂志封面
         TextView magazine_name;//杂志描述
     }
+
+
+
 }

@@ -4,6 +4,7 @@ package com.example.sky.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
@@ -30,10 +31,18 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * 项目名称：NewMagazine
@@ -83,13 +92,43 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
         loaddingDialog=new LoaddingDialog(getActivity());
         loaddingDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         //获取收藏数据，设置界面
-        GetCollectionData();
+//        GetCollectionData();
+        GetCollectionD();
     }
-
-
     //获取杂志文章收藏数据
     private void GetCollectionData(){
-//        loaddingDialog.show();
+
+        //缓存位置
+        File cacheFile = new File(getContext().getCacheDir(), Environment.getExternalStorageDirectory() + "/" + "YGdownload"
+                + "/" + "Json");
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        //创建okHttpClient对象
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(Configurator.CollectionShow+"?token="+dbManager.readAccessToken()).build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+//                Log.i("myInfo","Response 1 response:          " + response);
+//                Log.i("myInfo","Response 1 cache response:    " + response.cacheResponse());
+//                Log.i("myInfo","Response 1 network response:  " + response.networkResponse());
+            }
+        });
+
+
+    }
+
+    //获取杂志文章收藏数据
+    private void GetCollectionD(){
         OkHttpUtils
                 .get()
                 .url(Configurator.CollectionShow+"?token="+dbManager.readAccessToken())
@@ -98,18 +137,25 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e) {
-//                        Toast.makeText(getActivity(), "网络异常,请稍后再试", Toast.LENGTH_SHORT).show();
-//                        loaddingDialog.dismiss();
+
                     }
 
                     @Override
                     public void onResponse(String s) {
-                        Log.i("myInfo",s);
+                        Log.i("myInfo","collectionfragment:  "+s);
                         //解析数据
                         collectionList = new Gson().fromJson(s,CollectionList.class);
-                        //设置适配器
-                        grid_collection.setAdapter(new CollectionGridViewAdapter(collectionList.getObj(),getActivity(),dbManager));
+                        if (collectionList.getCode().equals("100")) {
+                            //设置适配器
+                            grid_collection.setAdapter(new CollectionGridViewAdapter(collectionList.getObj(), getActivity(), dbManager));
 //                        loaddingDialog.dismiss();
+                        }else if (collectionList.getCode().equals("101")){
+                            //登录已过期
+                            //删除数据，用户信息，用户认证信息
+                            new DBManager().DeleteInfo();
+                            //退出登录_发送广播，更新昵称或会员等级
+                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("com.chen.mybcreceiver.OUTLOGIN_UPDATE_NICK_OR_LEVEL"));
+                        }
                     }
                 });
     }
@@ -140,4 +186,8 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
         super.onDestroy();
 
     }
+
+
+
+
 }

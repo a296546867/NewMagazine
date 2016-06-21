@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sky.Activity.R;
+import com.example.sky.Application.MApplication;
 import com.example.sky.Bean.Article;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -59,14 +61,9 @@ public class FootPrintLisViewAdapter extends BaseAdapter {
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
-//        viewHolder.footprint_Image = (ImageView)convertView.findViewById(R.id.footprint_item_Image);
-//        viewHolder.footprint_Title.setText("《"+listArticle.get(position).getAtitle()+"》");
-//        viewHolder.footprint_Text.setText(listArticle.get(position).getIntroduction());
-
-
-//        viewHolder.footprint_Image = (ImageView)convertView.findViewById(R.id.footprint_item_Image);
-        viewHolder.footprint_Title.setText("《"+"test"+"》");
-        viewHolder.footprint_Text.setText("holle world");
+        ImageLoader.getInstance().displayImage(listArticle.get(position).getSurfacethumbimage(),viewHolder.footprint_Image, MApplication.GetDisplayImageOptions());
+        viewHolder.footprint_Title.setText("《"+listArticle.get(position).getAtitle()+"》");
+        viewHolder.footprint_Text.setText(listArticle.get(position).getIntroduction());
 
         return convertView;
     }

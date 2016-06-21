@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
@@ -17,13 +19,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sky.Activity.R;
+import com.example.sky.Application.MApplication;
 import com.example.sky.Bean.Article;
 import com.example.sky.Bean.Result;
 import com.example.sky.DataBase.DBManager;
 import com.example.sky.Net.Configurator;
 import com.example.sky.Utils.LoaddingDialog;
 import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.List;
@@ -84,10 +89,11 @@ public class CollectionGridViewAdapter extends BaseAdapter {
         }else {
             holder = (GridViewViewHolder)convertView.getTag();
         }
-        holder.collection_item_img.setImageResource(R.mipmap.empty_photo);
-        holder.collection_item_delete.setImageResource(R.mipmap.delete);
-        holder.collection_item_title.setText(articleList.get(position).getAtitle());
-        holder.collection_item_collectionnum.setText(articleList.get(position).getCollectnum());
+        //获取图片
+        ImageLoader.getInstance().displayImage(articleList.get(position).getSurfacethumbimage(),holder.collection_item_img, MApplication.GetDisplayImageOptions());//封面图
+        holder.collection_item_delete.setImageResource(R.mipmap.delete);//删除图标
+        holder.collection_item_title.setText(articleList.get(position).getAtitle());//文章标题
+        holder.collection_item_collectionnum.setText(articleList.get(position).getCollectnum());//收藏量
         //删除图片点击事件
         holder.collection_item_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +174,5 @@ public class CollectionGridViewAdapter extends BaseAdapter {
             }
         }
     }
-
-
 
 }

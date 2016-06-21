@@ -78,7 +78,7 @@
         android:layout_above="@id/rg_tab_bar"
         android:background="@color/avtivity_topbarANDbottombar_lineView" />
 
-    <android.support.v4.view.ViewPager
+    <com.example.sky.MyView.MyViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

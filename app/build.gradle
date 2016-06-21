@@ -30,4 +30,5 @@ dependencies {
     compile files('libs/Volley.jar')
     compile files('libs/gson-2.1.jar')
     compile 'junit:junit:4.12'
+    compile files('libs/universal-image-loader-1.9.5.jar')
 }

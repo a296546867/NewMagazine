@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sky.Activity.R;
+import com.example.sky.Application.MApplication;
 import com.example.sky.Bean.Article;
 import com.example.sky.Bean.SearchItem;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -61,7 +63,7 @@ public class SearchListViewAdapter extends BaseAdapter {
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
-//        viewHolder.footprint_Image = (ImageView)convertView.findViewById(R.id.footprint_item_Image);
+        ImageLoader.getInstance().displayImage(ArtitleList.get(position).getSurfacethumbimage(),viewHolder.footprint_Image, MApplication.GetDisplayImageOptions());
         viewHolder.footprint_Title.setText("《"+ArtitleList.get(position).getAtitle()+"》");
         viewHolder.footprint_Text.setText(ArtitleList.get(position).getIntroduction());
 
