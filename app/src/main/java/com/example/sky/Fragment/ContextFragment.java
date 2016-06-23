@@ -132,7 +132,6 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
         sharedHelper = new SharedHelper(getContext());
         if (sharedHelper.readIsLogin().equals("false")){
             vpager.setScrollble(false);
-//            Toast.makeText(getContext(),"请登录",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -196,7 +195,6 @@ public class ContextFragment extends Fragment implements RadioGroup.OnCheckedCha
                     break;
             }
         }
-
     }
 
 

@@ -1,13 +1,17 @@
 package com.example.sky.DataBase;
 
-import android.content.Context;
+import android.widget.ListView;
 
 import com.example.sky.Bean.History;
+import com.example.sky.Bean.Journal;
+import com.example.sky.Bean.JournalList;
 import com.example.sky.Bean.UserAuthInfo;
 import com.example.sky.Bean.UserInfo;
 
+
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +75,6 @@ public class DBManager {
         DataSupport.deleteAll(UserAuthInfo.class);
         DataSupport.deleteAll(History.class);
     }
-
     //读取昵称和用户名
     public Map<String, String> readNickAndLevel(){
         Map<String, String> map = new HashMap<String, String>();
@@ -99,7 +102,34 @@ public class DBManager {
             return false;
         }
     }
-
-
+    //保存首页杂志列表数据，用于缓存
+    public void SaveYearMagazineList(JournalList journalList){
+        //保存数据
+        if (journalList!=null){
+            journalList.save();//保存杂志列表数据
+            //保存每一期杂志
+            for (int i=0;i<journalList.getObj().size();i++){
+                Journal journal = journalList.getObj().get(i);
+                journal.setJournalList(journalList);
+                journal.save();
+            }
+        }
+    }
+    //读取首页杂志列表缓存数据
+    public List<JournalList>  readYearMagazineList(){
+        //查找杂志列表
+        List<JournalList> journalList = DataSupport.findAll(JournalList.class);
+        for (int i=0;i<journalList.size();i++){
+            //该年对应的杂志列表
+            journalList.get(i).setObj(DataSupport.where("journallist_id=?",journalList.get(i).getId()+"").find(Journal.class));
+        }
+        return journalList;
+    }
+    //删除用于缓存的数据
+    public void DeleCacah(){
+        //删除原有的数据
+        DataSupport.deleteAll(JournalList.class);
+        DataSupport.deleteAll(Journal.class);
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.example.sky.Bean;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,8 @@ import java.util.List;
  * 修改时间：2016/6/16 16:06
  * 修改备注：
  */
-public class Journal {
+public class Journal extends DataSupport{
+    private int id;//和实体无关
     private String jid; // 杂志ID
     private String jname; // 杂志名称
     private String surfaceimage; // 封面大图
@@ -26,6 +29,23 @@ public class Journal {
     private String surfacethumbimage; // 封面小图
     private List<Cata> catas; // 目录列表
     private int year;
+    private JournalList journalList;//JournalList表和该表的映射关系，和实体无关
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public JournalList getJournalList() {
+        return journalList;
+    }
+
+    public void setJournalList(JournalList journalList) {
+        this.journalList = journalList;
+    }
 
     public String getJid() {
         return jid;

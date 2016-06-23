@@ -5,6 +5,8 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.example.sky.DataBase.SharedHelper;
+
 /**
  * 项目名称：NewMagazine
  * 类描述：
@@ -18,6 +20,8 @@ public class MyViewPager extends ViewPager {
 
     private boolean scrollble = true;
 
+    SharedHelper sharedHelper;
+
     public MyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -28,6 +32,7 @@ public class MyViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+
         if(scrollble){
             return super.onInterceptTouchEvent(ev);
         }else{

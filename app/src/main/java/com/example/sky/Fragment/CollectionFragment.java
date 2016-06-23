@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sky.Activity.R;
@@ -26,6 +29,7 @@ import com.example.sky.DataBase.DBManager;
 import com.example.sky.MyAdapter.CollectionGridViewAdapter;
 import com.example.sky.MyAdapter.MyAdapter;
 import com.example.sky.Net.Configurator;
+import com.example.sky.Net.HttpServerManager;
 import com.example.sky.Utils.LoaddingDialog;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -55,7 +59,7 @@ import okhttp3.Response;
  */
 public class CollectionFragment extends Fragment implements View.OnClickListener{
 
-
+    RelativeLayout relativeLayout;//收藏界面布局
     private GridView grid_collection;
     CollectionList collectionList;//保存收藏的文章信息
     Button collection_delete;//删除按钮
@@ -80,6 +84,7 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
     }
 
     private void  binViews(View view){
+        relativeLayout=(RelativeLayout)view.findViewById(R.id.collection_layout);
         grid_collection = (GridView)view.findViewById(R.id.collection_gridview);
         collection_delete = (Button)view.findViewById(R.id.collection_delete);
     }
@@ -91,44 +96,18 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
         //实例化loadding
         loaddingDialog=new LoaddingDialog(getActivity());
         loaddingDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
-        //获取收藏数据，设置界面
-//        GetCollectionData();
-        GetCollectionD();
+
+        //判断是否有网络
+        if (HttpServerManager.isNetworkConnected(getContext())) {
+            //获取收藏数据，设置界面
+            GetCollectionData();
+        }else{
+            setTips();//提示信息
+        }
     }
+
     //获取杂志文章收藏数据
     private void GetCollectionData(){
-
-        //缓存位置
-        File cacheFile = new File(getContext().getCacheDir(), Environment.getExternalStorageDirectory() + "/" + "YGdownload"
-                + "/" + "Json");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
-        //创建okHttpClient对象
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
-                .build();
-
-        Request request = new Request.Builder()
-                .url(Configurator.CollectionShow+"?token="+dbManager.readAccessToken()).build();
-
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-//                Log.i("myInfo","Response 1 response:          " + response);
-//                Log.i("myInfo","Response 1 cache response:    " + response.cacheResponse());
-//                Log.i("myInfo","Response 1 network response:  " + response.networkResponse());
-            }
-        });
-
-
-    }
-
-    //获取杂志文章收藏数据
-    private void GetCollectionD(){
         OkHttpUtils
                 .get()
                 .url(Configurator.CollectionShow+"?token="+dbManager.readAccessToken())
@@ -149,7 +128,7 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
                             //设置适配器
                             grid_collection.setAdapter(new CollectionGridViewAdapter(collectionList.getObj(), getActivity(), dbManager));
 //                        loaddingDialog.dismiss();
-                        }else if (collectionList.getCode().equals("101")){
+                        }else if (!collectionList.getCode().equals("100")){
                             //登录已过期
                             //删除数据，用户信息，用户认证信息
                             new DBManager().DeleteInfo();
@@ -187,7 +166,20 @@ public class CollectionFragment extends Fragment implements View.OnClickListener
 
     }
 
-
-
-
+    //设置没有网络时的提示
+    private void setTips(){
+        //隐藏收藏文章布局
+        grid_collection.setVisibility(View.GONE);
+        //创建一个TextView
+        TextView textView = new TextView(getActivity());
+        textView.setId(0);
+        textView.setText("搜索不到相关内容");
+        textView.setTextColor(getResources().getColor(R.color.title_text_color));
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextSize(20);
+        //宽高
+        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
+        //添加到布局
+        relativeLayout.addView(textView,params);
+    }
 }

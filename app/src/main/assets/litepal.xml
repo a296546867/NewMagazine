@@ -14,5 +14,11 @@
         <mapping class="com.example.sky.Bean.History" />
         <!--保存文章信息，用到足迹功能-->
         <mapping class="com.example.sky.Bean.Article" />
+        <!--杂志列表数据,用于离线查看-->
+        <mapping class="com.example.sky.Bean.JournalList" />
+        <!--杂志数据,用于离线查看-->
+        <mapping class="com.example.sky.Bean.Journal" />
+
+
     </list>
 </litepal>

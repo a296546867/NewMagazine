@@ -75,9 +75,9 @@ public class MApplication extends LitePalApplication{
     //DisplayImageOptions配置文件
     public static DisplayImageOptions GetDisplayImageOptions(){
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.empty_photo)//图片下载时的占位图
-                .showImageForEmptyUri(R.mipmap.empty_photo)//URL为空时显示的占位图
-                .showImageOnFail(R.mipmap.empty_photo)//加载失败时显示的占位图
+//                .showImageOnLoading(R.mipmap.empty_photo)//图片下载时的占位图
+//                .showImageForEmptyUri(R.mipmap.empty_photo)//URL为空时显示的占位图
+//                .showImageOnFail(R.mipmap.empty_photo)//加载失败时显示的占位图
                 .cacheInMemory(true)// 是否缓存在内存中，通过 Builder 构建的对象默认为 false
                 .cacheOnDisk(true)// 是否缓存在磁盘中，通过 Builder 构建的对象默认为 false。
                 .considerExifParams(false)// 是否考虑JPEG图像EXIF参数（旋转，翻转）

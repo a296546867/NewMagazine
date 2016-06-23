@@ -1,5 +1,8 @@
 package com.example.sky.Bean;
 
+import org.litepal.crud.DataSupport;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,13 +14,22 @@ import java.util.List;
  * 修改时间：2016/6/17 13:36
  * 修改备注：
  */
-public class JournalList  {
+public class JournalList extends DataSupport{
+    private int id;//和实体无关
     private String curr_index;//第几页
     private int page;//:10每页数量
     private int curr_count;//10取出数量
     private int total_count;//:100总数量
     private List<Journal> obj;//杂志列表
     private int year;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCurr_index() {
         return curr_index;
