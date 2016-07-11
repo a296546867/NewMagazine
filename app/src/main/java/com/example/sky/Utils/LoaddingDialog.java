@@ -19,7 +19,6 @@ public class LoaddingDialog extends Dialog {
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loaddingdialog);
 

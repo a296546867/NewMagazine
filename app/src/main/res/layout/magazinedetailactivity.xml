@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/avtivity_bg"
+    >
+    <RelativeLayout
+        android:id="@+id/MagazineDateil_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/avtivity_top_bar_bg"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/MagazineDateil_return_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_centerVertical="true"
+            android:text="返回"
+            android:textColor="@color/return_text_color"
+            android:textSize="@dimen/return_text_size" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/MagazineDateil_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:text="杂志阅读"
+            android:textColor="@color/title_text_color"
+            android:textSize="@dimen/title_text_size" >
+        </TextView>
+    </RelativeLayout>
+
+    <!--底部按钮-->
+    <LinearLayout
+        android:id="@+id/MagazineDateil_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/avtivity_bottom_bar_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/MagazineDateil_1"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_menu_home"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="one" />
+
+        <TextView
+            android:id="@+id/MagazineDateil_2"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_menu_home"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="2"
+            />
+
+        <TextView
+            android:id="@+id/MagazineDateil_3"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_menu_home"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="3" />
+
+        <TextView
+            android:id="@+id/MagazineDateil_4"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_menu_home"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="4" />
+
+        <TextView
+            android:id="@+id/MagazineDateil_5"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_menu_home"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="5" />
+
+    </LinearLayout>
+    <!--底部按钮分割线  ps：我就是要加-->
+    <View
+        android:id="@+id/MagazineDateil_div_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_above="@id/MagazineDateil_tab_bar"
+        android:background="@color/avtivity_topbarANDbottombar_lineView" />
+    <!--中间展示区-->
+    <com.example.sky.MyView.MyViewPager
+        android:id="@+id/MagazineDateil_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/MagazineDateil_tab_bar"
+        android:layout_below="@id/MagazineDateil_topbar"/>
+
+</RelativeLayout>

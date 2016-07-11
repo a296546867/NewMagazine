@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -142,7 +143,7 @@ public class MagazineFragment extends Fragment {
         //okhttp的缓存功能这里虽然开启了
         //但是由于项目接口设计的有问题
         //所以okhttp的缓存功能是用不了的
-        //这里采用数据库来存储数据用于离线查看
+        //离线查看功能采用数据库来实现
         File cacheFile = new File(Environment.getExternalStorageDirectory() + "/" + "YGdownload","cache");//创建缓存文件
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
 
@@ -226,14 +227,14 @@ public class MagazineFragment extends Fragment {
             setTips();
         }
     }
-    //设置没有网络时的提示
+    //没有网络且没有缓存时的提示
     private void setTips(){
         //隐藏收藏文章布局
         magazine_listview.setVisibility(View.GONE);
         //创建一个TextView
         TextView textView = new TextView(getActivity());
         textView.setId(0);
-        textView.setText("搜索不到相关内容");
+        textView.setText("网络有问题哦!");
         textView.setTextColor(getResources().getColor(R.color.title_text_color));
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(20);

@@ -60,11 +60,14 @@
         <activity
             android:name=".ForgetPassWord"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <!--用户信息编辑-->
+        <!--用户信息编辑-->MagazineDetailActivity
         <activity
             android:name=".UserInfoEdtActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+        <!--杂志详情页-->
+        <activity
+            android:name=".MagazineDetailActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

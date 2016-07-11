@@ -1,12 +1,16 @@
 package com.example.sky.MyAdapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.sky.Activity.MagazineDetailActivity;
 import com.example.sky.Activity.R;
 import com.example.sky.Application.MApplication;
 import com.example.sky.Bean.Journal;
@@ -66,8 +70,11 @@ public class MagazineListView_GridView extends BaseAdapter {
         }
         // 设置杂志名字
         viewHolder.magazine_name.setText(list.get(position).getJname());
-        //获取图片
-        ImageLoader.getInstance().displayImage(list.get(position).getSurfacethumbimage(),viewHolder.magazin_photo, MApplication.GetDisplayImageOptions()); // imageUrl代表图片的URL地址，imageView代表承载图片的IMAGEVIEW控件 ， options代表DisplayImageOptions配置文件
+        //获取图片// imageUrl代表图片的URL地址，imageView代表承载图片的IMAGEVIEW控件 ， options代表DisplayImageOptions配置文件
+        ImageLoader.getInstance().displayImage(list.get(position).getSurfacethumbimage(),viewHolder.magazin_photo, MApplication.GetDisplayImageOptions());
+        //图片点击事件
+        ImageClick(viewHolder.magazin_photo,list.get(position).getJid());
+
         return convertView;
     }
 
@@ -76,6 +83,22 @@ public class MagazineListView_GridView extends BaseAdapter {
         TextView magazine_name;//杂志描述
     }
 
+    //图片点击事件
+    //进入杂志具体阅读
+    private void ImageClick(ImageView imageView, final String jid){
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //传递一个jid过去，用来获取该杂志的所有信息
+                Intent intent = new Intent(context, MagazineDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("jid",jid);
+                intent.putExtras(bundle);
+                //跳转
+                context.startActivity(intent);
+            }
+        });
+    }
 
 
 }

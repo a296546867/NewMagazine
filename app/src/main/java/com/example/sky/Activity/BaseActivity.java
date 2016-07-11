@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.sky.Application.MApplication;
 import com.example.sky.DataBase.SharedHelper;
 import com.example.sky.Utils.ActivityCollector;
+import com.example.sky.Utils.LoaddingDialog;
 
 /**
  * 项目名称：NewMagazine
@@ -31,6 +32,7 @@ import com.example.sky.Utils.ActivityCollector;
  */
 public class BaseActivity extends AppCompatActivity {
 
+    LoaddingDialog loaddingDialog;        //loadding
     WindowManager manager;
     WindowManager.LayoutParams params;
     View tv;
@@ -43,6 +45,11 @@ public class BaseActivity extends AppCompatActivity {
 
         //添加到管理中
         ActivityCollector.addActivity(this);
+
+        //实例化loadding
+        loaddingDialog=new LoaddingDialog(this);
+        loaddingDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+
 
         //获得一个window
         manager = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
